@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Script version="1.0" type="xscript5.1"><![CDATA[include "Src_HintsEduLib::Comp.xjs";
+include "Src_HintsEduLib::Excel.xjs";
+include "Src_HintsEduLib::Frame.xjs";
+include "Src_HintsEduLib::Grid.xjs";
+include "Src_HintsEduLib::GridFilter.xjs";
+include "Src_HintsEduLib::Message.xjs";
+include "Src_HintsEduLib::Popup.xjs";
+
+include "Src_HintsEduLib::Transaction.xjs";
+include "Src_HintsEduLib::Util.xjs";
+include "Src_HintsEduLib::Validation.xjs";
+
+include "Src_HintsEduLib::Util_adh.xjs";
+include "Src_HintsEduLib::QmeNexa.xjs";
+include "Src_HintsEduLib::ExportObject.xjs";]]></Script>

@@ -1,0 +1,126 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.0">
+  <Form id="Sample_CommCode" left="0" top="0" width="814" height="529" titletext="Sample_CommCode" onload="Form_onload" ontimer="Form_Emp_ontimer">
+    <Layouts>
+      <Layout height="529" width="814">
+        <Static id="Static04" taborder="0" left="0" cssclass="sta_WF_guide1" visible="false" text="h10" height="10" width="100.00%" bottom="0"/>
+        <Static id="sta_00" taborder="1" text="Common Code" left="10" top="10" width="160" height="30" cssclass="sta_WF_title"/>
+        <Static id="Static00" taborder="2" left="0" top="0" cssclass="sta_WF_guideRed" visible="false" text="h10" height="10" right="0"/>
+        <Static id="Static08" taborder="3" left="0" top="0" width="10" cssclass="sta_WF_guideRed" visible="false" bottom="0" text="w&#13;&#10;10"/>
+        <Static id="Static01" taborder="4" left="10" cssclass="sta_WF_guideRed" visible="false" text="h10" right="0" bottom="0" height="10"/>
+        <Static id="Static02" taborder="5" top="0" width="10" cssclass="sta_WF_guideRed" visible="false" bottom="0" text="w&#13;&#10;10" right="0"/>
+        <Combo id="cbo_pos" taborder="6" left="538" top="90" width="150" height="21" innerdataset="ds_posC001" codecolumn="CODE" datacolumn="CODE_NAME"/>
+        <Grid id="Grid00" taborder="7" left="410" top="285" width="380" height="234" binddataset="ds_hobbyE001" autofittype="col">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="80"/>
+                <Column size="80"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="CODE"/>
+                <Cell col="1" text="CODE_NAME"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:CODE"/>
+                <Cell col="1" text="bind:CODE_NAME"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Static id="Static09" taborder="8" text="Common Code" left="410" top="50" width="115" height="30" cssclass="sta_WF_title_sub"/>
+        <Static id="Static03" taborder="9" text="Dataset 적용 - 취미코드" left="410" top="255" width="155" height="30" cssclass="sta_WF_title_sub"/>
+        <Button id="Button00" taborder="10" text="Get Common Code" left="537" top="54" width="136" height="24" onclick="Button00_onclick"/>
+        <Static id="Static05" taborder="11" text="공통코드 목록" left="10" top="50" width="190" height="30" cssclass="sta_WF_title_sub"/>
+        <Static id="Static06" taborder="12" text="직급코드 - Default" left="410" top="90" width="106" height="21"/>
+        <Button id="Button01" taborder="13" text="Clear" left="677" top="54" width="56" height="24" onclick="Button01_onclick"/>
+        <Div id="Div00" taborder="14" text="Div00" left="408" top="160" width="345" height="66" border="1px solid #cccccc">
+          <Layouts>
+            <Layout>
+              <Static id="Static07" taborder="0" text="부서코드 - ALL" left="30" top="21" width="106" height="20"/>
+              <Combo id="cbo_dept" taborder="1" left="158" top="21" width="150" height="21" innerdataset="ds_deptC002" codecolumn="CODE" datacolumn="CODE_NAME"/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Grid id="grd_list" taborder="15" left="10" top="80" right="414" bottom="9" binddataset="gds_comCode" onheadclick="grd_list_onheadclick" autofittype="col">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="60"/>
+                <Column size="98"/>
+                <Column size="60"/>
+                <Column size="150"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="GROUP"/>
+                <Cell col="1" text="GROUP_NAME"/>
+                <Cell col="2" text="CODE"/>
+                <Cell col="3" text="CODE_NAME"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:GROUP" suppress="1"/>
+                <Cell col="1" text="bind:GROUP_NAME" suppress="1"/>
+                <Cell col="2" text="bind:CODE"/>
+                <Cell col="3" text="bind:CODE_NAME"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Static id="Static10" taborder="16" text="성별코드 - All" left="410" top="121" width="106" height="20"/>
+        <Radio id="rdo_gender" taborder="17" left="538" top="120" width="250" height="21" innerdataset="ds_D001" codecolumn="CODE" datacolumn="CODE_NAME" rowcount="1" border="1px solid #cccccc"/>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="ds_posC001"/>
+      <Dataset id="ds_deptC002"/>
+      <Dataset id="ds_D001"/>
+      <Dataset id="ds_hobbyE001"/>
+    </Objects>
+    <Script type="xscript5.1"><![CDATA[
+this.Form_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	this.gfn_formOnLoad(this);
+};
+
+/*
+ * 공통코드 
+ * AppVariables Datasets gds_commCode에서 구분값에 맞는 코드값 가져오기
+ *
+ * 규칙
+ * Dataset ID는 마지막 4자리를 공통코드 구분자로 지정 ds_deptC001
+ * 
+ * 컴포넌트id 또는 데이터셋id를 지정
+ *  
+ * 여러개 지정시 구분자 스페이스
+ * ":"구분자 이용하여 0이면 "전체", 1이면 "선택하세요" 표현
+ * "전체" 선택시 코드값은 "ALL", "선택하세요" 선택시 코드값은 "" 으로 지정
+
+    compId : 컴포넌트 or Dataset 아이디
+    type   : 0(전체), 1(선택하세요)
+    this.gfn_getCommCode(compId:type compId2:type2);
+    
+ */
+
+
+this.Button00_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+    this.gfn_getCommCode("cbo_pos rdo_gender:0 Div00.form.cbo_dept:1 ds_hobbyE001");
+};
+
+this.Button01_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+    this.ds_posC001.clear();
+    this.ds_deptC002.clear();
+    this.ds_D001.clear();
+    this.ds_hobbyE001.clear();
+};]]></Script>
+  </Form>
+</FDL>

@@ -1,0 +1,89 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="test" width="1280" height="720" titletext="New Form" onload="test_onload">
+    <Layouts>
+      <Layout height="720" mobileorientation="landscape" width="1280">
+        <WebBrowser id="WebBrowser00" taborder="0" left="37" top="30" right="230" bottom="170" border="1px dashed darkgray" onloadcompleted="WebBrowser00_onloadcompleted"/>
+        <Button id="Button00" taborder="1" text="Play" left="37" width="190" height="40" onclick="ButtonPlay_onclick" bottom="115"/>
+        <Button id="Button00_00" taborder="2" text="Stop" left="460" width="190" height="40" onclick="ButtonStop_onclick" bottom="115"/>
+        <Button id="Button00_00_00" taborder="3" text="Pause" left="255" width="190" height="40" onclick="ButtonPause_onclick" bottom="115"/>
+        <Button id="Button00_01" taborder="4" text="Size" left="665" width="190" height="40" onclick="ButtonSize_onclick" bottom="115"/>
+        <Button id="ButtonOpenWindow" taborder="5" text="OpenWindow" left="37" width="190" height="40" bottom="65" onclick="ButtonOpenWindow_onclick"/>
+        <Button id="ButtonOpenerOpen" taborder="6" text="opener.openProgram" left="257" width="190" height="40" bottom="65" onclick="ButtonOpenerOpen_onclick"/>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[this.test_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+		this.WebBrowser00.set_url("http://localhost:8080/QME/QME_UI/QmeNexHtml/youtubePlayer.html");		//	https://developers.google.com/youtube/iframe_api_reference?hl=ko
+	//	this.WebBrowser00.set_url("http://nyc.panpacific.co.kr/QMEServer/");		//	https://developers.google.com/youtube/iframe_api_reference?hl=ko
+	//	this.WebBrowser00.set_url("http://naver.com");		//	https://developers.google.com/youtube/iframe_api_reference?hl=ko
+	//	this.WebBrowser00.set_url("http://192.168.11.193:8101/nexos/html/main/main.html?ver=20181022_03#LC00000M");
+};
+
+this.ButtonPlay_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.WebBrowser00.callMethod("playVideo");
+};
+
+this.ButtonStop_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.WebBrowser00.callMethod("stopVideo");
+};
+
+this.ButtonPause_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.WebBrowser00.callMethod("pauseVideo");
+};
+
+this.ButtonSize_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var iFormWidth 	= this.width;
+	var iFormHeight = this.height;
+	var iObjLeft 	= obj.left;
+	var iObjRight 	= obj.right;
+	var iObjTop 	= obj.top;
+	var iObjBottom 	= obj.bottom;
+	
+	var iWebBrawserWidth 	= iFormWidth - iObjLeft - iObjRight - 50	;
+	var iWebBrawserHeight 	= iFormHeight - iObjTop - iObjBottom - 50	;
+	
+	this.WebBrowser00.callMethod("setYouTubeIframeSize", iWebBrawserWidth, iWebBrawserHeight);
+};
+
+this.WebBrowser00_onloadcompleted = function(obj:nexacro.WebBrowser,e:nexacro.WebLoadCompEventInfo)
+{
+	var iFormWidth 	= this.width;
+	var iFormHeight = this.height;
+	var iObjLeft 	= obj.left;
+	var iObjRight 	= obj.right;
+	var iObjTop 	= obj.top;
+	var iObjBottom 	= obj.bottom;
+	
+	var iWebBrawserWidth 	= iFormWidth - iObjLeft - iObjRight - 50	;
+	var iWebBrawserHeight 	= iFormHeight - iObjTop - iObjBottom - 50	;
+	
+	this.WebBrowser00.callMethod("setYouTubeIframeAPIReady", "M7lc1UVf-VE", iWebBrawserWidth, iWebBrawserHeight);
+
+	// 	this.WebBrowser00.setProperty("allowfullscreen", ""); // webbrowser에 allowfullscreen 세팅
+	// 	this.WebBrowser00.callMethod("set_allowfullscreen",url); // 링크된 html 의 함수 호출, html 파일은 비고란 참조
+	
+};
+
+this.ButtonOpenWindow_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.WebBrowser00.callMethod("callUrl", "www.naver.com");
+};
+
+this.ButtonOpenerOpen_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.WebBrowser00.callMethod("qmeOpenProgram");
+	//	qmeOpenProgram();
+};
+
+function qmeOpenProgram(){
+	var param = new Object();
+	param.polist = "4500571397＾4500571724";
+	opener.openProgram(param);
+}]]></Script>
+  </Form>
+</FDL>

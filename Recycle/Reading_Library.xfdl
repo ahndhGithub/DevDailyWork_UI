@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.0">
+  <Form id="stc_system_computername" width="1280" height="720" titletext="New Form">
+    <Layouts>
+      <Layout height="720" mobileorientation="landscape" width="1280">
+        <Edit id="Edit00" taborder="0" left="54" top="67" width="216" height="46"/>
+        <Static id="stc_result" taborder="2" text="result" left="54" top="15" width="46" height="35" onclick="Static_onclick"/>
+        <Static id="stc_strRepl" taborder="3" text="-" left="104" top="15" width="156" height="35" onclick="Static_onclick"/>
+        <Static id="stc_system_computername" taborder="1" text="system.computername" left="54" top="115" width="212" height="35" onclick="Static_onclick"/>
+        <Static id="stc_system_cpuarchitecture" taborder="4" text="system.cpuarchitecture" left="54" top="148" width="212" height="35" onclick="Static_onclick"/>
+        <Static id="stc_system_cpucount" taborder="5" text="system.cpucount" left="54" top="181" width="212" height="35" onclick="Static_onclick"/>
+        <Static id="stc_system_cputype" taborder="6" text="system.cputype" left="54" top="214" width="212" height="35" onclick="Static_onclick"/>
+        <Static id="stc_system_locale" taborder="7" text="system.locale" left="54" top="247" width="212" height="35" onclick="Static_onclick"/>
+        <Static id="stc_system_loginuser" taborder="8" text="system.loginuser" left="54" top="280" width="212" height="35" onclick="Static_onclick"/>
+        <Static id="stc_system_mobileorientation" taborder="9" text="system.mobileorientation" left="54" top="313" width="212" height="35" onclick="Static_onclick"/>
+        <Static id="stc_system_mobileproducttype" taborder="10" text="system.mobileproducttype" left="54" top="346" width="212" height="35" onclick="Static_onclick"/>
+        <Static id="stc_system_monitorcount" taborder="11" text="system.monitorcount" left="54" top="379" width="212" height="35" onclick="Static_onclick"/>
+        <Static id="stc_system_navigatorfullname" taborder="12" text="system.navigatorfullname" left="54" top="412" width="212" height="35" onclick="Static_onclick"/>
+        <Static id="stc_system_navigatorname" taborder="13" text="system.navigatorname" left="54" top="445" width="212" height="35" onclick="Static_onclick"/>
+        <Static id="stc_system_navigatorversion" taborder="14" text="system.navigatorversion" left="54" top="478" width="212" height="35" onclick="Static_onclick"/>
+        <Static id="stc_system_notificationtoken" taborder="15" text="system.notificationtoken" left="54" top="511" width="212" height="35" onclick="Static_onclick"/>
+        <Static id="stc_system_osversion" taborder="16" text="system.osversion" left="54" top="544" width="212" height="35" onclick="Static_onclick"/>
+        <Static id="stc_system_taskbarsize" taborder="17" text="system.taskbarsize" left="54" top="577" width="150" height="35" onclick="Static_onclick"/>
+        <Edit id="Edit01" taborder="18" left="214" top="511" width="653" height="35" readonly="true" value="어플리케이션이 실행된 모바일 기기에서 Push 알림을 받기 위한 Device Token 값을 갖는 읽기전용 속성입니다." text="어플리케이션이 실행된 모바일 기기에서 Push 알림을 받기 위한 Device Token 값을 갖는 읽기전용 속성입니다." background="transparent" border="0px none"/>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[this.Static_onclick = function(obj:nexacro.Static,e:nexacro.ClickEventInfo)
+{
+	var strRepl = obj.name.replace("stc_system_", "system.");
+	var trcTxt = eval(strRepl);
+	this.stc_strRepl.set_text(strRepl);
+	this.Edit00.set_value(trcTxt);
+};
+]]></Script>
+  </Form>
+</FDL>

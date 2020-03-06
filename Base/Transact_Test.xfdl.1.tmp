@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.0">
+  <Form id="Transact_Test" width="1280" height="720" titletext="New Form">
+    <Layouts>
+      <Layout height="720" mobileorientation="landscape" width="1280">
+        <Grid id="Grid00" taborder="0" left="140" top="140" width="650" height="300"/>
+        <Edit id="Edit00" taborder="1" left="140" top="66" width="138" height="28"/>
+        <Static id="Static00" taborder="2" text="입력값" left="72" top="66" width="68" height="28"/>
+        <Button id="Button00" taborder="3" text="실행" left="294" top="66" width="112" height="28" onclick="Button00_onclick"/>
+        <Static id="Static00_00" taborder="4" text="결과값" left="66" top="140" width="68" height="28"/>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="Dataset00">
+        <ColumnInfo>
+          <Column id="param1" type="STRING" size="256"/>
+          <Column id="param2" type="STRING" size="256"/>
+          <Column id="Column0" type="STRING" size="256"/>
+          <Column id="Column1" type="STRING" size="256"/>
+          <Column id="Column2" type="STRING" size="256"/>
+          <Column id="Column3" type="STRING" size="256"/>
+          <Column id="Column4" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_result_01"/>
+      <Dataset id="ds_result_02"/>
+    </Objects>
+    <Script type="xscript5.1"><![CDATA[this.Button00_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.Dataset00.clearData();
+	this.Dataset00.addRow();
+	this.Dataset00.setColumn(0, "param1", "AAA");
+	this.Dataset00.setColumn(0, "param2", "BBB");
+
+	var sSvcID = "test_transaction";
+	var sURL = "AppSvr::CommonSaveAction_Return.do";
+	var sInDatasets = "ds_in0=Dataset00 ds_in1=Dataset00";
+	var sOutDatasets = "ds_result_01=ds_out0 ds_result_02=ds_out1";
+	var sArguments = "sqlId=" + nexacro.wrapQuote("test_first_transaction test_second_transaction");
+
+	this.transaction(sSvcID, sURL, sInDatasets, sOutDatasets, sArguments, "callbackFunction");
+};
+
+// 콜백 : 메인트랜잭션용
+this.callbackFunction = function (strSvcID, nErrorCode, strErrorMsg)
+{
+	// 에러 체크 영역
+	if (nErrorCode < 0) 
+	{
+		//	alert(this.gfn_removeJavaErrMsg(strErrorMsg));
+		alert(strErrorMsg);
+		return;
+	}
+
+	switch (strSvcID) 
+	{
+		default:
+			break;
+		case "test_transaction":
+			trace(this.ds_result_01.saveXML());
+			trace(this.ds_result_02.saveXML());
+	}
+}
+]]></Script>
+  </Form>
+</FDL>

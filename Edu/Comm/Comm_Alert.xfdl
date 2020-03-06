@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.0">
+  <Form id="Comm_Alert" width="330" height="150" titletext="알림창" onload="form_onload">
+    <Layouts>
+      <Layout height="150" width="330">
+        <Static id="Static00" taborder="1" left="0" top="0" uWord="popup.notice" cssclass="sta_WF_msg_bg" right="0" bottom="0"/>
+        <Button id="btn_ok" taborder="0" text="확인" left="135" top="100" width="60" height="28" uWord="popup.ok" onclick="btn_ok_onclick" cssclass="btn_WF_pop2"/>
+        <Static id="sta_16" taborder="2" left="10" top="87" height="1" cssclass="sta_WF_msg_line" right="10"/>
+        <Static id="sta_icon" taborder="3" left="32" top="27" width="35" height="35" cssclass="sta_WF_msg_alert"/>
+        <TextArea id="txt_msg" taborder="4" left="80" top="27" width="216" height="35" cssclass="txt_WF_msg" wordWrap="char"/>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[include "Src_HintsEduLib::All_EduLib.xjs";
+
+/************************************************************************************************
+ * FORM 변수 선언 영역
+ ************************************************************************************************/
+
+/***********************************************************************************************
+* FORM EVENT 영역(onload)
+/***********************************************************************************************/
+this.form_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+// 	this.gfn_formOnLoad(this);	    
+// 	var sContents = this.getOwnerFrame().paramContents;
+// 	this.fn_msgSet(sContents);
+};
+
+ /************************************************************************************************
+ * 사용자 FUNCTION 영역
+ ************************************************************************************************/
+/**
+* @description 메세지설정
+*/
+this.fn_msgSet = function (sMsgContent)
+{
+	this.txt_msg.set_value(sMsgContent);
+};
+ 
+
+/************************************************************************************************
+ * 각 COMPONENT 별 EVENT 영역
+ ************************************************************************************************/
+/**
+* @description OK버튼이벤트
+*/
+this.btn_ok_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.close(true);
+};
+]]></Script>
+  </Form>
+</FDL>

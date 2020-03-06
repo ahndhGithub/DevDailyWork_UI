@@ -1,0 +1,316 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.0">
+  <Form id="Sample_MultiCombo" width="814" height="529" titletext="멀티콤보" onload="form_onload">
+    <Layouts>
+      <Layout height="529" width="814">
+        <Div id="div_mCombo1" taborder="0" text="Div00" left="9" top="80" width="207" height="23" url="Edu_Comm::Comm_MultiCombo.xfdl" callbackfunc="fn_mComboCallback" combocodecolumn="CODE" combodatacolumn="CODE_NAME" comboinnerdataset="ds_data1"/>
+        <Button id="btn_getValue" taborder="1" text="Get Value" left="9" top="142" width="100" height="24" onclick="btn_getValue_onclick"/>
+        <Edit id="edt_getValue" taborder="4" left="115" top="142" width="185" height="24"/>
+        <Button id="btn_setValue" taborder="2" text="Set Value" left="9" top="200" width="100" height="24" onclick="btn_setValue_onclick"/>
+        <Edit id="edt_setValue" taborder="5" left="115" top="200" width="185" height="24"/>
+        <Button id="btn_getText" taborder="3" text="Get Text" left="9" top="171" width="100" height="24" onclick="btn_getText_onclick"/>
+        <Edit id="edt_getText" taborder="6" left="115" top="171" width="185" height="24"/>
+        <Div id="div_mCombo2" taborder="7" text="Div00" left="9" top="274" width="207" height="23" url="Edu_Comm::Comm_MultiCombo.xfdl" combocodecolumn="CODE" combodatacolumn="NAME" comboinnerdataset="ds_data2" allcheck="true"/>
+        <Div id="div_mCombo3" taborder="8" text="div00" left="9" top="347" width="207" height="21" url="Edu_Comm::Comm_MultiCombo.xfdl" comboinnerdataset="ds_data2" combodatacolumn="NAME" combocodecolumn="CODE" allcheck="true" maxcount="3"/>
+        <Static id="Static00" taborder="9" left="0" top="0" cssclass="sta_WF_guideRed" visible="false" text="h10" height="10" right="10"/>
+        <Static id="Static08" taborder="10" left="0" top="0" width="10" cssclass="sta_WF_guideRed" visible="false" bottom="0" text="w&#13;&#10;10"/>
+        <Static id="Static02" taborder="11" top="0" width="10" cssclass="sta_WF_guideRed" visible="false" bottom="0" text="w&#13;&#10;10" right="0"/>
+        <Static id="Static01" taborder="12" left="10" cssclass="sta_WF_guideRed" visible="false" text="h10" right="0" bottom="0" height="10"/>
+        <Static id="sta_00" taborder="13" text="Multi Combo" left="10" top="10" width="146" height="30" cssclass="sta_WF_title"/>
+        <Static id="Static05" taborder="14" left="0" top="40" cssclass="sta_WF_guideBlue" visible="false" text="h10" height="10" right="0"/>
+        <Static id="Static03" taborder="15" text="Multi Combo 사용방법" left="10" top="50" width="190" height="30" cssclass="sta_WF_title_sub"/>
+        <Static id="Static07" taborder="16" text="전체 선택 / 해제" left="9" top="244" width="191" height="30" cssclass="sta_WF_title_sub"/>
+        <Static id="Static10" taborder="17" text="Div &gt; Multi Combo" left="10" top="382" width="191" height="30" cssclass="sta_WF_title_sub"/>
+        <Button id="btn_essential" taborder="18" text="essential" left="9" top="113" width="100" height="24" cssclass="btn_WF_sub1" onclick="btn_essential_onclick"/>
+        <Button id="btn_init" taborder="19" text="초기화" left="115" top="113" width="100" height="24" onclick="btn_init_onclick" cssclass="btn_WF_sub1"/>
+        <Static id="Static06" taborder="20" text="Display Count" left="9" top="317" width="191" height="30" cssclass="sta_WF_title_sub"/>
+        <Static id="Static04" taborder="21" text="Combo로 구성한 Multi Combo -  User Prop" left="425" top="53" width="265" height="30" cssclass="sta_WF_title_sub"/>
+        <Combo id="Combo01" taborder="22" text="Combo00" left="435" top="83" width="155" height="21" popuptype="none" type="search" value="" index="-1" u_innerdataset="ds_data1" u_codecolumn="CODE" u_datacolumn="NAME" u_type="multi" u_callback="fn_mComboCallback2" u_maxcount="10"/>
+        <Div id="Div00" taborder="23" text="Div00" left="425" top="114" width="265" height="74" border="1px solid #cccccc">
+          <Layouts>
+            <Layout>
+              <Combo id="Combo01" taborder="0" text="Combo00" left="15" top="23" width="155" height="21" popuptype="none" type="search" value="" index="-1" u_innerdataset="ds_data1" u_codecolumn="CODE" u_datacolumn="CODE_NAME" u_type="multi" u_callback="fn_mComboCallback2" u_maxcount="10"/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Tab id="Tab00" taborder="24" tabindex="0" left="425" top="200" width="265" height="118">
+          <Tabpages>
+            <Tabpage id="Tabpage1" text="Tabpage1" border="1px solid #cccccc">
+              <Layouts>
+                <Layout>
+                  <Combo id="Combo01" taborder="0" text="Combo00" left="15" top="23" width="155" height="21" popuptype="none" type="search" value="" index="-1" u_innerdataset="ds_data1" u_codecolumn="CODE" u_datacolumn="CODE_NAME" u_type="multi" u_callback="fn_mComboCallback2" u_maxcount="10"/>
+                </Layout>
+              </Layouts>
+            </Tabpage>
+            <Tabpage id="Tabpage2" text="Tabpage2"/>
+          </Tabpages>
+        </Tab>
+        <Div id="Div01" taborder="25" text="Div01" left="10" top="416" width="265" height="89" border="1px solid #cccccc">
+          <Layouts>
+            <Layout>
+              <Div id="div_mCombo1" taborder="0" text="Div00" left="19" top="20" width="207" height="23" url="Edu_Comm::Comm_MultiCombo.xfdl" combocodecolumn="CODE" combodatacolumn="CODE_NAME" comboinnerdataset="ds_data1" callbackfunc="fn_mComboCallback"/>
+            </Layout>
+          </Layouts>
+        </Div>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[/**
+*  @MenuPath    샘플 > 멀티콤보
+*  @FileName 	Sample_MultiCombo.xfdl 
+*  @Creator 	Education
+*  @CreateDate 	2018.12.17
+*  @Desction    멀티콤보
+************** 소스 수정 이력 ***********************************************
+*  date          	Modifier               	Description
+*******************************************************************************
+*  2017.11.21     	Education 	            최초 생성 
+*******************************************************************************
+
+1. Div 생성
+2. Div url 속성에 Comm::Comm_MultiCombo.xfdl 링크
+3. Div User prop에 아래 속성 적용 
+    comboinnerdataset : innerdataset id
+	combocodecolumn : code column
+	combodatacolumn : data column
+	allcheck : 전체선택 사용 여부 (true/false)
+	callbackfunc : 콜백함수
+	maxcount : 콤보 리스트 갯수
+
+4. 멀티콤보 inner dataset 설정함수 호출
+	this.div00.form.fn_setDataset(this.ds_list);   
+
+5. 접근방법
+    - 콤보 데이터 가져오기
+      var sValue = this.div00.form.get_value();
+
+    - 콤보 텍스트 가져오기
+      var sText = this.div00.form.get_text();
+
+    - 콤보에 데이터 설정하기
+      this.div00.form.set_value("01", "02");
+
+    - 필수 선택 디자인 적용하기
+      this.div00.form.fn_setRequired(true);   
+
+*/
+
+this.form_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	this.gfn_formOnLoad(this);
+
+    var arrCode = new Array();
+	arrCode.push({codeGroup:"E001", obj:this.ds_data1});
+    this.gfn_getCommonCode(arrCode);
+    
+
+// 멀티 콤보 데이타 설정 함수 호출 - innerdataset은 user prop. 지정한 값
+ 	this.div_mCombo1.form.fn_setDataset();   
+ 	this.div_mCombo2.form.fn_setDataset();	
+ 	this.div_mCombo3.form.fn_setDataset();	
+
+    this.Div01.form.div_mCombo1.form.fn_setDataset();  
+
+};
+
+
+/**
+* 멀티콤보 초기화
+* @param  : obj		   - [object]Button
+* @param  : e		   - [string]ClickEventInfo
+* @return : N/A
+* @example : 
+*/
+this.btn_init_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.div_mCombo1.form.fn_init();
+};
+
+/**
+* 멀티콤보데이터가져오기
+* @param  : obj		   - [object]Button
+* @param  : e		   - [string]ClickEventInfo
+* @return : N/A
+* @example : 
+*/
+this.btn_getValue_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var sValue = this.div_mCombo1.form.get_value();
+	this.edt_getValue.set_value(sValue);
+};
+
+/**
+* 멀티콤보텍스트가져오기
+* @param  : obj		   - [object]Button
+* @param  : e		   - [string]ClickEventInfo
+* @return : N/A
+* @example : 
+*/
+this.btn_getText_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var sText = this.div_mCombo1.form.get_text();
+	this.edt_getText.set_value(sText);
+};
+
+/**
+* 멀티콤보 데이터셋 세팅하기
+* @param  : obj		   - [object]Button
+* @param  : e		   - [string]ClickEventInfo
+* @return : N/A
+* @example : 
+*/
+this.btn_setValue_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	if(this.edt_setValue.value == null){
+		alert("setValue값을 입력하세요.");
+		return;
+	}
+	var sValue = this.edt_setValue.value;
+
+	this.div_mCombo1.form.set_value(sValue);
+};
+
+/**
+* 멀티콤보 필수처리
+* @param  : obj		   - [object]Button
+* @param  : e		   - [string]ClickEventInfo
+* @return : N/A
+* @example : 
+*/
+this.fv_essential = false;
+this.btn_essential_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var objForm = this.div_mCombo1.form;    
+    this.fv_essential = (this.fv_essential ? false: true);
+    objForm.fn_setRequired(this.fv_essential);
+};
+
+/************************************************************************************************
+ * CALLBACK 콜백 처리부분(Transaction, Popup)
+ ************************************************************************************************/
+/**
+* fnMultComboCallbackFunc : 멀티콤보콜백
+* @param  : obj		   - [object]Button
+* @param  : e		   - [string]ClickEventInfo
+* @return : N/A
+* @example : 
+*/
+//Div로 적용시
+this.fn_mComboCallback = function()
+{
+    trace("getText:: " + this.div_mCombo1.form.get_text());
+}
+
+//User Prop로 적용시
+this.fn_mComboCallback2 = function(pObjId)
+{
+    trace("getText:: " + pObjId.get_text());
+}
+]]></Script>
+    <Objects>
+      <Dataset id="ds_data1">
+        <ColumnInfo>
+          <Column id="CODE" type="STRING" size="256"/>
+          <Column id="NAME" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="CODE">01</Col>
+            <Col id="NAME">Accounting Team</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">02</Col>
+            <Col id="NAME">Finances Team</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">03</Col>
+            <Col id="NAME">Human Resource Team</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">04</Col>
+            <Col id="NAME">Marketing Team</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">05</Col>
+            <Col id="NAME">Sales Team</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">06</Col>
+            <Col id="NAME">Consulting  Team</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">07</Col>
+            <Col id="NAME">Design Team</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">08</Col>
+            <Col id="NAME">Mobile Team</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">09</Col>
+            <Col id="NAME">Education Team</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">10</Col>
+            <Col id="NAME">Technical Support Team</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">11</Col>
+            <Col id="NAME">Customer Support Team</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="ds_data2">
+        <ColumnInfo>
+          <Column id="CODE" type="STRING" size="256"/>
+          <Column id="NAME" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="CODE">01</Col>
+            <Col id="NAME">Accounting Team</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">02</Col>
+            <Col id="NAME">Finances Team</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">03</Col>
+            <Col id="NAME">Human Resource Team</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">04</Col>
+            <Col id="NAME">Marketing Team</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">05</Col>
+            <Col id="NAME">Sales Team</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">06</Col>
+            <Col id="NAME">Consulting  Team</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">07</Col>
+            <Col id="NAME">Design Team</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">08</Col>
+            <Col id="NAME">Mobile Team</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">09</Col>
+            <Col id="NAME">Education Team</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">10</Col>
+            <Col id="NAME">Technical Support Team</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">11</Col>
+            <Col id="NAME">Customer Support Team</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+    </Objects>
+  </Form>
+</FDL>

@@ -1,0 +1,151 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ADL version="2.0">
+  <Application id="App_Desktop" screenid="Desktop_screen" onloadingappvariables="Application_onloadingappvariables" onbeforeexit="Application_onbeforeexit" onexit="Application_onexit" onerror="Application_onerror" onload="Application_onload">
+    <Layout>
+      <MainFrame id="mainframe" showtitlebar="true" showstatusbar="false" width="1280" height="720" showcascadestatustext="false" openstatus="maximize" resizable="true" showcascadetitletext="true" showtitleicon="true" titletext="NewERP">
+        <VFrameSet id="vMainFrameSet" separatesize="36,*,36" showcascadestatustext="false" showtitlebar="false" showtitleicon="true" showcascadetitletext="true">
+          <Frames>
+            <ChildFrame id="TopFrame" showtitlebar="false" showstatusbar="false" formurl="Frame::Form_Top.xfdl" dragmovetype="normal" showtitleicon="true"/>
+            <HFrameSet id="hWorkFrameSet" separatesize="240,*" showcascadestatustext="false" showcascadetitletext="true" showtitleicon="false">
+              <Frames>
+                <ChildFrame id="LeftFrame" showtitlebar="false" showstatusbar="false" formurl="Frame::Form_Left.xfdl" dragmovetype="normal" showcascadetitletext="true" showtitleicon="true"/>
+                <VFrameSet id="vMdiFrameSet" separatesize="36,*" showcascadetitletext="true" showtitlebar="false">
+                  <Frames>
+                    <ChildFrame id="TabFrame" showtitlebar="false" showstatusbar="false" formurl="Frame::Form_Tab.xfdl" dragmovetype="normal" showcascadetitletext="true" showtitleicon="true" height="36"/>
+                    <FrameSet id="FrameSet" showcascadetitletext="true" onsize="mainframe_vMainFrameSet_hWorkFrameSet_vMdiFrameSet_FrameSet_onsize" showtitlebar="false" showtitleicon="true">
+                      <Frames>
+                        <ChildFrame id="WorkFrame" formurl="Frame::Form_Work.xfdl" showtitlebar="false" dragmovetype="normal" openstatus="maximize" showtitleicon="true"/>
+                      </Frames>
+                    </FrameSet>
+                  </Frames>
+                </VFrameSet>
+              </Frames>
+            </HFrameSet>
+            <ChildFrame id="LogonFrame" formurl="Frame::Form_Logon.xfdl" showtitlebar="false"/>
+          </Frames>
+        </VFrameSet>
+      </MainFrame>
+    </Layout>
+  </Application>
+  <Script type="xscript5.1"><![CDATA[include "Library::Library.xjs";
+
+//var USERCODE ="";
+
+this.Application_onloadingappvariables = function(obj:nexacro.Application,e:nexacro.LoadEventInfo)
+{
+	// Form_Logon - callbackFunction에서 지정
+	this.USERCODE = "";
+	this.USERNAME = "";
+	
+	this.PRD_SERVER = "http://erp.hints.com/erp";
+	this.QA_SERVER = "http://QA.hints.com/erp/";
+	this.DEV_SERVER = "http://localhost:8080/erp/";
+	
+	this.gv_mainframe = obj.mainframe;
+	
+	this.gv_MainFrameSet = obj.mainframe.vMainFrameSet;
+	this.gv_TopFrame = obj.mainframe.vMainFrameSet.TopFrame;	
+	this.gv_WorkFrameSet = obj.mainframe.vMainFrameSet.hWorkFrameSet;
+	this.gv_LogonFrame = obj.mainframe.vMainFrameSet.LogonFrame;
+	
+	this.gv_LeftFrame = obj.mainframe.vMainFrameSet.hWorkFrameSet.LeftFrame;	
+	this.gv_MdiFrameSet = obj.mainframe.vMainFrameSet.hWorkFrameSet.vMdiFrameSet;
+	this.gv_TabFrame = obj.mainframe.vMainFrameSet.hWorkFrameSet.vMdiFrameSet.TabFrame;
+	this.gv_FrameSet = obj.mainframe.vMainFrameSet.hWorkFrameSet.vMdiFrameSet.FrameSet;
+	this.gv_WorkFrame = obj.mainframe.vMainFrameSet.hWorkFrameSet.vMdiFrameSet.FrameSet.WorkFrame;
+	
+
+	this.gv_WinIdCol = "MenuCode";
+	this.gv_MsgTitle = "알림";
+
+// 	this.gv_openStatus = "maximize"; //새로운 프레임이 열려지는 상태
+// 	this.gv_openOnlyOne = true; //동일한 메뉴를 하나 이상 오픈가능 여부(true:하나만 오픈, false:하나이상 오픈)
+// 	this.gv_openMaxFrame = 20; //열리는 프레임 최대 갯수
+
+	this.gv_activeMenuId = "MenuCode";
+	this.gv_TopFrameHeigth = 40;
+	this.gv_LeftFrameShowWidth = 265;
+	this.gv_LeftFrameHideWidth = 10;
+	this.gv_RightFrameWidth = 2;
+	this.gv_openStatus = "";
+
+	/**********************************************************************************
+	 각 프레임에 해당되는 객체 참조 변수
+	 **********************************************************************************/
+	this.gv_AppWorkFrameSet = undefined; //업무화면을 관리하는 프레임셋
+	this.gv_AppTabPath = undefined; //MDI TAB 프레임
+	this.gv_AppTopPath = undefined; //상단 프레임
+	this.gv_AppLeftPath = undefined; //좌측 프레임
+	this.gv_AppRightPath = undefined; //우측 프레임
+	this.gv_AppMenuPath = undefined; //메뉴 프레임
+	this.gv_AppBodyFrameSet = undefined; //메뉴와 업무화면을 갖고있는 프레임셋
+	this.gv_AppMainFrame = undefined;
+	this.gv_MainForm = undefined;
+
+	/* 메뉴정보 칼럼 변수*/
+	/*
+	 (index 0 ~ 3에 권한속성을 설정 자리순서대로 insert|update|delete|print 순으로 설정한 걸 가정(각 자리 "1":가능, "0": 불가능)
+	 */
+	this.gv_MenuCodeCol = "MenuCode"; //아이디
+	this.gv_MenuNameCol = "MenuName"; //명칭
+	this.gv_MenuLevelCol = "MenuLevel"; //레벨
+	this.gv_MenuURLCol = "MenuURL"; //페이지경로
+	this.gv_MenuIsLeafCol = "isLeaf"; //메뉴 Leaf 유무
+	this.gv_MenuIsDUPCol = "isDUP"; //메뉴 DUP 유무
+
+};
+
+this.mainframe_vMainFrameSet_hWorkFrameSet_vMdiFrameSet_FrameSet_onsize = function(obj:nexacro.TileFrameSet,e:nexacro.SizeEventInfo)
+{
+	// Form 여백
+// 	var iFramesCnt = QME.gv_FrameSet.frames.length;
+// 	for (var i=0; i<iFramesCnt; i++) 
+// 	{
+// 		this.gv_FrameSet.frames[i].set_width(e.cx - 10);
+// 		this.gv_FrameSet.frames[i].set_height(e.cy - 10);
+// 		this.gv_FrameSet.frames[i].set_right(10);
+// 	}
+};
+
+this.Application_onbeforeexit = function(obj:nexacro.Application,e:nexacro.ExitEventInfo)
+{
+		return "종료하시겠습니까?";
+};
+
+this.Application_onexit = function(obj:nexacro.Application,e:nexacro.ExitEventInfo)
+{			
+	this.gv_MainFrameSet.set_separatesize("0,0,*");	
+};
+
+this.gfn_callFormFunction = function (sFuncNm, sArg)
+{
+	this.gv_FrameSet[this.gv_activeMenuId].form.fn_callFormFunction(sFuncNm, sArg);
+};
+
+this.Application_onerror = function (obj:nexacro.Application, e:nexacro.ErrorEventInfo)
+{
+	if (e.errorcode == "0x80010049") 
+	{
+		return true;
+	}
+};
+
+this.Application_onload = function(obj:nexacro.Application,e:nexacro.LoadEventInfo)
+{
+	this.gds_Menu.clearData();
+	this.gds_Logon.clearData();
+	this.gds_User.clearData();
+	this.gds_OpenMenu.clearData();
+	this.gds_UserGridSet.clearData();	
+	this.gds_MsgSet.clearData();
+	this.gds_UserGridSetOut.clearData()
+	this.gds_CommCode.clearData();
+	
+	trace("운영시 변경해야함");
+
+	this.gv_MainFrameSet.set_separatesize("40,*,0");		
+	
+};
+
+]]></Script>
+</ADL>

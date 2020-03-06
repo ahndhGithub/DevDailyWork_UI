@@ -1,0 +1,363 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="Transact_Test" width="1280" height="720" titletext="New Form">
+    <Layouts>
+      <Layout height="720" mobileorientation="landscape" width="1280">
+        <Grid id="Grid00" taborder="0" left="140" top="140" width="290" height="130" binddataset="ds_out">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="48" band="left"/>
+                <Column size="278"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="SO_NO"/>
+                <Cell col="1" text="result_txt_FIRST"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:SO_NO"/>
+                <Cell col="1" text="bind:result_txt_FIRST"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Edit id="Edit00" taborder="1" left="140" top="66" width="138" height="28"/>
+        <Static id="Static00" taborder="2" text="입력값" left="72" top="66" width="68" height="28"/>
+        <Button id="Button00" taborder="3" text="실행" left="294" top="66" width="112" height="28" onclick="Button00_onclick"/>
+        <Static id="Static00_00" taborder="4" text="결과값" left="66" top="140" width="68" height="28"/>
+        <Grid id="Grid00_00" taborder="5" left="652" top="150" width="1088" height="500" binddataset="ds_out00">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+              </Columns>
+              <Rows>
+                <Row band="head" size="24"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="USER_ID"/>
+                <Cell col="1" text="USER_NM"/>
+                <Cell col="2" text="USER_PWD"/>
+                <Cell col="3" text="CERTIFY_DIV"/>
+                <Cell col="4" text="CENTER_CD"/>
+                <Cell col="5" text="BU_CD"/>
+                <Cell col="6" text="CUST_CD"/>
+                <Cell col="7" text="VENDOR_CD"/>
+                <Cell col="8" text="CARRIER_CD"/>
+                <Cell col="9" text="SYS_LANG"/>
+                <Cell col="10" text="CENTER_NM"/>
+                <Cell col="11" text="BU_NM"/>
+                <Cell col="12" text="CUST_NM"/>
+                <Cell col="13" text="VENDOR_NM"/>
+                <Cell col="14" text="CARRIER_NM"/>
+                <Cell col="15" text="LOGIN_DATE"/>
+                <Cell col="16" text="LOGIN_DATETIME"/>
+                <Cell col="17" text="LINE_GROUP_CD"/>
+                <Cell col="18" text="BRAND_CD"/>
+                <Cell col="19" text="BRAND_NM"/>
+                <Cell col="20" text="SEWING_COUNT_YN"/>
+                <Cell col="21" text="SYS_CODE"/>
+                <Cell col="22" text="EHR_YN"/>
+                <Cell col="23" text="GW_ID"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:USER_ID"/>
+                <Cell col="1" text="bind:USER_NM"/>
+                <Cell col="2" text="bind:USER_PWD"/>
+                <Cell col="3" text="bind:CERTIFY_DIV"/>
+                <Cell col="4" text="bind:CENTER_CD"/>
+                <Cell col="5" text="bind:BU_CD"/>
+                <Cell col="6" text="bind:CUST_CD"/>
+                <Cell col="7" text="bind:VENDOR_CD"/>
+                <Cell col="8" text="bind:CARRIER_CD"/>
+                <Cell col="9" text="bind:SYS_LANG"/>
+                <Cell col="10" text="bind:CENTER_NM"/>
+                <Cell col="11" text="bind:BU_NM"/>
+                <Cell col="12" text="bind:CUST_NM"/>
+                <Cell col="13" text="bind:VENDOR_NM"/>
+                <Cell col="14" text="bind:CARRIER_NM"/>
+                <Cell col="15" text="bind:LOGIN_DATE"/>
+                <Cell col="16" text="bind:LOGIN_DATETIME"/>
+                <Cell col="17" text="bind:LINE_GROUP_CD"/>
+                <Cell col="18" text="bind:BRAND_CD"/>
+                <Cell col="19" text="bind:BRAND_NM"/>
+                <Cell col="20" text="bind:SEWING_COUNT_YN"/>
+                <Cell col="21" text="bind:SYS_CODE"/>
+                <Cell col="22" text="bind:EHR_YN"/>
+                <Cell col="23" text="bind:GW_ID"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Edit id="Edit00_00" taborder="6" left="652" top="76" width="138" height="28"/>
+        <Static id="Static00_01" taborder="7" text="입력값" left="584" top="76" width="68" height="28"/>
+        <Button id="Button00_00" taborder="8" text="실행" left="806" top="76" width="112" height="28" onclick="Button00_00_onclick"/>
+        <Static id="Static00_00_00" taborder="9" text="결과값" left="578" top="150" width="68" height="28"/>
+        <Button id="Button00_00_00" taborder="10" text="실행-2건" left="678" top="116" width="112" height="28" onclick="Button00_00_00_onclick"/>
+        <Grid id="Grid00_01" taborder="11" left="135" top="295" width="290" height="130" binddataset="ds_out22">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+              </Columns>
+              <Rows>
+                <Row band="head" size="24"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="TTT"/>
+                <Cell col="1" text="KKK"/>
+                <Cell col="2" text="AAA"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:TTT"/>
+                <Cell col="1" text="bind:KKK"/>
+                <Cell col="2" text="bind:AAA"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Grid id="Grid00_01_00" taborder="12" left="140" top="450" width="290" height="130" binddataset="ds_out33">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+              </Columns>
+              <Rows>
+                <Row band="head" size="24"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="EEE"/>
+                <Cell col="1" text="RRR"/>
+                <Cell col="2" text="QQQ"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:EEE"/>
+                <Cell col="1" text="bind:RRR"/>
+                <Cell col="2" text="bind:QQQ"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Button id="ButtonScriptTest" taborder="13" text="스크립트테스트" left="480" top="210" width="112" height="28" onclick="ButtonScriptTest_onclick"/>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="ds_in">
+        <ColumnInfo>
+          <Column id="param1" type="STRING" size="256"/>
+          <Column id="param2" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_out" useclientlayout="true">
+        <ColumnInfo>
+          <Column id="result_txt_FIRST" type="STRING" size="256"/>
+          <Column id="SO_NO" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_in00">
+        <ColumnInfo>
+          <Column id="p_user_id" type="STRING" size="256"/>
+          <Column id="p_code_grp" type="STRING" size="256"/>
+          <Column id="p_code_cd" type="STRING" size="256"/>
+          <Column id="p_sub_cd1" type="STRING" size="256"/>
+          <Column id="p_sub_cd2" type="STRING" size="256"/>
+          <Column id="p_sub_cd3" type="STRING" size="256"/>
+          <Column id="p_osno1" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_out00">
+        <ColumnInfo>
+          <Column id="USER_ID" type="STRING" size="256"/>
+          <Column id="USER_NM" type="STRING" size="256"/>
+          <Column id="USER_PWD" type="STRING" size="256"/>
+          <Column id="CERTIFY_DIV" type="STRING" size="256"/>
+          <Column id="CENTER_CD" type="STRING" size="256"/>
+          <Column id="BU_CD" type="STRING" size="256"/>
+          <Column id="CUST_CD" type="STRING" size="256"/>
+          <Column id="VENDOR_CD" type="STRING" size="256"/>
+          <Column id="CARRIER_CD" type="STRING" size="256"/>
+          <Column id="SYS_LANG" type="STRING" size="256"/>
+          <Column id="CENTER_NM" type="STRING" size="256"/>
+          <Column id="BU_NM" type="STRING" size="256"/>
+          <Column id="CUST_NM" type="STRING" size="256"/>
+          <Column id="VENDOR_NM" type="STRING" size="256"/>
+          <Column id="CARRIER_NM" type="STRING" size="256"/>
+          <Column id="LOGIN_DATE" type="STRING" size="256"/>
+          <Column id="LOGIN_DATETIME" type="STRING" size="256"/>
+          <Column id="LINE_GROUP_CD" type="STRING" size="256"/>
+          <Column id="BRAND_CD" type="STRING" size="256"/>
+          <Column id="BRAND_NM" type="STRING" size="256"/>
+          <Column id="SEWING_COUNT_YN" type="STRING" size="256"/>
+          <Column id="SYS_CODE" type="STRING" size="256"/>
+          <Column id="EHR_YN" type="STRING" size="256"/>
+          <Column id="GW_ID" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_out22">
+        <ColumnInfo>
+          <Column id="TTT" type="STRING" size="256"/>
+          <Column id="KKK" type="STRING" size="256"/>
+          <Column id="AAA" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_out33">
+        <ColumnInfo>
+          <Column id="EEE" type="STRING" size="256"/>
+          <Column id="RRR" type="STRING" size="256"/>
+          <Column id="QQQ" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+    <Script type="xscript5.1"><![CDATA[/********************************************************************************************
+@desc	1. Include
+********************************************************************************************/
+include "Src_HintsEduLib::All_EduLib.xjs";
+
+
+this.Button00_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.ds_in.clearData();
+	this.ds_out.clearData();
+	this.ds_out22.clearData();
+	
+	this.ds_in.addRow();
+	this.ds_in.setColumn(0, "param1", "AAA");
+	this.ds_in.setColumn(0, "param2", "BBB");
+
+// 	this.ds_in.addRow();
+// 	this.ds_in.setColumn(1, "param1", "CCC");
+// 	this.ds_in.setColumn(1, "param2", "DDD");
+	
+	var sSvcID 			= "AppSvrLocalMsSqlTest";
+	var sURL 			= "AppSvrLocalMsSql::CommonSaveAction_Return.do";
+	var sInDatasets 	= "ds_in0=ds_in ds_in1=ds_in ds_in2=ds_in";
+	var sOutDatasets 	= "ds_out=ds_out0 ds_out22=ds_out1 ds_out33=ds_out2";
+	var sArguments 		= "sqlId=" + nexacro.wrapQuote("test_first_transaction test_second_transaction test_second_transaction");
+
+	//공통 트랜잭션 사용
+	this.gfn_transaction(sSvcID, sURL, sInDatasets, sOutDatasets, sArguments, "callbackFunction");
+};
+
+
+/********************************************************************************************
+@desc	6. Callback
+********************************************************************************************/
+/*++
+@desc	Callback Function
+*/
+this.callbackFunction = function(strSvcID, nErrorCode, strErrorMsg)
+{
+							var gtrcPos = "POList.xfdl.callbackFunction"
+	trace("here");
+	// 에러 체크 영역
+	if (nErrorCode < 0)
+	{
+		//	alert(this.gfn_removeJavaErrMsg(strErrorMsg));
+		alert(strErrorMsg);
+		return;
+	}
+
+	switch (strSvcID) 
+	{
+		default:
+			break;
+			case "TestTransaction_ToQmeWasServer"	:
+				trace(this.ds_out00.saveXML());
+
+				break;
+ 		
+			case "AppSvrLocalMsSqlTest"	:
+				trace(this.ds_out.saveXML());
+
+				break;
+ 	}
+}
+
+this.Button00_00_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.ds_in00.clearData();
+	this.ds_out00.clearData();
+	
+	this.ds_in00.addRow();
+	this.ds_in00.setColumn(0, "p_user_id", "160307");
+	this.ds_in00.setColumn(0, "p_osno1", "1202195746");
+	
+	var sSvcID 			= "getPoListHistoryLoad";
+	var sURL 			= "AppSvr::common/commonAction.ppc";
+	var sInDatasets 	= "ds_in0=ds_in00";
+	var sOutDatasets 	= "ds_out00=ds_out0";
+	var sArguments 		= "sqlId=" + nexacro.wrapQuote("POMapper.getPOList");
+		
+		trace("보내는 데이터셋(ds_in00.saveXML())---->"+this.ds_in00.saveXML());
+	
+	//공통 트랜잭션 사용
+	this.gfn_transaction(sSvcID, sURL, sInDatasets, sOutDatasets, sArguments, "callbackFunction");
+};
+
+this.Button00_00_00_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.ds_in00.clearData();
+	this.ds_out00.clearData();
+	
+	this.ds_in00.addRow();
+	this.ds_in00.setColumn(0, "p_user_id", "160307");
+	this.ds_in00.setColumn(0, "p_osno1", "1202195746");
+	
+	this.ds_in00.addRow();
+	this.ds_in00.setColumn(1, "p_user_id", "160307");
+	this.ds_in00.setColumn(1, "p_osno1", "1202195746");
+	
+	var sSvcID 			= "getPoListHistoryLoad2";
+	var sURL 			= "AppSvr::common/commonAction.ppc";
+	var sInDatasets 	= "ds_in0=ds_in00";
+	var sOutDatasets 	= "ds_out00=ds_out0";
+	var sArguments 		= "sqlId=" + nexacro.wrapQuote("POMapper.getPOList");
+		
+		trace("보내는 데이터셋(ds_in00.saveXML())---->"+this.ds_in00.saveXML());
+	
+	//공통 트랜잭션 사용
+	this.gfn_transaction(sSvcID, sURL, sInDatasets, sOutDatasets, sArguments, "callbackFunction");
+};
+
+this.ButtonScriptTest_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	trace("chkButton".substring(0,3));
+	trace(this.lookup("Edit00").name);
+};
+]]></Script>
+  </Form>
+</FDL>

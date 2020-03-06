@@ -1,0 +1,20 @@
+{
+	"name": "HintsEduLib",
+	"version": "1.0.0.0",
+	"description": "Library for nexacro platform17",
+	"license": "",
+	"scripts": [
+        "HintsEduLib/Comp.js",
+        "HintsEduLib/Excel.js",
+        "HintsEduLib/Frame.js",
+        "HintsEduLib/Grid.js",
+        "HintsEduLib/GridFilter.js",
+        "HintsEduLib/Message.js",
+        "HintsEduLib/Popup.js",
+		"HintsEduLib/QmeNexa.js",
+        "HintsEduLib/Transaction.js",
+        "HintsEduLib/Util.js",
+		"HintsEduLib/Util_adh.js",
+        "HintsEduLib/Validation.js",
+	]
+}

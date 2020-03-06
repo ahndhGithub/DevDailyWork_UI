@@ -1,0 +1,71 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.0">
+  <Form id="Grid_subsumText" width="1280" height="720" titletext="New Form" onload="Grid_Height_onload">
+    <Layouts>
+      <Layout height="720" mobileorientation="landscape" width="1280">
+        <Grid id="Grid00" taborder="0" left="47" top="48" width="566" height="285" binddataset="Dataset00">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="Column0"/>
+                <Cell col="1" text="Column1"/>
+                <Cell col="2" text="Column2"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:Column0" subsumtext="expr:dataset.getRowLevel(currow) == 1? '1차소계':'2차소계'"/>
+                <Cell col="1" text="bind:Column1" subsumtext="expr:dataset.getRowLevel(currow) == 1? '':''"/>
+                <Cell col="2" text="bind:Column2" subsumtext="expr:dataset.getRowLevel(currow) == 1 ?  dataset.getCaseSum(&quot;Column0 ==&quot;+dataset.getColumn(currow-1,&quot;Column0&quot;)+ &quot;&amp;&amp; Column1 ==&quot;+dataset.getColumn(currow-1,&quot;Column1&quot;)   , &quot;Column2&quot;): dataset.getCaseSum(&quot;Column0 ==&quot;+dataset.getColumn(currow-1,&quot;Column0&quot;)   , &quot;Column2&quot;)"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="Dataset00" keystring="G:+Column0,+Column1">
+        <ColumnInfo>
+          <Column id="Column0" type="STRING" size="256"/>
+          <Column id="Column1" type="STRING" size="256"/>
+          <Column id="Column2" type="INT" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="Column0">1</Col>
+            <Col id="Column1">1</Col>
+            <Col id="Column2">10</Col>
+          </Row>
+          <Row>
+            <Col id="Column0">1</Col>
+            <Col id="Column1">1</Col>
+            <Col id="Column2">20</Col>
+          </Row>
+          <Row>
+            <Col id="Column0">1</Col>
+            <Col id="Column1">2</Col>
+            <Col id="Column2">30</Col>
+          </Row>
+          <Row>
+            <Col id="Column0">1</Col>
+            <Col id="Column1">2</Col>
+            <Col id="Column2">40</Col>
+          </Row>
+          <Row>
+            <Col id="Column0">2</Col>
+            <Col id="Column1">3</Col>
+            <Col id="Column2">50</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+    </Objects>
+    <Script type="xscript5.1"><![CDATA[]]></Script>
+  </Form>
+</FDL>

@@ -1,0 +1,170 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="cmmGridFilterButton" width="40" height="28" onload="form_onload" scrolltype="none">
+    <Layouts>
+      <Layout height="28" width="40">
+        <Button id="btn_GridFilter" taborder="3" text="필터" left="0" top="0" width="39" height="28" onclick="btn_GridFilter_onclick"/>
+        <PopupMenu id="PopupMenuGrdFormat" left="0" top="28" width="100" height="80" captioncolumn="CAPTION" idcolumn="ID" levelcolumn="LEVEL" innerdataset="ds_GridFilterMenu" enablecolumn="ENABLE" userdatacolumn="userdatacolumn" onmenuclick="PopupMenuGrdFormat_onmenuclick" visible="false"/>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[include "Src_HintsEduLib::All_EduLib.xjs";
+
+this.oFrmParnt;
+this.oDivParnt;			// 부모Div
+
+this.form_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	var gtrcPos = "cmmGridFilterButton.xfdl.form_onload";	this.gtrace("●필터온로드", gtrcPos);
+
+	this.gfn_getParentForm();	// 공통화폼의 경우 무조건 실행
+
+				this.gtrace("● 콤보공통화 : Comm_ComboConditionFromTo"				, gtrcPos);
+				this.gtrace(" - this.oFrmParnt.name    --->"+this.oFrmParnt.name		, gtrcPos);
+				this.gtrace(" - this.oDivParnt.name    --->"+this.oDivParnt.name		, gtrcPos);
+				this.gtrace(" - this.oTargetGrid       --->"+this.oTargetGrid			, gtrcPos);
+				this.gtrace(" - this.oTargetDs         --->"+this.oTargetDs				, gtrcPos);
+				this.gtrace(" - this.sInitCompVisEna   --->"+this.sInitCompVisEna		, gtrcPos);
+};
+
+//필터버튼클릭
+this.btn_GridFilter_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var gtrcPos = "cmmGridFilterButton.xfdl.btn_GridFilter_onclick";	this.gtrace("●필터버튼클릭", gtrcPos);
+
+
+	this.fn_SaveLayoutPopup(e.id);
+
+// 팝업 DIV 띄우는 버젼
+// 	var objApp = pForm.gfn_getApplication();
+// 	
+// 	// 위치
+// 	var x = nexacro.toNumber(nexacro.System.getCursorX()) - nexacro.toNumber(system.clientToScreenX(objApp.mainframe, 0));
+// 	var y = nexacro.toNumber(nexacro.System.getCursorY()) - nexacro.toNumber(system.clientToScreenY(objApp.mainframe, 0));
+// 																		this.gtrace("x,y--->("+x+","+y+")", gtrcPos);
+// 
+// 	this.PopupMenuGrdFormat.trackPopup(x, y);
+	
+	
+	
+};
+
+//필터메뉴팝업에서 클릭했을때 실행
+this.PopupMenuGrdFormat_onmenuclick = function(obj:nexacro.PopupMenu,e:nexacro.MenuClickEventInfo)
+{
+	var gtrcPos = "cmmGridFilterButton.xfdl.PopupMenuGrdFormat_onmenuclick";	this.gtrace("●이벤트발생:온클릭(메뉴)", gtrcPos);
+	
+	this.fn_SaveLayoutPopup(e.id);
+};
+
+//필터메뉴팝업에서 클릭했을때 실행
+this.fn_SaveLayoutPopup = function(sMenuId)
+{
+	var gtrcPos = "cmmGridFilterButton.xfdl.fn_SaveLayoutPopup";	this.gtrace("●메뉴팝업클릭", gtrcPos);
+							
+	var sPopupId;
+	var sTmpPopTitle;
+	var sTmpUrl = "Popup::PopupSaveLayout.xfdl"
+	var sTmpNum = this.oFrmParnt.name;
+	var sTmpObj = eval("this.oFrmParnt."+this.oDivParnt.targetGrid);
+	
+					
+											this.gtrace("sMenuId--->"+sMenuId, gtrcPos);
+
+	
+	{	//	필터 스위치
+		var obj = sTmpObj;
+		var grid = sTmpObj;
+			
+		if (obj.showFilter != true)
+		{
+			grid.set_cellmovingtype("none");
+			grid.set_cellsizingtype("none");
+			obj.showFilter = true;
+			this.showHeadAppendFilter(grid);
+		}
+		else
+		{
+			grid.set_cellmovingtype("col");
+			grid.set_cellsizingtype("col");
+			obj.showFilter = false;
+			this.hideHeadAppendFilter(grid);
+		}
+	}
+// 	{	//	이전
+// 		switch(sMenuId)
+// 		{
+// 			case "Filter"	: this.gfn_gridFilter(this.oTargetGrid);
+// 				break;
+// 				
+// 			case "UnFilter" : this.gfn_gridUnFilter(this.oTargetGrid);
+// 				break;
+// 			default :
+// 				break;
+// 		}
+// 	}
+	
+// 	{ //	1. 팝업 띄우기
+// 		sPopupId 	= sMenuId;
+// 		//팝업의 TitleText
+// 		sPopTitle	= sTmpPopTitle;		
+// 		sUrl      	= sTmpUrl;
+// 		oArg      	= {pStr:sMenuId, pNum:sTmpNum, pObj:sTmpObj};	//	전달변수 : pStr : 메뉴아이디
+// 		sCallBack 	= "fn_popupCallback";
+// 		oOption   	= {title : sPopTitle};	
+// 		
+// 		this.gfn_openPopup(sPopupId, sUrl, oArg, sCallBack, oOption);
+// 	}
+}
+
+/**
+* @description 콜백
+*/
+this.fn_popupCallback = function(sPopId, sRtn)
+{
+	var gtrcPos = "cmmGridFilterButton.xfdl.fn_popupCallback";	this.gtrace("●팝업콜백", gtrcPos);
+													this.gtrace("sPopId--->"+sPopId, gtrcPos);
+	switch(sPopId)
+	{
+// 		case "Filter" :
+// 			
+// 			break;
+// 			
+		default : 
+
+			break;
+	}
+}
+]]></Script>
+    <Objects>
+      <Dataset id="ds_GridFilterMenu">
+        <ColumnInfo>
+          <Column id="ID" type="STRING" size="256"/>
+          <Column id="LEVEL" type="STRING" size="256"/>
+          <Column id="CAPTION" type="STRING" size="256"/>
+          <Column id="ENABLE" type="INT" size="256"/>
+          <Column id="VISIBLE" type="STRING" size="256"/>
+          <Column id="USERDATA" type="STRING" size="256"/>
+          <Column id="UPMENU" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="ID">Filter</Col>
+            <Col id="LEVEL">0</Col>
+            <Col id="CAPTION">Filter</Col>
+            <Col id="ENABLE">true</Col>
+            <Col id="VISIBLE">true</Col>
+            <Col id="USERDATA">0</Col>
+          </Row>
+          <Row>
+            <Col id="ID">UnFilter</Col>
+            <Col id="LEVEL">0</Col>
+            <Col id="CAPTION">UnFilter</Col>
+            <Col id="ENABLE">true</Col>
+            <Col id="VISIBLE">true</Col>
+            <Col id="USERDATA">0</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+    </Objects>
+  </Form>
+</FDL>

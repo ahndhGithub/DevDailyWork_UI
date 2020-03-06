@@ -1,0 +1,113 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.0">
+  <Form id="Guide_Comp04" width="814" height="720" titletext="New Form" onload="Form_onload">
+    <Layouts>
+      <Layout height="720" mobileorientation="landscape" width="814">
+        <Div id="div_01" taborder="0" left="10" top="196" width="318" height="97" cssclass="div_WF_search">
+          <Layouts>
+            <Layout>
+              <Static id="Static16" taborder="0" text="가나다" left="0" top="37" width="76" height="21" cssclass="sta_WF_searchLabel"/>
+              <Static id="Static17" taborder="1" text="가나다라" left="0" top="66" width="89" height="21" cssclass="sta_WF_searchLabel"/>
+              <Edit id="Edit09" taborder="2" left="89" top="66" width="150" height="21"/>
+              <Edit id="Edit10" taborder="3" left="89" top="37" width="140" height="21"/>
+              <Edit id="Edit11" taborder="4" left="89" top="8" width="140" height="21"/>
+              <Static id="Static15" taborder="5" text="가나" left="0" top="8" width="63" height="21" cssclass="sta_WF_searchLabel"/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Div id="Div00" taborder="1" left="10" top="80" height="39" cssclass="div_WF_search" text="" width="748">
+          <Layouts>
+            <Layout>
+              <Static id="Static00" taborder="0" text="조회라벨" left="0" top="8" width="89" cssclass="sta_WF_searchLabel" height="21"/>
+              <Edit id="Edit00" taborder="1" left="89" width="150" height="21" top="8" cssclass="essential"/>
+              <Static id="Static02" taborder="2" text="조회라벨2" left="239" top="8" width="96" cssclass="sta_WF_searchLabel" height="21"/>
+              <Edit id="Edit01" taborder="3" left="337" width="150" height="21" top="8" cssclass="essential"/>
+              <Static id="Static01" taborder="4" text="조회라벨3" left="487" top="8" width="98" cssclass="sta_WF_searchLabel" height="21"/>
+              <Edit id="Edit02" taborder="5" left="585" width="150" height="21" top="8"/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Static id="Static19" taborder="2" text="여러줄인 경우 가장 긴 라벨 기준으로 정렬" left="11" top="165" width="238" height="20" onclick="Static19_onclick" usedecorate="true"/>
+        <Static id="sta_23" left="763" top="80" height="39" taborder="3" color="red" text="h39" visible="true" width="39" cssclass="sta_WF_guideRed"/>
+        <Static id="Static05" taborder="4" left="92" top="77" width="8" height="47" cssclass="sta_WF_guideRed"/>
+        <Static id="Static122" taborder="5" text="8px" left="89" top="121" width="29" height="21" cssclass="sta_WF_guideRedTxt"/>
+        <Static id="Static06" taborder="6" left="250" top="76" width="19" height="47" cssclass="sta_WF_guideRed"/>
+        <Static id="Static07" taborder="7" text="19px" left="240" top="120" width="29" height="21" cssclass="sta_WF_guideRedTxt"/>
+        <Static id="Static18" taborder="8" text="Static18" left="100" top="190" width="1" height="110" cssclass="sta_WF_guideRed"/>
+        <Static id="sta_00" taborder="9" left="146" top="579" width="20" height="20" cssclass="sta_WF_GuideFit"/>
+        <Div id="Div01" taborder="10" left="10" top="358" height="39" cssclass="div_WF_search" width="748">
+          <Layouts>
+            <Layout>
+              <Static id="Static00" taborder="0" text="조회라벨" left="0" top="8" width="89" cssclass="sta_WF_searchLabel" height="21"/>
+              <Edit id="Edit00" taborder="1" left="89" width="150" height="21" top="8" cssclass="essential"/>
+              <Static id="Static02" taborder="2" text="조회라벨2" left="239" top="8" width="96" cssclass="sta_WF_searchLabel" height="21"/>
+              <Edit id="Edit01" taborder="3" left="337" width="150" height="21" top="8" cssclass="essential"/>
+              <Static id="Static01" taborder="4" text="조회라벨3" left="487" top="8" width="98" cssclass="sta_WF_searchLabel" height="21"/>
+              <Edit id="Edit02" taborder="5" left="585" width="150" height="21" top="8"/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Static id="Static13" taborder="11" text="1줄 : Height 39px" left="12" top="326" width="560" height="27" cssclass="sta_WF_GuideStatus"/>
+        <Static id="Static14" taborder="12" text="2줄 : Height 64px" left="12" top="417" width="560" height="27" cssclass="sta_WF_GuideStatus"/>
+        <Static id="sta_04" left="763" top="449" height="64" taborder="13" color="red" text="h64" visible="true" width="39" cssclass="sta_WF_guideRed"/>
+        <Div id="Div02" taborder="14" left="10" top="449" height="64" cssclass="div_WF_search" text="" width="748">
+          <Layouts>
+            <Layout>
+              <Static id="Static00" taborder="0" text="조회라벨" left="0" top="8" width="89" cssclass="sta_WF_searchLabel" height="21"/>
+              <Edit id="Edit00" taborder="1" left="98" width="150" height="21" top="8" cssclass="essential"/>
+              <Static id="Static02" taborder="2" text="조회라벨1" left="248" top="8" width="98" cssclass="sta_WF_searchLabel" height="21"/>
+              <Edit id="Edit01" taborder="3" left="346" width="150" height="21" top="8" cssclass="essential"/>
+              <Static id="Static01" taborder="4" text="조회라벨2" left="496" top="8" width="98" cssclass="sta_WF_searchLabel" height="21"/>
+              <Edit id="Edit02" taborder="5" left="594" width="140" height="21" top="8"/>
+              <Static id="Static04" taborder="6" text="조회라벨4" left="0" top="33" width="98" cssclass="sta_WF_searchLabel" height="21"/>
+              <Edit id="Edit04" taborder="7" left="98" width="150" height="21" top="33" cssclass="essential"/>
+              <Static id="Static05" taborder="9" text="조회라벨5" left="248" top="33" width="98" cssclass="sta_WF_searchLabel" height="21"/>
+              <Edit id="Edit05" taborder="8" left="346" width="150" height="21" top="33" cssclass="essential"/>
+              <Static id="Static06" taborder="10" text="조회라벨6" left="496" top="33" width="98" cssclass="sta_WF_searchLabel" height="21"/>
+              <Edit id="Edit06" taborder="11" left="594" width="140" height="21" top="33"/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Static id="sta_06" left="763" top="565" height="89" taborder="15" color="red" text="h89" visible="true" width="41" cssclass="sta_WF_guideRed"/>
+        <Div id="Div03" taborder="16" left="10" top="565" height="89" cssclass="div_WF_search" text="" width="748">
+          <Layouts>
+            <Layout>
+              <Static id="Static00" taborder="0" text="조회라벨" left="0" top="8" width="89" cssclass="sta_WF_searchLabel" height="21"/>
+              <Edit id="Edit00" taborder="1" left="98" width="150" height="21" top="8" cssclass="essential"/>
+              <Static id="Static02" taborder="2" text="조회라벨1" left="248" top="8" width="98" cssclass="sta_WF_searchLabel" height="21"/>
+              <Edit id="Edit01" taborder="3" left="346" width="150" height="21" top="8" cssclass="essential"/>
+              <Static id="Static01" taborder="4" text="조회라벨2" left="496" top="8" width="98" cssclass="sta_WF_searchLabel" height="21"/>
+              <Edit id="Edit02" taborder="5" left="599" width="140" height="21" top="8"/>
+              <Static id="Static04" taborder="6" text="조회라벨4" left="0" top="33" width="98" cssclass="sta_WF_searchLabel" height="21"/>
+              <Edit id="Edit04" taborder="7" left="98" width="150" height="21" top="33" cssclass="essential"/>
+              <Static id="Static05" taborder="9" text="조회라벨5" left="248" top="33" width="98" cssclass="sta_WF_searchLabel" height="21"/>
+              <Edit id="Edit05" taborder="8" left="346" width="150" height="21" top="33" cssclass="essential"/>
+              <Static id="Static06" taborder="10" text="조회라벨6" left="496" top="33" width="98" cssclass="sta_WF_searchLabel" height="21"/>
+              <Edit id="Edit06" taborder="11" left="599" width="140" height="21" top="33"/>
+              <Static id="Static08" taborder="12" text="조회라벨8" left="0" top="58" width="98" cssclass="sta_WF_searchLabel" height="21"/>
+              <Edit id="Edit08" taborder="13" left="98" width="150" height="21" top="58" cssclass="essential"/>
+              <Static id="Static09" taborder="14" text="조회라벨9" left="248" top="58" width="98" cssclass="sta_WF_searchLabel" height="21"/>
+              <Edit id="Edit09" taborder="15" left="346" width="150" height="21" top="58" cssclass="essential"/>
+              <Static id="Static10" taborder="16" text="조회라벨10" left="496" top="58" width="103" cssclass="sta_WF_searchLabel" height="21"/>
+              <Edit id="Edit10" taborder="17" left="599" width="140" height="21" top="58"/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Static id="Static15" taborder="17" text="3줄 : Height 89px" left="12" top="533" width="560" height="27" cssclass="sta_WF_GuideStatus"/>
+        <Static id="sta_08" left="468" top="465" height="12" taborder="18" color="red" text="h4" visible="true" width="29" cssclass="sta_WF_guideRedTxt"/>
+        <Static id="Static20" taborder="19" left="103" top="479" width="649" height="4" cssclass="sta_WF_guideRed" visible="true"/>
+        <Static id="Static22" taborder="20" text="class : div_WF_search" left="558" top="134" width="219" height="21" visible="true" cssclass="sta_WF_guideBlueTxt"/>
+        <Static id="Static24" taborder="21" text="Search Area" left="10" top="10" height="30" usedecorate="true" cssclass="sta_WF_title" right="690"/>
+        <Static id="Static01" taborder="22" text="Static18" left="570" top="106" width="2" height="27" background="#2391ff"/>
+        <Static id="Static23" taborder="23" text="class : sta_WF_searchLabel" left="478" top="163" width="169" height="21" visible="true" cssclass="sta_WF_guideBlueTxt"/>
+        <Static id="Static00" taborder="24" text="Static18" left="507" top="114" width="2" height="47" background="#2391ff"/>
+        <Static id="sta_01" left="763" top="358" height="39" taborder="25" color="red" text="h39" visible="true" width="39" cssclass="sta_WF_guideRed"/>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[this.Form_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	this.gfn_formOnLoad(this);	
+};
+]]></Script>
+  </Form>
+</FDL>

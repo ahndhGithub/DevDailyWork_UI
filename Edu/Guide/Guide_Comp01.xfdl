@@ -1,0 +1,497 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.0">
+  <Form id="Guide_Comp01" width="814" height="1350" titletext="New Form" onload="Form_onload">
+    <Layouts>
+      <Layout height="1350" mobileorientation="landscape" width="814">
+        <Static id="Static04" taborder="89" left="100" top="50" height="31" border="1px solid #d5d5d5" cssclass="sta_WF_detailLabel" width="678"/>
+        <Static id="Static06" taborder="63" left="0" top="80" height="164" cssclass="sta_WF_detailLabel" width="100"/>
+        <Static id="Static13" taborder="90" left="0" top="243" height="77" cssclass="sta_WF_detailLabel" width="100"/>
+        <Static id="Static14" taborder="91" left="0" top="319" height="122" cssclass="sta_WF_detailLabel" width="100"/>
+        <Static id="Static42" taborder="92" left="0" top="440" height="126" cssclass="sta_WF_detailLabel" width="100"/>
+        <Static id="Static43" taborder="93" left="0" top="565" height="77" cssclass="sta_WF_detailLabel" width="100"/>
+        <Static id="Static44" taborder="94" left="0" top="641" height="77" cssclass="sta_WF_detailLabel" width="100"/>
+        <Static id="Static45" taborder="95" left="0" top="717" height="77" cssclass="sta_WF_detailLabel" width="100"/>
+        <Static id="Static46" taborder="96" left="0" top="793" height="124" cssclass="sta_WF_detailLabel" width="100"/>
+        <Static id="Static47" taborder="97" left="0" top="916" height="77" cssclass="sta_WF_detailLabel" width="100"/>
+        <Static id="Static48" taborder="98" left="0" top="992" height="338" cssclass="sta_WF_detailLabel" width="100"/>
+        <Static id="Static00" taborder="0" text="가나다라마바사&#13;&#10;ABCDEFG abcdefg&#13;&#10;1234567890" left="110" top="101" width="99" height="42"/>
+        <Static id="Static01" taborder="1" text="가나다라마바사&#13;&#10;ABCDEFG abcdefg&#13;&#10;1234567890" left="279" top="92" width="99" height="42" enable="false"/>
+        <Static id="Static02" taborder="2" text="Title" left="110" top="153" width="80" height="30" cssclass="sta_WF_title"/>
+        <Static id="Static03" taborder="3" text="Sub Title" left="110" top="193" width="80" height="30" cssclass="sta_WF_title_sub"/>
+        <Static id="Static16" taborder="4" text="normal" left="161" top="58" width="51" height="14" cssclass="sta_WF_title_sub"/>
+        <Static id="Static17" taborder="5" text="disabled" left="318" top="58" width="61" height="14" cssclass="sta_WF_title_sub"/>
+        <Static id="Static18" taborder="6" text="readonly" left="662" top="58" width="61" height="14" cssclass="sta_WF_title_sub"/>
+        <Static id="Static19" taborder="7" text="essential" left="484" top="58" width="62" height="14" cssclass="sta_WF_title_sub"/>
+        <Edit id="Edit00" taborder="8" left="110" width="150" height="21" top="265" value="가나다라마"/>
+        <Edit id="Edit01" taborder="9" left="279" width="150" height="21" top="265" enable="false" value="가나다라마"/>
+        <Edit id="Edit02" taborder="10" left="617" width="150" height="21" top="265" readonly="true" value="가나다라마"/>
+        <Edit id="Edit03" taborder="11" left="447" width="150" height="21" top="264" value="가나다라마" cssclass="essential"/>
+        <Static id="Static122" taborder="12" text="class : essential" left="447" top="285" width="92" height="14" visible="true" cssclass="sta_WF_guideBlueTxt"/>
+        <MaskEdit id="MaskEdit00" taborder="13" left="110" top="340" width="150" height="21" value="123456" format="###,###"/>
+        <MaskEdit id="MaskEdit01" taborder="14" left="279" top="340" width="150" height="21" enable="false" format="###,###" value="123456"/>
+        <MaskEdit id="MaskEdit02" taborder="15" left="617" top="340" width="150" height="21" readonly="true" format="###,###" value="123456"/>
+        <MaskEdit id="MaskEdit03" taborder="16" left="447" top="340" width="150" height="21" format="###,###" value="123456" cssclass="essential"/>
+        <MaskEdit id="MaskEdit04" taborder="17" left="110" top="385" width="150" height="21" value="123456" format="123456-7890123" cssclass="msk_WF_center" type="string"/>
+        <MaskEdit id="MaskEdit05" taborder="18" left="279" top="385" width="150" height="21" value="123456" format="123456-7890123" cssclass="msk_WF_center" type="string" enable="false"/>
+        <MaskEdit id="MaskEdit06" taborder="19" left="617" top="385" width="150" height="21" value="123456" format="123456-7890123" cssclass="msk_WF_center" type="string" readonly="true"/>
+        <MaskEdit id="MaskEdit07" taborder="20" left="447" top="385" width="150" height="21" value="123456" format="123456-7890123" cssclass="msk_WF_center_essential" type="string"/>
+        <TextArea id="TextArea00" taborder="21" left="110" top="461" width="150" height="70" value="가나다&#10;가나다라&#10;가나다라마바&#10;가나다라마바사&#10;가나다라마바사아&#10;가나다라마바사아자"/>
+        <TextArea id="TextArea01" taborder="22" left="279" top="461" width="150" height="70" enable="false" value="가나다&#10;가나다라&#10;가나다라마바&#10;가나다라마바사&#10;가나다라마바사아&#10;가나다라마바사아자"/>
+        <TextArea id="TextArea02" taborder="23" left="617" top="461" width="150" height="70" readonly="true" value="가나다&#10;가나다라&#10;가나다라마바&#10;가나다라마바사&#10;가나다라마바사아&#10;가나다라마바사아자"/>
+        <TextArea id="TextArea03" taborder="24" left="447" top="461" width="150" height="70" value="가나다&#10;가나다라&#10;가나다라마바&#10;가나다라마바사&#10;가나다라마바사아&#10;가나다라마바사아자" cssclass="essential"/>
+        <Combo id="Combo00" taborder="25" text="가나다" left="110" top="738" width="150" height="21" innerdataset="ds_cmb" codecolumn="Column0" datacolumn="Column1" index="0" value="01"/>
+        <ListBox id="ListBox00" taborder="26" left="110" top="814" width="150" height="82" innerdataset="ds_cmb" codecolumn="Column0" datacolumn="Column1"/>
+        <Combo id="Combo01" taborder="27" text="가나다" left="279" top="738" width="150" height="21" innerdataset="ds_cmb" codecolumn="Column0" datacolumn="Column1" index="0" value="01" enable="false"/>
+        <Combo id="Combo02" taborder="28" text="가나다" left="617" top="738" width="150" height="21" innerdataset="ds_cmb" codecolumn="Column0" datacolumn="Column1" index="0" value="01" readonly="true"/>
+        <Combo id="Combo03" taborder="29" text="가나다" left="447" top="738" width="150" height="21" innerdataset="ds_cmb" codecolumn="Column0" datacolumn="Column1" index="0" value="01" cssclass="essential"/>
+        <ListBox id="ListBox01" taborder="30" left="279" top="811" width="150" height="80" innerdataset="ds_cmb" codecolumn="Column0" datacolumn="Column1" enable="false"/>
+        <Spin id="Spin00" taborder="31" left="110" top="662" width="150" height="21" value="123"/>
+        <Spin id="Spin01" taborder="32" left="279" top="662" width="150" height="21" value="123" enable="false"/>
+        <Spin id="Spin02" taborder="33" left="617" top="662" width="150" height="21" value="123" readonly="true"/>
+        <Spin id="Spin03" taborder="34" left="447" top="662" width="150" height="21" value="0" cssclass="essential"/>
+        <Calendar id="Calendar00" taborder="35" left="110" top="1013" width="150" height="21" value="20171219" initvalueid="iv_Calendar0" dateformat="yyyy-MM-dd"/>
+        <Calendar id="Calendar01" taborder="36" left="279" top="1013" width="150" height="21" value="20171219" dateformat="yyyy-MM-dd" enable="false" initvalueid="iv_Calendar0"/>
+        <Calendar id="Calendar02" taborder="37" left="617" top="1013" width="150" height="21" value="20171219" dateformat="yyyy-MM-dd" readonly="true" initvalueid="iv_Calendar0"/>
+        <Calendar id="Calendar03" taborder="38" left="447" top="1013" width="150" height="21" value="20171219" dateformat="yyyy-MM-dd" cssclass="essential" initvalueid="iv_Calendar0"/>
+        <Calendar id="Calendar04" taborder="39" left="110" top="1099" width="156" height="179" value="20171219" type="monthonly" cssclass="cal_WF_month" initvalueid="iv_Calendar0"/>
+        <Calendar id="Calendar09" taborder="40" left="110" top="1058" width="150" height="21" value="20171219" dateformat="yyyy-MM-dd" type="spin" initvalueid="iv_Calendar0"/>
+        <Calendar id="Calendar10" taborder="41" left="447" top="1058" width="150" height="21" value="20171219" dateformat="yyyy-MM-dd" type="spin" cssclass="essential" initvalueid="iv_Calendar0"/>
+        <Static id="Static79" taborder="42" text="class : cal_WF_Month" left="111" top="1301" width="124" height="14" cssclass="sta_WF_guideBlueTxt" visible="true"/>
+        <Static id="sta_09" left="109" top="1280" width="156" height="21" taborder="51" color="red" text="w156" visible="true" cssclass="sta_WF_guideRed"/>
+        <Static id="sta_11" left="270" top="1099" width="30" height="179" taborder="54" color="red" text="h179" visible="true" cssclass="sta_WF_guideRed"/>
+        <CheckBox id="CheckBox00" taborder="43" text="체크01" left="108" top="586" width="68" height="21" value="true"/>
+        <CheckBox id="CheckBox01" taborder="44" text="체크02" left="176" top="586" width="68" height="21"/>
+        <CheckBox id="CheckBox02" taborder="45" text="체크02" left="347" top="586" width="68" height="21" enable="false"/>
+        <CheckBox id="CheckBox03" taborder="46" text="체크01" left="277" top="586" width="68" height="21" value="true" enable="false"/>
+        <CheckBox id="CheckBox04" taborder="47" text="체크02" left="515" top="586" width="68" height="21" cssclass="essential"/>
+        <CheckBox id="CheckBox05" taborder="48" text="체크01" left="444" top="586" width="68" height="21" value="true" cssclass="essential"/>
+        <Static id="sta_05" left="165" top="585" width="12" height="21" taborder="49" color="red" visible="true" cssclass="sta_WF_guideRed"/>
+        <Radio id="Radio00" taborder="50" left="110" top="937" width="155" height="21" innerdataset="ds_radio" codecolumn="Column0" datacolumn="Column1" direction="vertical" index="0" value="01" columncount="-1" rowcount="-1"/>
+        <Radio id="Radio01" taborder="52" left="277" top="937" width="162" height="21" innerdataset="ds_radio" codecolumn="Column0" datacolumn="Column1" columncount="-1" rowcount="-1" direction="vertical" index="0" value="01" enable="false"/>
+        <Radio id="Radio02" taborder="53" left="444" top="937" width="150" height="21" innerdataset="ds_radio" codecolumn="Column0" datacolumn="Column1" columncount="-1" rowcount="-1" direction="vertical" index="0" value="01" cssclass="essential"/>
+        <Static id="Static05" taborder="57" text="Static" left="15" top="152" width="44" height="20" cssclass="sta_WF_title_sub"/>
+        <Static id="sta_27" left="178" top="153" width="40" height="30" taborder="61" text="h30" visible="true" cssclass="sta_WF_guideRed"/>
+        <Static id="sta_01" left="178" top="193" width="40" height="30" taborder="59" text="h30" visible="true" cssclass="sta_WF_guideRed"/>
+        <Static id="Static07" taborder="65" text="Edit" left="15" top="271" width="33" height="20" cssclass="sta_WF_title_sub"/>
+        <Static id="sta_04" left="217" top="265" width="30" height="21" taborder="74" text="h21" visible="true" cssclass="sta_WF_guideRed"/>
+        <Static id="Static08" taborder="76" left="0" top="243" height="1" background="#d5d5d5" width="777"/>
+        <Static id="Static09" taborder="77" text="MaskEdit" left="10" top="370" width="65" height="20" cssclass="sta_WF_title_sub"/>
+        <Static id="Static10" taborder="69" text="class : msk_WF_center" left="111" top="406" width="134" height="14" visible="true" cssclass="sta_WF_guideBlueTxt"/>
+        <Static id="Static11" taborder="68" text="class : msk_WF_center_essential" left="447" top="406" width="193" height="14" visible="true" cssclass="sta_WF_guideBlueTxt"/>
+        <Static id="Static20" taborder="66" left="0" top="440" height="1" background="#c5cfd9" width="777"/>
+        <Static id="Static21" taborder="70" text="class : essential" left="447" top="361" width="92" height="14" visible="true" cssclass="sta_WF_guideBlueTxt"/>
+        <Static id="Static22" taborder="73" text="TextArea" left="10" top="493" width="63" height="20" cssclass="sta_WF_title_sub"/>
+        <Static id="Static23" taborder="60" text="class : essential" left="447" top="531" width="92" height="14" visible="true" cssclass="sta_WF_guideBlueTxt"/>
+        <Static id="Static24" taborder="62" left="0" top="565" height="1" background="#c5cfd9" width="777"/>
+        <Static id="Static25" taborder="67" text="Spin" left="10" top="669" width="36" height="20" cssclass="sta_WF_title_sub"/>
+        <Static id="Static26" taborder="71" text="class : essential" left="447" top="683" width="92" height="14" visible="true" cssclass="sta_WF_guideBlueTxt"/>
+        <Static id="Static27" taborder="75" text="Combo" left="10" top="745" width="52" height="20" cssclass="sta_WF_title_sub"/>
+        <Static id="Static28" taborder="72" text="class : essential" left="447" top="759" width="92" height="14" visible="true" cssclass="sta_WF_guideBlueTxt"/>
+        <Static id="Static29" taborder="64" text="ListBox" left="10" top="845" width="52" height="20" cssclass="sta_WF_title_sub"/>
+        <Static id="Static30" taborder="58" text="CheckBox" left="10" top="593" width="67" height="20" cssclass="sta_WF_title_sub"/>
+        <Static id="Static31" taborder="56" text="Radio" left="10" top="944" width="44" height="20" cssclass="sta_WF_title_sub"/>
+        <Static id="Static32" taborder="55" text="Calendar" left="10" top="1151" width="63" height="20" cssclass="sta_WF_title_sub"/>
+        <Static id="Static33" taborder="78" text="class : essential" left="447" top="958" width="92" height="14" visible="true" cssclass="sta_WF_guideBlueTxt"/>
+        <Static id="Static34" taborder="79" text="class : essential" left="447" top="1034" width="92" height="14" visible="true" cssclass="sta_WF_guideBlueTxt"/>
+        <Static id="Static35" taborder="80" text="class : essential" left="447" top="1079" width="92" height="14" visible="true" cssclass="sta_WF_guideBlueTxt"/>
+        <Static id="Static36" taborder="81" text="class : essential" left="447" top="606" width="92" height="14" visible="true" cssclass="sta_WF_guideBlueTxt"/>
+        <Static id="Static37" taborder="82" left="0" top="641" height="1" background="#c5cfd9" width="777"/>
+        <Static id="Static38" taborder="83" left="0" top="717" height="1" background="#c5cfd9" width="777"/>
+        <Static id="Static39" taborder="84" left="0" top="793" height="1" background="#c5cfd9" width="777"/>
+        <Static id="Static40" taborder="85" left="0" top="916" height="1" background="#c5cfd9" width="777"/>
+        <Static id="Static41" taborder="86" left="0" top="992" height="1" background="#c5cfd9" width="777"/>
+        <Static id="Static12" taborder="87" text="Components Design Guide" left="10" top="10" width="202" height="30" cssclass="sta_WF_title"/>
+        <Static id="sta_00" left="155" top="605" width="32" height="21" taborder="88" color="red" text="w15" visible="true" cssclass="sta_WF_guideRed"/>
+        <Static id="Static49" taborder="99" left="437" top="50" width="1" background="#d5d5d5" height="1280"/>
+        <Static id="Static50" taborder="100" left="607" top="50" width="1" background="#d5d5d5" height="1280"/>
+        <Static id="Static51" taborder="101" left="269" top="50" width="1" background="#d5d5d5" height="1280"/>
+        <Static id="Static52" taborder="102" left="0" top="319" height="1" background="#d5d5d5" width="777"/>
+        <Calendar id="Calendar05" taborder="103" left="279" top="1058" width="150" height="21" value="20171219" dateformat="yyyy-MM-dd" enable="false" initvalueid="iv_Calendar0" type="spin"/>
+        <Calendar id="Calendar06" taborder="104" left="617" top="1058" width="150" height="21" value="20171219" dateformat="yyyy-MM-dd" readonly="true" initvalueid="iv_Calendar0" type="spin"/>
+        <Static id="Static53" taborder="105" left="0" top="50" height="31" cssclass="sta_WF_detailLabel" width="101"/>
+        <Static id="Static15" taborder="106" left="777" top="50" width="1" background="#d5d5d5" height="1280"/>
+        <Static id="Static54" taborder="107" left="0" top="1329" height="1" background="#c5cfd9" width="777"/>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="ds_cmb">
+        <ColumnInfo>
+          <Column id="Column0" type="STRING" size="256"/>
+          <Column id="Column1" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="Column0">01</Col>
+            <Col id="Column1">가나다</Col>
+          </Row>
+          <Row>
+            <Col id="Column0">02</Col>
+            <Col id="Column1">가나다라</Col>
+          </Row>
+          <Row>
+            <Col id="Column0">03</Col>
+            <Col id="Column1">가나다라마</Col>
+          </Row>
+          <Row>
+            <Col id="Column0">04</Col>
+            <Col id="Column1">가나다라마바</Col>
+          </Row>
+          <Row>
+            <Col id="Column0">05</Col>
+            <Col id="Column1">가나다라마바</Col>
+          </Row>
+          <Row>
+            <Col id="Column1">가나다라마바</Col>
+            <Col id="Column0">06</Col>
+          </Row>
+          <Row>
+            <Col id="Column1">가나다라마바</Col>
+            <Col id="Column0">07</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="ds_radio">
+        <ColumnInfo>
+          <Column id="Column0" type="STRING" size="256"/>
+          <Column id="Column1" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="Column0">01</Col>
+            <Col id="Column1">라디오</Col>
+          </Row>
+          <Row>
+            <Col id="Column0">02</Col>
+            <Col id="Column1">라디오01</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="ds_grd">
+        <ColumnInfo>
+          <Column id="Column0" type="STRING" size="256"/>
+          <Column id="Column1" type="STRING" size="256"/>
+          <Column id="Column2" type="STRING" size="256"/>
+          <Column id="Column3" type="STRING" size="256"/>
+          <Column id="Column4" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="Column1">1</Col>
+            <Col id="Column2">제목영역입니다.</Col>
+            <Col id="Column3">홍길동</Col>
+            <Col id="Column4">1234567890</Col>
+          </Row>
+          <Row>
+            <Col id="Column0">1</Col>
+            <Col id="Column1">2</Col>
+            <Col id="Column2">제목영역입니다.</Col>
+            <Col id="Column3">홍길동</Col>
+            <Col id="Column4">1234567890</Col>
+          </Row>
+          <Row>
+            <Col id="Column1">C</Col>
+            <Col id="Column2">제목영역입니다.</Col>
+            <Col id="Column3">홍길동</Col>
+            <Col id="Column4">1234567890</Col>
+          </Row>
+          <Row>
+            <Col id="Column0">1</Col>
+            <Col id="Column1">U</Col>
+            <Col id="Column2">제목영역입니다.</Col>
+            <Col id="Column3">홍길동</Col>
+            <Col id="Column4">1234567890</Col>
+          </Row>
+          <Row>
+            <Col id="Column0">1</Col>
+            <Col id="Column1">5</Col>
+            <Col id="Column2">제목영역입니다.</Col>
+            <Col id="Column3">홍길동</Col>
+            <Col id="Column4">1234567890</Col>
+          </Row>
+          <Row>
+            <Col id="Column1">D</Col>
+            <Col id="Column2">제목영역입니다.</Col>
+            <Col id="Column3">홍길동</Col>
+            <Col id="Column4">1234567890</Col>
+          </Row>
+          <Row>
+            <Col id="Column1">7</Col>
+            <Col id="Column2">제목영역입니다.</Col>
+            <Col id="Column3">홍길동</Col>
+            <Col id="Column4">1234567890</Col>
+          </Row>
+          <Row>
+            <Col id="Column1">8</Col>
+            <Col id="Column2">제목영역입니다.</Col>
+            <Col id="Column3">홍길동</Col>
+            <Col id="Column4">1234567890</Col>
+          </Row>
+          <Row>
+            <Col id="Column1">9</Col>
+            <Col id="Column2">제목영역입니다.</Col>
+            <Col id="Column3">홍길동</Col>
+            <Col id="Column4">1234567890</Col>
+          </Row>
+          <Row>
+            <Col id="Column1">10</Col>
+            <Col id="Column2">제목영역입니다.</Col>
+            <Col id="Column3">홍길동</Col>
+            <Col id="Column4">1234567890</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="ds_tree">
+        <ColumnInfo>
+          <Column id="Column0" type="STRING" size="256"/>
+          <Column id="Column1" type="STRING" size="256"/>
+          <Column id="Column2" type="STRING" size="256"/>
+          <Column id="Column3" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="Column0">01</Col>
+            <Col id="Column2">첫번째데이터</Col>
+            <Col id="Column3">첫번째데이터</Col>
+            <Col id="Column1">0</Col>
+          </Row>
+          <Row>
+            <Col id="Column0">02</Col>
+            <Col id="Column2">첫번째데이터01</Col>
+            <Col id="Column3">첫번째데이터01</Col>
+            <Col id="Column1">1</Col>
+          </Row>
+          <Row>
+            <Col id="Column0">03</Col>
+            <Col id="Column2">첫번째데이터02</Col>
+            <Col id="Column3">첫번째데이터02</Col>
+            <Col id="Column1">1</Col>
+          </Row>
+          <Row>
+            <Col id="Column0">04</Col>
+            <Col id="Column2">첫번째데이터03</Col>
+            <Col id="Column3">첫번째데이터03</Col>
+            <Col id="Column1">1</Col>
+          </Row>
+          <Row>
+            <Col id="Column0">05</Col>
+            <Col id="Column2">두번째데이터</Col>
+            <Col id="Column3">두번째데이터</Col>
+            <Col id="Column1">0</Col>
+          </Row>
+          <Row>
+            <Col id="Column0">06</Col>
+            <Col id="Column2">두번째데이터01</Col>
+            <Col id="Column3">두번째데이터01</Col>
+            <Col id="Column1">1</Col>
+          </Row>
+          <Row>
+            <Col id="Column0">07</Col>
+            <Col id="Column2">두번째데이터02</Col>
+            <Col id="Column3">두번째데이터02</Col>
+            <Col id="Column1">1</Col>
+          </Row>
+          <Row>
+            <Col id="Column0">08</Col>
+            <Col id="Column2">세번째데이터</Col>
+            <Col id="Column3">세번째데이터</Col>
+            <Col id="Column1">0</Col>
+          </Row>
+          <Row>
+            <Col id="Column0">09</Col>
+            <Col id="Column2">세번쨰데이터01</Col>
+            <Col id="Column3">세번쨰데이터01</Col>
+            <Col id="Column1">1</Col>
+          </Row>
+          <Row>
+            <Col id="Column0">10</Col>
+            <Col id="Column2">세번쨰데이터02</Col>
+            <Col id="Column3">세번쨰데이터02</Col>
+            <Col id="Column1">1</Col>
+          </Row>
+          <Row>
+            <Col id="Column0">11</Col>
+            <Col id="Column2">세번쨰데이터03</Col>
+            <Col id="Column3">세번쨰데이터03</Col>
+            <Col id="Column1">1</Col>
+          </Row>
+          <Row>
+            <Col id="Column0">12</Col>
+            <Col id="Column2">네번째데이터</Col>
+            <Col id="Column3">네번째데이터</Col>
+            <Col id="Column1">0</Col>
+          </Row>
+          <Row>
+            <Col id="Column0">13</Col>
+            <Col id="Column2">네번째데이터01</Col>
+            <Col id="Column3">네번째데이터01</Col>
+            <Col id="Column1">1</Col>
+          </Row>
+          <Row>
+            <Col id="Column2">네번째데이터02</Col>
+            <Col id="Column0">14</Col>
+            <Col id="Column3">네번째데이터02</Col>
+            <Col id="Column1">1</Col>
+          </Row>
+          <Row>
+            <Col id="Column2">다섯번째데이터</Col>
+            <Col id="Column0">15</Col>
+            <Col id="Column3">다섯번째데이터</Col>
+            <Col id="Column1">0</Col>
+          </Row>
+          <Row>
+            <Col id="Column2">다섯번째데이터01</Col>
+            <Col id="Column0">16</Col>
+            <Col id="Column3">다섯번째데이터01</Col>
+            <Col id="Column1">1</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="ds_grd1">
+        <ColumnInfo>
+          <Column id="Column0" type="STRING" size="256"/>
+          <Column id="Column1" type="STRING" size="256"/>
+          <Column id="Column2" type="STRING" size="256"/>
+          <Column id="Column3" type="STRING" size="256"/>
+          <Column id="Column4" type="STRING" size="256"/>
+          <Column id="Column5" type="STRING" size="256"/>
+          <Column id="Column6" type="STRING" size="256"/>
+          <Column id="Column7" type="STRING" size="256"/>
+          <Column id="Column8" type="STRING" size="256"/>
+          <Column id="Column9" type="STRING" size="256"/>
+          <Column id="Column10" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="Column0">0</Col>
+            <Col id="Column1">에디트</Col>
+            <Col id="Column2">123456</Col>
+            <Col id="Column4">20171217</Col>
+            <Col id="Column5">www.link.com</Col>
+            <Col id="Column6">김성명</Col>
+            <Col id="Column7">가나다</Col>
+            <Col id="Column8">123456789</Col>
+            <Col id="Column10">버튼</Col>
+            <Col id="Column3">01</Col>
+          </Row>
+          <Row>
+            <Col id="Column0">1</Col>
+            <Col id="Column1">에디트</Col>
+            <Col id="Column2">123456</Col>
+            <Col id="Column4">20171217</Col>
+            <Col id="Column5">www.link.com</Col>
+            <Col id="Column6">김성명</Col>
+            <Col id="Column7">가나다라</Col>
+            <Col id="Column8">123456789</Col>
+            <Col id="Column10">버튼</Col>
+            <Col id="Column3">02</Col>
+          </Row>
+          <Row>
+            <Col id="Column0">0</Col>
+            <Col id="Column1">에디트</Col>
+            <Col id="Column2">123456</Col>
+            <Col id="Column4">20171217</Col>
+            <Col id="Column5">www.link.com</Col>
+            <Col id="Column6">김성명</Col>
+            <Col id="Column7">가나다라마</Col>
+            <Col id="Column8">123456789</Col>
+            <Col id="Column10">버튼</Col>
+            <Col id="Column3">03</Col>
+          </Row>
+          <Row>
+            <Col id="Column0">1</Col>
+            <Col id="Column1">에디트</Col>
+            <Col id="Column2">123456</Col>
+            <Col id="Column4">20171217</Col>
+            <Col id="Column5">www.link.com</Col>
+            <Col id="Column6">김성명</Col>
+            <Col id="Column7">가나다라마바</Col>
+            <Col id="Column8">123456789</Col>
+            <Col id="Column10">버튼</Col>
+            <Col id="Column3">03</Col>
+          </Row>
+          <Row>
+            <Col id="Column0">0</Col>
+            <Col id="Column1">에디트</Col>
+            <Col id="Column2">123456</Col>
+            <Col id="Column4">20171217</Col>
+            <Col id="Column5">www.link.com</Col>
+            <Col id="Column6">김성명</Col>
+            <Col id="Column7">가나다라마바사</Col>
+            <Col id="Column8">123456789</Col>
+            <Col id="Column10">버튼</Col>
+            <Col id="Column3">03</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="ds_grd2">
+        <ColumnInfo>
+          <Column id="Column0" type="STRING" size="256"/>
+          <Column id="Column1" type="STRING" size="256"/>
+          <Column id="Column2" type="STRING" size="256"/>
+          <Column id="Column3" type="STRING" size="256"/>
+          <Column id="Column4" type="STRING" size="256"/>
+          <Column id="Column5" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="Column0">1</Col>
+            <Col id="Column1">가나다라</Col>
+            <Col id="Column2">가나다라마바</Col>
+            <Col id="Column3">가나다라마바사</Col>
+            <Col id="Column4">123456789</Col>
+            <Col id="Column5">가나다라마바사</Col>
+          </Row>
+          <Row>
+            <Col id="Column0">0</Col>
+            <Col id="Column1">가나다라</Col>
+            <Col id="Column2">가나다라마바</Col>
+            <Col id="Column3">가나다라마바사</Col>
+            <Col id="Column4">123456789</Col>
+            <Col id="Column5">가나다라마바사</Col>
+          </Row>
+          <Row>
+            <Col id="Column0">1</Col>
+            <Col id="Column1">가나다라</Col>
+            <Col id="Column2">가나다라마바</Col>
+            <Col id="Column3">가나다라마바사</Col>
+            <Col id="Column4">123456789</Col>
+            <Col id="Column5">가나다라마바사</Col>
+          </Row>
+          <Row>
+            <Col id="Column0">0</Col>
+            <Col id="Column1">가나다라</Col>
+            <Col id="Column2">가나다라마바</Col>
+            <Col id="Column3">가나다라마바사</Col>
+            <Col id="Column4">123456789</Col>
+            <Col id="Column5">가나다라마바사</Col>
+          </Row>
+          <Row>
+            <Col id="Column0">0</Col>
+            <Col id="Column1">가나다라</Col>
+            <Col id="Column2">가나다라마바</Col>
+            <Col id="Column3">가나다라마바사</Col>
+            <Col id="Column4">123456789</Col>
+            <Col id="Column5">가나다라마바사</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+    </Objects>
+    <Script type="xscript5.1"><![CDATA[
+this.Button03_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var i, j;
+	this.ProgressBar00.pos = 0;
+	for( i = 0 ; i < 200 ; i+=2 )
+	{
+		this.ProgressBar00.stepIt();
+		this.updateWindow();
+	}	
+};
+
+this.Form_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	this.gfn_formOnLoad(this);	
+};
+]]></Script>
+  </Form>
+</FDL>

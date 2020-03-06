@@ -1,0 +1,366 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="PopupMassInput" width="450" height="370" titletext="Sample_PopupSub" onload="Form_onload">
+    <Layouts>
+      <Layout height="370" width="450">
+        <Static id="Static08" taborder="0" left="0" top="0" width="16" cssclass="sta_WF_guideRed" visible="false" text="w&#13;&#10;16" height="100%"/>
+        <Static id="Static02" taborder="1" top="0" width="16" cssclass="sta_WF_guideRed" visible="false" text="w&#13;&#10;16" right="0" height="100%"/>
+        <Static id="Static03" taborder="2" left="0" cssclass="sta_WF_guideRed" visible="false" text="h16" bottom="0" height="16" width="100%"/>
+        <Static id="Static16" taborder="3" left="16" cssclass="sta_WF_guideBlue" visible="false" text="h20" right="16" height="20" bottom="44"/>
+        <Div id="DivCnc" taborder="4" text="Div00" width="128" height="28" url="Comm::Comm_CnC.xfdl" returnparms="LIFNR,SUPPLY_F,NAME1" right="16" bottom="16" targetGrid="grd_list"/>
+        <Static id="StaticVendor" taborder="5" text="Vendor" left="60" top="18" width="138" cssclass="sta_WF_searchLabel" height="21"/>
+        <CheckBox id="CheckBoxVendorCode" taborder="33" text="" left="50" top="18" width="22" height="21" truevalue="1" falsevalue="0"/>
+        <Div id="div_VendorFromTo" taborder="6" text="Div00" left="218" top="18" width="171" height="21" url="Comm::Comm_SearchConditionFromTo.xfdl" maxwidth="" callbackfunc="fn_calCallback" formscrolltype="none" SearchConditionType="VendorCode,ds_MassInput,VendorCode,VendorName,VendorCode3"/>
+        <Static id="StaticPaymentTerms" taborder="7" text="Payment Terms" left="60" top="45" width="138" cssclass="sta_WF_searchLabel" height="21"/>
+        <CheckBox id="CheckBoxPaymentTerms" taborder="25" text="" left="50" top="45" width="22" height="21" truevalue="1" falsevalue="0"/>
+        <Combo id="ComboPaymentTerms" taborder="8" left="218" top="45" width="171" height="21" innerdataset="ds_cmbPaymentTerms" codecolumn="CODE_CD" datacolumn="CODE_NM"/>
+        <Static id="StaticDocumentType" taborder="9" text="Document Type" left="60" top="72" width="138" cssclass="sta_WF_searchLabel" height="21"/>
+        <CheckBox id="CheckBoxDocumentType" taborder="26" text="" left="50" top="72" width="22" height="21" truevalue="1" falsevalue="0"/>
+        <Combo id="ComboDocumentType" taborder="10" left="218" top="72" width="171" height="21" innerdataset="ds_cmbDocumentType" codecolumn="CODE_CD" datacolumn="CODE_NM"/>
+        <Static id="StaticDeliveryDate" taborder="11" text="Delivery_Date" left="60" top="99" width="138" cssclass="sta_WF_searchLabel" height="21"/>
+        <CheckBox id="CheckBoxDeliveryDate" taborder="27" text="" left="50" top="99" width="22" height="21" truevalue="1" falsevalue="0"/>
+        <Calendar id="CalendarDeliveryDate" taborder="12" left="217" top="99" width="171" height="21"/>
+        <Static id="StaticMore" taborder="13" text="Overdelv.Tol" left="60" top="129" width="138" cssclass="sta_WF_searchLabel" height="21"/>
+        <CheckBox id="CheckBoxMore" taborder="28" text="" left="50" top="129" width="22" height="21" truevalue="1" falsevalue="0"/>
+        <Edit id="EditMore" taborder="15" left="217" top="129" width="171" height="21"/>
+        <Static id="StaticLess" taborder="14" text="Underdelv.Tol" left="60" top="159" width="138" cssclass="sta_WF_searchLabel" height="21"/>
+        <CheckBox id="CheckBoxLess" taborder="29" text="" left="50" top="159" width="22" height="21" truevalue="1" falsevalue="0"/>
+        <Edit id="EditLess" taborder="16" left="217" top="159" width="171" height="21"/>
+        <Static id="StaticPrice" taborder="17" text="Price" left="60" top="187" width="138" cssclass="sta_WF_searchLabel" height="21"/>
+        <CheckBox id="CheckBoxPrice" taborder="30" text="" left="50" top="187" width="22" height="21" truevalue="1" falsevalue="0"/>
+        <Edit id="EditPrice" taborder="18" left="217" top="187" width="171" height="21"/>
+        <Static id="StaticCurrency" taborder="19" text="Currency" left="60" top="217" width="138" cssclass="sta_WF_searchLabel" height="21"/>
+        <CheckBox id="CheckBoxCurrency" taborder="31" text="" left="50" top="217" width="22" height="21" truevalue="1" falsevalue="0"/>
+        <Combo id="ComboCurrency" taborder="20" left="218" top="217" width="171" height="21" innerdataset="ds_cmbCurrency" codecolumn="CODE_CD" datacolumn="CODE_NM"/>
+        <Static id="StaticPriceUnit" taborder="21" text="Price Unit" left="60" top="247" width="138" cssclass="sta_WF_searchLabel" height="21"/>
+        <CheckBox id="CheckBoxPriceUnit" taborder="32" text="" left="50" top="247" width="22" height="21" truevalue="1" falsevalue="0"/>
+        <Edit id="EditPriceUnit" taborder="22" left="217" top="247" width="171" height="21"/>
+        <Static id="StaticIncoterms" taborder="23" text="Incoterms" left="60" top="277" width="138" cssclass="sta_WF_searchLabel" height="21"/>
+        <CheckBox id="CheckBoxIncoterms" taborder="34" text="" left="50" top="277" width="22" height="21" truevalue="1" falsevalue="0"/>
+        <Combo id="ComboIncoterms" taborder="24" left="218" top="277" width="171" height="21" innerdataset="ds_cmbIncoterms" codecolumn="CODE_CD" datacolumn="CODE_NM"/>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="ds_MassInput" useclientlayout="true" oncolumnchanged="ds_MassInput_oncolumnchanged">
+        <ColumnInfo>
+          <Column id="VendorCode" type="STRING" size="256"/>
+          <Column id="chkVendorCode" type="STRING" size="256"/>
+          <Column id="VendorName" type="STRING" size="256"/>
+          <Column id="chkVendorName" type="STRING" size="256"/>
+          <Column id="PaymentTerms" type="STRING" size="256"/>
+          <Column id="chkPaymentTerms" type="STRING" size="256"/>
+          <Column id="DocumentType" type="STRING" size="256"/>
+          <Column id="chkDocumentType" type="STRING" size="256"/>
+          <Column id="DeliveryDate" type="STRING" size="256"/>
+          <Column id="chkDeliveryDate" type="STRING" size="256"/>
+          <Column id="More" type="STRING" size="256"/>
+          <Column id="chkMore" type="STRING" size="256"/>
+          <Column id="Less" type="STRING" size="256"/>
+          <Column id="chkLess" type="STRING" size="256"/>
+          <Column id="Price" type="STRING" size="256"/>
+          <Column id="chkPrice" type="STRING" size="256"/>
+          <Column id="Currency" type="STRING" size="256"/>
+          <Column id="chkCurrency" type="STRING" size="256"/>
+          <Column id="PriceUnit" type="STRING" size="256"/>
+          <Column id="chkPriceUnit" type="STRING" size="256"/>
+          <Column id="Incoterms" type="STRING" size="256"/>
+          <Column id="chkIncoterms" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_cmbPaymentTerms" useclientlayout="true">
+        <ColumnInfo>
+          <Column id="CODE_CD" type="STRING" size="256"/>
+          <Column id="CODE_CD_F" type="STRING" size="256"/>
+          <Column id="CODE_NM" type="STRING" size="256"/>
+          <Column id="CODE_CD_FULL_F" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_cmbDocumentType" useclientlayout="true">
+        <ColumnInfo>
+          <Column id="CODE_CD" type="STRING" size="256"/>
+          <Column id="CODE_CD_F" type="STRING" size="256"/>
+          <Column id="CODE_NM" type="STRING" size="256"/>
+          <Column id="CODE_CD_FULL_F" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_cmbIncoterms" useclientlayout="true">
+        <ColumnInfo>
+          <Column id="CODE_CD" type="STRING" size="256"/>
+          <Column id="CODE_CD_F" type="STRING" size="256"/>
+          <Column id="CODE_NM" type="STRING" size="256"/>
+          <Column id="CODE_CD_FULL_F" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_cmbCurrency" useclientlayout="true">
+        <ColumnInfo>
+          <Column id="CODE_CD" type="STRING" size="256"/>
+          <Column id="CODE_CD_F" type="STRING" size="256"/>
+          <Column id="CODE_NM" type="STRING" size="256"/>
+          <Column id="CODE_CD_FULL_F" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_ColumnMap" useclientlayout="true">
+        <ColumnInfo>
+          <Column id="MassCol" type="STRING" size="256"/>
+          <Column id="ds_POList" type="STRING" size="256"/>
+          <Column id="ds_POHistory" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="MassCol">VendorCode</Col>
+            <Col id="ds_POList">SUPPLIER_CODE1</Col>
+            <Col id="ds_POHistory">LIFNR</Col>
+          </Row>
+          <Row>
+            <Col id="MassCol">VendorName</Col>
+            <Col id="ds_POHistory">NAME1</Col>
+            <Col id="ds_POList">SUPPLIER_NAME</Col>
+          </Row>
+          <Row>
+            <Col id="MassCol">PaymentTerms</Col>
+            <Col id="ds_POList">ZTERM</Col>
+            <Col id="ds_POHistory">ZTERM</Col>
+          </Row>
+          <Row>
+            <Col id="MassCol">DocumentType</Col>
+            <Col id="ds_POList">DOC_TYPE</Col>
+            <Col id="ds_POHistory">DOC_TYPE</Col>
+          </Row>
+          <Row>
+            <Col id="MassCol">DeliveryDate</Col>
+            <Col id="ds_POList">DELIVERY_DATE</Col>
+            <Col id="ds_POHistory">DELIVERY_LOC</Col>
+          </Row>
+          <Row>
+            <Col id="MassCol">More</Col>
+            <Col id="ds_POList">UEBTO</Col>
+            <Col id="ds_POHistory">UEBTO</Col>
+          </Row>
+          <Row>
+            <Col id="MassCol">Less</Col>
+            <Col id="ds_POList">UNTTO</Col>
+            <Col id="ds_POHistory">UNTTO</Col>
+          </Row>
+          <Row>
+            <Col id="MassCol">Price</Col>
+            <Col id="ds_POList">PRICE</Col>
+            <Col id="ds_POHistory">NETPR</Col>
+          </Row>
+          <Row>
+            <Col id="MassCol">Currency</Col>
+            <Col id="ds_POList">CURRENCY</Col>
+            <Col id="ds_POHistory">WAERS</Col>
+          </Row>
+          <Row>
+            <Col id="MassCol">PriceUnit</Col>
+            <Col id="ds_POList">MEINS</Col>
+            <Col id="ds_POHistory">MEINS</Col>
+          </Row>
+          <Row>
+            <Col id="MassCol">Incoterms</Col>
+            <Col id="ds_POList">INCO1</Col>
+            <Col id="ds_POHistory">INCO1</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+    </Objects>
+    <Script type="xscript5.1"><![CDATA[/********************************************************************************************
+@desc	1. Include
+********************************************************************************************/
+include "Src_HintsEduLib::All_EduLib.xjs";
+
+/********************************************************************************************
+@desc	2. Form 변수 선언 ---------------
+********************************************************************************************/
+this.paramStr;
+this.paramNum;
+this.paramObj;
+
+//공통코드 세팅
+this.COMBO_SET_STR = "ds_cmbPaymentTerms"	+"#"+"ZTERM"		+" "
+					+"ds_cmbDocumentType"	+"#"+"ERP_DOC"      +" "
+					+"ds_cmbIncoterms"		+"#"+"INCO1"        +" "
+					+"ds_cmbCurrency"		+"#"+"CURRENCY"     +" "
+					;   
+
+/********************************************************************************************
+@desc	3. OnLoad
+********************************************************************************************/
+/* 
+ *	온로드이벤트
+ */
+this.Form_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	// 기본 데이터 가져오기 + 콤보세팅 + word	(콜백에서 fn_reset을 실행함.)
+	this.gfn_getAllInitData();		
+};
+
+/* 
+ *	초기화 함수
+ */
+this.fn_reset = function()
+{
+	var gtrcPos = "PopupMassInput.xfdl.fn_reset";
+	
+	//팝업 띄울 때 넘기는 파람
+	{
+		this.paramStr = this.getOwnerFrame().pStr;			this.gtrace("paramStr--->"+this.paramStr, gtrcPos);
+		this.paramNum = this.getOwnerFrame().pNum;			this.gtrace("paramNum--->"+this.paramNum, gtrcPos);
+		this.paramObj = this.getOwnerFrame().pObj;			this.gtrace("paramObj--->"+this.paramObj, gtrcPos);
+	}
+	
+	// 데이터셋 초기화
+	{
+		this.ds_MassInput.clearData();
+		this.ds_MassInput.addRow();
+	}
+		
+	// 초기체크박스 Enable / Disable 세팅 : 탭에 따라 다름
+	var sColId;
+	for(var i = 0 ; i < this.ds_MassInput.colcount ; i++)
+	{
+		//	this.gtrace(this.ds_MassInput.getColID(i).substring(0,3), gtrcPos);
+		sColId = this.ds_MassInput.getColID(i);
+		if(sColId.substring(0,3)=="chk")
+		{
+			this.ds_MassInput.setColumn(0, sColId, "0");
+			
+			var checkBoxName = "CheckBox"+sColId.substring(3, sColId.length);	//	this.gtrace("checkBoxName--->"+checkBoxName, gtrcPos);
+			var objCheckBox = this.lookup(checkBoxName);						//	this.gtrace("objCheckBox.name--->"+objCheckBox.name, gtrcPos);
+			if(this.paramStr=="PO_UPDATE")
+			{
+				switch(sColId)
+				{
+					case "chkVendorCode":
+					case "chkDeliveryDate":
+								objCheckBox.set_enable(false);
+						break;
+					default : break; 
+				}
+			}
+		} 
+	}
+}
+
+/********************************************************************************************
+@desc	4. Validation 처리
+********************************************************************************************/
+
+
+
+/********************************************************************************************
+@desc	5. 서비스 호출(Transaction)
+********************************************************************************************/
+
+/********************************************************************************************
+@desc	6. Callback
+********************************************************************************************/
+/*++
+@desc	Callback Function
+*/
+this.callbackFunction = function(strSvcID, nErrorCode, strErrorMsg)
+{
+	var gtrcPos = "PopupMassInput.xfdl.callbackFunction"
+		this.gtrace("● MassInput콜백-트랜잭션", gtrcPos);
+		
+	// 에러 체크 영역
+	if (nErrorCode < 0)
+	{
+		//	alert(this.gfn_removeJavaErrMsg(strErrorMsg));
+		alert(strErrorMsg);
+		return;
+	}
+
+	switch (strSvcID) 
+	{
+		default:
+			break;
+ 	}
+}
+
+/*++
+@desc	Popup Callback
+*/
+this.callbackFunc_pop = function(strID, variant)
+{
+}
+/********************************************************************************************
+@desc	7. Common Function
+********************************************************************************************/
+
+/********************************************************************************************/
+/**   8. 사용자 함수                                                                       */
+/********************************************************************************************/
+//확인버튼 클릭
+this.fn_CommCnc_OK = function()
+{
+	var gtrcPos = "PopupMassInput.xfdl.fn_CommCnc_OK"
+		this.gtrace("● MassInput-확인버튼클릭", gtrcPos);
+	var oInputDs = this.opener.lookup(this.paramStr=="PO_CREATE"?"ds_POList":"ds_POHistory");
+		this.gtrace("oInputDs--->"+oInputDs.name, gtrcPos);
+
+	for(var k = 0 ; k < this.ds_MassInput.colcount ; k++)
+	{
+		var massColChkId = this.ds_MassInput.getColID(k);
+		if(massColChkId.substring(0,3)=="chk" && this.ds_MassInput.getColumn(0, massColChkId)=="1")
+		{
+			var massColId = massColChkId.substring(3, massColChkId.length);
+			var openerExecMassColId = this.ds_ColumnMap.lookup("MassCol", massColId, oInputDs.name);
+				
+				this.gtrace("massColChkId--->"+massColChkId, gtrcPos);
+				this.gtrace("openerExecMassColId--->"+openerExecMassColId, gtrcPos);
+				this.gtrace("massColId--->"+massColId, gtrcPos);
+			
+			//오프너의 체크된 row를 찾아서 세팅
+			for(var i = 0 ; i < oInputDs.rowcount ; i++)
+			{
+				var sROW_CHK = oInputDs.getColumn(i, "ROW_CHK");
+				if(sROW_CHK == "1")
+				{
+					oInputDs.setColumn(i, openerExecMassColId, this.ds_MassInput.getColumn(0, massColId));
+				}
+			}
+		}
+	}
+	
+	this.close(true);
+}
+
+/********************************************************************************************/
+/**   9. 이벤트(Event) 처리                                                                 */
+/********************************************************************************************/
+
+this.ds_MassInput_oncolumnchanged = function(obj:nexacro.NormalDataset,e:nexacro.DSColChangeEventInfo)
+{
+	//	코드를 체크할 때 네임도 동일하게 체크되도록 함 : "확인" 눌렀을 때 벤더명도 동일하게 적용하기위함
+	if(e.columnid=="chkVendorCode"){
+		obj.setColumn(e.row, "chkVendorName", e.newvalue);
+	}
+};
+]]></Script>
+    <Bind>
+      <BindItem id="item0" compid="div_VendorFromTo.form.calFrom" propid="value" datasetid="dsList" columnid="dtFrom"/>
+      <BindItem id="item1" compid="div_VendorFromTo.form.calTo" propid="value" datasetid="dsList" columnid="dtTo"/>
+      <BindItem id="item2" compid="CalendarDeliveryDate" propid="value" datasetid="ds_MassInput" columnid="DeliveryDate"/>
+      <BindItem id="item3" compid="EditMore" propid="value" datasetid="ds_MassInput" columnid="More"/>
+      <BindItem id="item4" compid="EditLess" propid="value" datasetid="ds_MassInput" columnid="Less"/>
+      <BindItem id="item5" compid="EditPrice" propid="value" datasetid="ds_MassInput" columnid="Price"/>
+      <BindItem id="item6" compid="EditPriceUnit" propid="value" datasetid="ds_MassInput" columnid="PriceUnit"/>
+      <BindItem id="item7" compid="CheckBoxShipment" propid="value" datasetid="ds_MassInput" columnid="p_shipment_yn"/>
+      <BindItem id="item8" compid="CheckBoxPaymentTerms" propid="value" datasetid="ds_MassInput" columnid="chkPaymentTerms"/>
+      <BindItem id="item9" compid="CheckBoxDocumentType" propid="value" datasetid="ds_MassInput" columnid="chkDocumentType"/>
+      <BindItem id="item10" compid="CheckBoxDeliveryDate" propid="value" datasetid="ds_MassInput" columnid="chkDeliveryDate"/>
+      <BindItem id="item11" compid="CheckBoxMore" propid="value" datasetid="ds_MassInput" columnid="chkMore"/>
+      <BindItem id="item12" compid="CheckBoxLess" propid="value" datasetid="ds_MassInput" columnid="chkLess"/>
+      <BindItem id="item13" compid="CheckBoxPrice" propid="value" datasetid="ds_MassInput" columnid="chkPrice"/>
+      <BindItem id="item14" compid="CheckBoxCurrency" propid="value" datasetid="ds_MassInput" columnid="chkCurrency"/>
+      <BindItem id="item15" compid="CheckBoxPriceUnit" propid="value" datasetid="ds_MassInput" columnid="chkPriceUnit"/>
+      <BindItem id="item16" compid="CheckBoxVendorCode" propid="value" datasetid="ds_MassInput" columnid="chkVendorCode"/>
+      <BindItem id="item17" compid="CheckBoxIncoterms" propid="value" datasetid="ds_MassInput" columnid="chkIncoterms"/>
+      <BindItem id="item18" compid="ComboPaymentTerms" propid="value" datasetid="ds_MassInput" columnid="PaymentTerms"/>
+      <BindItem id="item19" compid="ComboDocumentType" propid="value" datasetid="ds_MassInput" columnid="DocumentType"/>
+      <BindItem id="item20" compid="ComboCurrency" propid="value" datasetid="ds_MassInput" columnid="Currency"/>
+      <BindItem id="item21" compid="ComboIncoterms" propid="value" datasetid="ds_MassInput" columnid="Incoterms"/>
+    </Bind>
+  </Form>
+</FDL>

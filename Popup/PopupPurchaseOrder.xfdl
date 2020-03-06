@@ -1,0 +1,213 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.0">
+  <Form id="PopupPurchaseOrder" width="600" height="400" titletext="Sample_PopupSub" onload="Form_onload">
+    <Layouts>
+      <Layout height="400" width="600">
+        <Grid id="grd_list" taborder="0" left="16" top="56" right="16" binddataset="ds_PurchaseOrderList" autofittype="col" oncelldblclick="btn_ok_onclick" leftbase="" topbase="" bottombase="" rightbase="" widthbase="" heightbase="" bottom="64" griduserproperty="no,sort,initial,export,!colfix,!rowfix,!filter,!cellcopypaste,!colhide,!personal,!subsum">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="80"/>
+                <Column size="80"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="P/O Number"/>
+                <Cell col="1" text="S/O Number"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:EBELN"/>
+                <Cell col="1" text="bind:VBELN"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Static id="Static08" taborder="1" left="0" top="0" width="16" cssclass="sta_WF_guideRed" visible="false" text="w&#13;&#10;16" height="100%"/>
+        <Static id="Static02" taborder="2" top="0" width="16" cssclass="sta_WF_guideRed" visible="false" text="w&#13;&#10;16" right="0" height="100%"/>
+        <Static id="Static03" taborder="3" left="0" cssclass="sta_WF_guideRed" visible="false" text="h16" bottom="0" height="16" width="100%"/>
+        <Static id="Static16" taborder="4" left="16" cssclass="sta_WF_guideBlue" visible="false" text="h20" right="16" height="20" bottom="44"/>
+        <Div id="DivCrudButton" left="270" top="12" height="32" text="" formscrolltype="none" right="16" cssclass="div_WF_search" url="Comm::Comm_CrudButton.xfdl" taborder="5" InitCompVisEna="1:0:0:0,1:0:0:0" background="transparent" border="0px none"/>
+        <Static id="StaticPurchaseOrder" taborder="6" text="PurchaseOrder" left="0" top="16" width="120" cssclass="sta_WF_searchLabel" height="24"/>
+        <Edit id="EditPurchaseOrderNo" taborder="7" left="138" height="24" top="16" cssclass="essential" width="150"/>
+        <Div id="DivCnc" taborder="8" text="Div00" width="128" height="28" url="Comm::Comm_CnC.xfdl" returnparms="EBELN,VBELN" right="16" bottom="16" targetGrid="grd_list"/>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="ds_PurchaseOrderList">
+        <ColumnInfo>
+          <Column id="EBELN" type="STRING" size="32"/>
+          <Column id="VBELN" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_in">
+        <ColumnInfo>
+          <Column id="p_table_nm" type="STRING" size="256"/>
+          <Column id="p_key_field_str" type="STRING" size="256"/>
+          <Column id="p_select_field_str" type="STRING" size="256"/>
+          <Column id="p_disp_field_str" type="STRING" size="256"/>
+          <Column id="p_order_field" type="STRING" size="256"/>
+          <Column id="p_key_value" type="STRING" size="256"/>
+          <Column id="p_where" type="STRING" size="256"/>
+          <Column id="p_user_id" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+    <Script type="xscript5.1"><![CDATA[/********************************************************************************************
+@desc	1. Include
+********************************************************************************************/
+include "Src_HintsEduLib::All_EduLib.xjs";
+
+/********************************************************************************************
+@desc	2. Form 변수 선언 ---------------
+********************************************************************************************/
+this.paramStr;
+this.paramNum;
+this.paramObj;
+
+//공통코드 세팅 -- 할 일이 있다면 ...
+// this.COMBO_SET_STR = "ds_cmbPaymentTerms"+"#"+"ZTERM"		+" "
+// 					+"ds_cmbDocumentType"	+"#"+"ERP_DOC"      +" "
+// 					+"ds_cmbIncoterms"		+"#"+"INCO1"        +" "
+// 					+"ds_cmbCurrency"		+"#"+"CURRENCY"     +" "
+// 					;  
+					
+/********************************************************************************************
+@desc	3. OnLoad
+********************************************************************************************/
+/* 
+ *	초기화 함수
+ */
+this.fn_reset = function()
+{
+												var gtrcPos = "PopupPurchaseOrder.xfdl.Form_onload";
+	//	this.gfn_formOnLoad(this);
+	this.gfn_getAllInitData();
+    this.paramStr = this.getOwnerFrame().pStr;			this.gtrace("paramStr--->"+this.paramStr, gtrcPos);
+    this.paramNum = this.getOwnerFrame().pNum;			this.gtrace("paramNum--->"+this.paramNum, gtrcPos);
+    this.paramObj = this.getOwnerFrame().pObj;			this.gtrace("paramObj--->"+this.paramObj, gtrcPos);
+	
+	{	// 데이터셋 초기화
+		this.ds_in.clearData();
+		this.ds_in.addRow();
+	}
+}
+
+/********************************************************************************************
+@desc	4. Validation 처리
+********************************************************************************************/
+
+
+
+/********************************************************************************************
+@desc	5. 서비스 호출(Transaction)
+********************************************************************************************/
+/*++
+@desc	POList , POHistory Load
+*/
+this.tfn_PurchaseOrderSearch = function(){
+
+	{ // 기본세팅 : clear , 사용자
+		this.ds_PurchaseOrderList.clearData();
+		//	this.ds_in.setColumn(0, "p_osno1", "1126195724");
+		var cUserId = this.gfn_getApplication().gds_User.getColumn(0, "USER_ID");
+		this.ds_in.setColumn(0, "p_user_id", cUserId);
+	}
+	{	// 개별세팅
+		this.ds_in.setColumn(0, "p_table_nm"			, "IF_PO_HS_DETAIL");
+		this.ds_in.setColumn(0, "p_key_field_str"		, "EBELN＾VBELN"		);//	"＾" : 2 byte 꺽쇠
+		this.ds_in.setColumn(0, "p_select_field_str"	, "EBELN＾VBELN"		);
+				// p_disp_field_str 원래는 " P/O Number＾S/O Number"였음 : 이 값에 의해 Col id 를 가져옴
+				// 특수기호를 포함해서 데이터셋의 컬럼으로 사용할 수 없어서 변경했음
+		this.ds_in.setColumn(0, "p_disp_field_str"		, "EBELN＾VBELN"		);
+		this.ds_in.setColumn(0, "p_order_field"			, "EBELN"		);
+		this.ds_in.setColumn(0, "p_where"				, ""			);		
+	}
+
+	var sSvcID 			= "PurchaseOrderSearch";
+	var sURL 			= "AppSvr::common/commonAction.ppc";
+	var sInDatasets 	= "ds_in0=ds_in";
+	var sOutDatasets 	= "ds_PurchaseOrderList=ds_out0";
+	var sArguments 		= "sqlId=" + nexacro.wrapQuote("PopupMapper.getCommonPopup");
+
+	//공통 트랜잭션 사용
+	this.gfn_transaction(sSvcID, sURL, sInDatasets, sOutDatasets, sArguments, "callbackFunction");
+}
+/********************************************************************************************
+@desc	6. Callback
+********************************************************************************************/
+/*++
+@desc	Callback Function
+*/
+this.callbackFunction = function(strSvcID, nErrorCode, strErrorMsg)
+{
+							var gtrcPos = "PopupPurchaseOrder.xfdl.callbackFunction"
+	// 에러 체크 영역
+	if (nErrorCode < 0)
+	{
+		//	alert(this.gfn_removeJavaErrMsg(strErrorMsg));
+		alert(strErrorMsg);
+		return;
+	}
+
+	switch (strSvcID) 
+	{
+		default:
+			break;
+ 		
+		case "PurchaseOrderSearch"	:
+
+					//	trace(this.ds_PurchaseOrderList.saveXML());
+
+				break;
+ 	}
+}
+
+/*++
+@desc	Popup Callback
+*/
+this.callbackFunc_pop = function(strID, variant)
+{
+}
+/********************************************************************************************
+@desc	7. Common Function
+********************************************************************************************/
+/*
+ *	조회
+ */
+this.cfn_search = function()
+{
+// 	{	//Validation 세팅 : Sample_Validation.xfdl 참조
+// 		this.gfn_clearValidation(this.ds_in);
+// 		//this.gfn_setValidation(this.ds_in, "p_osno1", "오더번호", "required,length:10");
+// 		this.gfn_setValidation(this.ds_in, "p_osno1", "오더번호", "required");
+// 	}
+// 	
+//   	if(this.gfn_validation(this.ds_in, "A"))	// Validation == true 이면
+// 	{
+		// 조회실행
+		this.tfn_PurchaseOrderSearch();
+//	}
+};
+
+/********************************************************************************************/
+/**   8. 사용자 함수                                                                        */
+/********************************************************************************************/
+
+
+/********************************************************************************************/
+/**   9. 이벤트(Event) 처리                                                                 */
+/********************************************************************************************/
+
+this.Form_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	this.fn_reset();
+};
+]]></Script>
+    <Bind>
+      <BindItem id="item0" compid="EditPurchaseOrderNo" propid="value" datasetid="ds_in" columnid="p_key_value"/>
+    </Bind>
+  </Form>
+</FDL>

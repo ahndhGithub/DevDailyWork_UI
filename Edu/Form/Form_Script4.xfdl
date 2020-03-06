@@ -1,0 +1,222 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.0">
+  <Form id="Form_Script4" left="0" top="0" width="814" height="529" titletext="Form_Script4" onload="Form_onload" ontimer="Form_Emp_ontimer">
+    <Layouts>
+      <Layout height="529" width="814">
+        <Div id="div_search" taborder="0" left="10" top="40" height="64" right="10" leftbase="" topbase="" bottombase="" rightbase="" widthbase="" heightbase="" cssclass="div_WF_search" text="">
+          <Layouts>
+            <Layout>
+              <Radio id="rdo_gender" taborder="0" left="296" top="8" width="168" height="21" codecolumn="" datacolumn="" rowcount="-1" index="0" innerdataset="ds_genderD001" columncount="-1"/>
+              <Button id="btn_reset" taborder="1" text="초기화" top="7" width="52" height="24" right="8" onclick="div_cont_btn_reset_onclick" leftbase="" topbase="" bottombase="" rightbase="" widthbase="" heightbase=""/>
+              <Static id="Static04" taborder="2" text="성별" left="235" top="8" width="61" height="21" cssclass="sta_WF_searchLabel"/>
+              <Static id="Static00" taborder="3" text="부서" left="0" top="8" width="73" height="21" leftbase="" topbase="" bottombase="" rightbase="" widthbase="" heightbase="" cssclass="sta_WF_searchLabel"/>
+              <Static id="Static01" taborder="4" text="입사월" left="464" top="8" width="73" height="21" cssclass="sta_WF_searchLabel"/>
+              <Static id="Static02" taborder="5" text="취미" left="0" top="38" width="73" height="21" leftbase="" topbase="" bottombase="" rightbase="" widthbase="" heightbase="" cssclass="sta_WF_searchLabel"/>
+              <Edit id="edt_code" taborder="6" left="410" top="35" width="110" height="20"/>
+              <Combo id="cbo_dept" taborder="7" text="" left="73" top="8" width="162" height="21" innerdataset="ds_deptSearchC002" codecolumn="" datacolumn="" value="" index="-1"/>
+              <Static id="Static03" taborder="8" text="선택한 취미 코드와 명" left="235" top="37" width="174" height="21" cssclass="sta_WF_searchLabel"/>
+              <Edit id="edt_name" taborder="9" left="527" top="35" width="189" height="20"/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Grid id="grd_list" taborder="1" left="10" top="144" right="10" bottom="10" binddataset="ds_emp" onheadclick="grd_list_onheadclick" onrbuttonup="grd_list_onrbuttonup" autofittype="col">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+              </Columns>
+              <Rows>
+                <Row band="head" size="24"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="EMPL_ID"/>
+                <Cell col="1" text="FULL_NAME"/>
+                <Cell col="2" text="DEPT_CD"/>
+                <Cell col="3" text="POS_CD"/>
+                <Cell col="4" text="HIRE_DATE"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:EMPL_ID"/>
+                <Cell col="1" text="bind:FULL_NAME"/>
+                <Cell col="2" text="bind:DEPT_CD"/>
+                <Cell col="3" text="bind:POS_CD"/>
+                <Cell col="4" text="bind:HIRE_DATE"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Static id="Static04" taborder="2" left="0" cssclass="sta_WF_guide1" visible="false" text="h10" height="10" width="100.00%" bottom="0"/>
+        <Static id="sta_00" taborder="3" text="조회조건" left="10" top="10" width="66" height="30" cssclass="sta_WF_title"/>
+        <Static id="Static00" taborder="4" left="0" top="0" cssclass="sta_WF_guideRed" visible="false" text="h10" height="10" right="0"/>
+        <Static id="Static08" taborder="5" left="0" top="0" width="10" cssclass="sta_WF_guideRed" visible="false" bottom="0" text="w&#13;&#10;10"/>
+        <Static id="Static03" taborder="6" left="0" top="104" cssclass="sta_WF_guideBlue" visible="false" text="h10" height="10" right="0"/>
+        <Static id="Static01" taborder="7" left="10" cssclass="sta_WF_guideRed" visible="false" text="h10" right="0" bottom="0" height="10"/>
+        <Static id="Static02" taborder="8" top="0" width="10" cssclass="sta_WF_guideRed" visible="false" bottom="0" text="w&#13;&#10;10" right="0"/>
+        <Static id="Static05" taborder="9" text="조회결과" left="10" top="114" width="97" height="30" cssclass="sta_WF_title"/>
+        <Button id="btn_save" taborder="10" text="저장" top="10" width="45" height="24" right="10" visible="true" onclick="btn_save_onclick" cssclass="btn_WF_main1"/>
+        <Button id="btn_delete" taborder="11" text="삭제" top="10" width="45" height="24" right="58" visible="true" onclick="btn_del_onclick" cssclass="btn_WF_main1"/>
+        <Button id="btn_add" taborder="12" text="입력" top="10" width="45" height="24" right="106" visible="true" onclick="btn_add_onclick" cssclass="btn_WF_main1"/>
+        <Button id="btn_search" taborder="13" text="조회" top="10" width="45" height="24" right="154" visible="true" cssclass="btn_WF_main1" onclick="btn_search_onclick"/>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="ds_emp" keystring="" onrowsetchanged="ds_emp_onrowsetchanged" onrowposchanged="ds_emp_onrowposchanged">
+        <ColumnInfo>
+          <Column id="EMPL_ID" type="STRING" size="10" description="사원번호"/>
+          <Column id="FULL_NAME" type="STRING" size="50" description="성명"/>
+          <Column id="DEPT_CD" type="STRING" size="10" description="부서코드"/>
+          <Column id="POS_CD" type="STRING" size="10" description="직급코드"/>
+          <Column id="HIRE_DATE" type="DATE" size="10" description="입사일자"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="EMPL_ID">AA001</Col>
+            <Col id="FULL_NAME">Olivia</Col>
+            <Col id="DEPT_CD">01</Col>
+            <Col id="POS_CD">03</Col>
+            <Col id="HIRE_DATE">20101003</Col>
+          </Row>
+          <Row>
+            <Col id="EMPL_ID">AA002</Col>
+            <Col id="FULL_NAME">John</Col>
+            <Col id="DEPT_CD">02</Col>
+            <Col id="POS_CD">04</Col>
+            <Col id="HIRE_DATE">20051011</Col>
+          </Row>
+          <Row>
+            <Col id="EMPL_ID">BB001</Col>
+            <Col id="FULL_NAME">Jackson</Col>
+            <Col id="DEPT_CD">03</Col>
+            <Col id="POS_CD">03</Col>
+            <Col id="HIRE_DATE">20070206</Col>
+          </Row>
+          <Row>
+            <Col id="EMPL_ID">BB002</Col>
+            <Col id="FULL_NAME">Maia</Col>
+            <Col id="DEPT_CD">04</Col>
+            <Col id="POS_CD">02</Col>
+            <Col id="HIRE_DATE">20090512</Col>
+          </Row>
+          <Row>
+            <Col id="EMPL_ID">CC001</Col>
+            <Col id="FULL_NAME">Adam</Col>
+            <Col id="DEPT_CD">01</Col>
+            <Col id="POS_CD">04</Col>
+            <Col id="HIRE_DATE">20010109</Col>
+          </Row>
+          <Row>
+            <Col id="EMPL_ID">DD001</Col>
+            <Col id="FULL_NAME">Ray</Col>
+            <Col id="DEPT_CD">02</Col>
+            <Col id="POS_CD">03</Col>
+            <Col id="HIRE_DATE">20160202</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="Dataset00"/>
+      <Dataset id="Dataset01"/>
+      <Dataset id="Dataset02"/>
+      <Dataset id="Dataset03"/>
+      <Dataset id="Dataset04"/>
+    </Objects>
+    <Script type="xscript5.1"><![CDATA[/*
+1. 공통코드 가져오기
+     - 조회조건 영역에 부서(C002), 성별(D001), 취미(E001)
+     - 그리드 영역에 부서(C002) 직급(C001)
+     
+2. 조회조건 영역
+    - 부서 Combo : 선택하세요 표현
+    - 성별 Radio : 전체 표현
+    - 입사월 : 월달력 표현
+    - 취미는 MultiCombo로 표현하고 선택한 코드값, 코드명 가져오기
+    - 성별, 입사월 변경시 ds_emp 데이터 필터해서 보여주기
+    - 초기화 버튼 클릭시 모든 항목 기본값으로 설정
+
+3. 그리드
+    - 맨앞에 순번 표현
+    - 정렬 기능만 적용, 마우스 우클릭 기능 미사용
+    - 부서, 직급 코드명 표현
+    
+4. 조회버튼
+    - 부서코드 조회조건으로 전송
+
+5. 삭제버튼
+    - 삭제하시겠습니까? 메세지 확인 후 처리
+    - 삭제 메세지ID : confirm.before.delete
+
+6. 저장 버튼
+    - 클릭시 필수 입력 체크
+    - 성명(FULL_NAME) 필수
+    - 아이디(EMPL_ID) 필수, 5자리
+    - 저장 서비스 : SvcUrl::save_emp.jsp    
+*/
+
+
+this.Form_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+
+};
+
+// Search Area Gender 
+this.div_search_rdo_gender_onitemchanged = function(obj:nexacro.Radio,e:nexacro.ItemChangeEventInfo)
+{
+
+};
+
+// Search Area Reset
+this.div_cont_btn_reset_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+
+};
+
+// Retrieve Button
+this.btn_search_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+    var sDeptCd   = this.div_search.form.cbo_dept.value;
+    var sSvcID    = "svcSelectEmp";
+    var sURL      = "SvcUrl::select_emp.jsp?sDept="+sDeptCd;
+    var sInDs     = "";
+    var sOutDs    = "ds_emp=out_emp";
+    var sParam    = "";
+    var sCallBack = "fn_callback";
+
+    this.gfn_transaction(sSvcID, sURL, sInDs, sOutDs, sParam, sCallBack);    
+};
+
+this.fn_callback = function(svcID, errCD, errMSG)
+{
+
+}
+
+// Add Button
+this.btn_add_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.ds_emp.addRow();
+};
+
+// Delete Button
+this.btn_del_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+
+
+};
+
+this.fn_msgCallback = function (strId, strVal)
+{
+
+};
+
+// Save Button
+this.btn_save_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+
+
+};
+]]></Script>
+  </Form>
+</FDL>

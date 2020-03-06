@@ -1,0 +1,351 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.0">
+  <Form id="Form_Logon" width="1280" height="720" titletext="Form_Logon" ontimer="Form_Logon_ontimer" background="" onload="Form_onload">
+    <Layouts>
+      <Layout height="720" mobileorientation="landscape" width="1280" screenid="Desktop_screen">
+        <Div id="Div_Logon" taborder="1" onkeyup="Button_onkeyup" width="360" height="170" right="15%" bottom="15%" background="transparent">
+          <Layouts>
+            <Layout>
+              <Static id="Static00" taborder="0" text="User Code" left="20" top="10" width="100" height="28" font="normal bold 10pt/normal &quot;Arial&quot;"/>
+              <Edit id="Edit_ID" taborder="1" left="Static00:2" top="10" width="140" height="28" displaynulltext="UserCode"/>
+              <Static id="Static01" taborder="2" text="PassCode" left="20" top="40" width="100" height="28" font="normal bold 10pt/normal &quot;Arial&quot;"/>
+              <Edit id="Edit_PassCode" taborder="3" left="Static01:2" top="40" width="140" height="28" displaynulltext="PassCode" password="true"/>
+              <Button id="Button_Logon" taborder="4" text="Logon" left="Edit_ID:2" top="10" height="58" onkeyup="Button_onkeyup" onclick="Button_onclick" width="80"/>
+              <CheckBox id="CheckBox_RememberID" taborder="5" text="User Code 저장" left="20" top="130" width="240" height="28"/>
+              <Combo id="Combo00" taborder="6" text="Combo00" left="122" top="70" width="140" height="28" visible="false"/>
+              <Static id="Static01_00" taborder="7" text="회사" left="20" top="70" width="100" height="28" font="normal bold 10pt/normal &quot;Arial&quot;" visible="false"/>
+              <Combo id="Combo00_00" taborder="8" left="122" top="100" width="140" height="28" innerdataset="ds_Language" datacolumn="Data" codecolumn="Code" index="0" text="한국어" value="KO"/>
+              <Static id="Static01_00_00" taborder="9" text="언어" left="20" top="100" width="100" height="28" font="normal bold 10pt/normal &quot;Arial&quot;"/>
+              <Static id="Static_Logon" taborder="10" text="Static02" left="269" top="141" width="75" height="27"/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <WebBrowser id="WebBrowser_Svr" taborder="0" left="50" top="377" width="250" height="73" onusernotify="WebBrowser_onusernotify" visible="false"/>
+        <Static id="Static_Logon" taborder="2" text="Desktop" left="19" top="9" width="120" height="60"/>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[
+include "Library::Library.xjs";
+
+/************************************************************************
+* 
+************************************************************************/
+this.SERVER_TYPE;
+
+/************************************************************************
+* 
+************************************************************************/
+
+this.fn_TestLogon = function()
+{
+	this.Div_Logon.form.Edit_ID.set_value("SysAdmin");
+	this.Div_Logon.form.Edit_PassCode.set_value("SysAdmin");
+	this.fn_LoadMenu();	
+};
+
+// login function
+this.fn_Logon = function ()
+{
+	if (this.fn_CheckValidation()) {
+		// 사용자 정보를 저장한다
+		if (this.Div_Logon.form.CheckBox_RememberID.value) {
+			nexacro.setPrivateProfile("LoadUserCode", "True");
+			nexacro.setPrivateProfile("UserCode", this.Div_Logon.form.Edit_ID.value);
+		}
+		else {
+			nexacro.setPrivateProfile("LoadUserCode", "false");
+		}
+		
+		if (HINTS.gv_FrameSet.frames.length > 0) {
+			HINTS.gv_FrameSet.frames[0].destroy();
+		}
+		this.fn_LoadMenu();
+	}
+	else {
+		return;
+	}
+};
+
+this.fn_GetLogonProperties = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	this.ds_in.addRow(); 
+	
+	var strValue = nexacro.getPrivateProfile("LoadUserCode");
+	
+	this.Div_Logon.form.CheckBox_RememberID.set_value(strValue);
+	if (strValue == "undefined") {
+		this.Div_Logon.form.CheckBox_RememberID.set_value(0);
+	}
+	
+	// 저장된 사용자 정보를 가져온다
+	if (this.Div_Logon.form.CheckBox_RememberID.value) {
+		this.Div_Logon.form.Edit_ID.set_value(nexacro.getPrivateProfile("UserCode"));
+	}
+	
+	if (this.gfn_isNull(this.ds_in.getColumn(0, 'UserCode'))) {
+		this.Div_Logon.form.Edit_ID.setFocus();
+	}
+	else {
+		this.Div_Logon.form.Edit_PassCode.setFocus();
+	}
+	
+	this.setTimer(0, 300);
+};
+
+this.fn_LoadMenu = function ()
+{
+	HINTS.gds_Menu.clearData();
+	
+	HINTS.gds_CommCode.clearData();
+	HINTS.gds_Messages.clearData();
+	HINTS.gds_Words.clearData();	
+	
+	this.ds_log.clearData();
+	
+	var sSvcID = "load_menu";
+	var sURL = "AppSvr::accessLogIn.do";
+	var sInDatasets = "ds_in0=ds_in ds_in1=ds_in ds_in2=ds_in ds_in3=ds_in ds_in4=ds_in ds_in5=ds_in";
+	var sOutDatasets = "gds_Menu=ds_out0 gds_CommCode=ds_out1 gds_Messages=ds_out2 gds_Words=ds_out3 gds_MyMenu=ds_out4 ds_log=ds_out5";
+	var sArguments = "sqlId=" + nexacro.wrapQuote("load_menu load_ctrlitem load_mssg load_words load_mymenu search_active_accesslog");
+	var sCallback = "callbackFunction";
+	this.transaction(sSvcID, sURL, sInDatasets, sOutDatasets, sArguments, sCallback);
+	
+};
+
+
+this.fn_CheckValidation = function ()
+{
+	if (this.gfn_isEmpty(this.Div_Logon.form.Edit_ID.value) || this.gfn_isEmpty(this.Div_Logon.form.Edit_PassCode.value)) 
+	{
+		this.Div_Logon.form.Edit_ID.setFocus();
+		this.alert("아이디 또는 패스워드가 없습니다");
+		return false;
+	}
+	
+	return true;
+};
+
+this.fn_WriteAccessLog = function ()
+{
+	
+	var sArg = "";
+	
+	this.ds_log00.clearData();
+	this.ds_log00.addRow();
+	
+	this.ds_log00.setColumn(this.ds_log00.rowposition, "UserCode", HINTS.gds_User.getColumn(0, "UserCode"));
+	this.ds_log00.setColumn(this.ds_log00.rowposition, "GUID", nexacro.getEnvironment().JSESSIONID);
+	this.ds_log00.setColumn(this.ds_log00.rowposition, "OS", system.osversion);
+	
+	//trace(this.ds_log00.saveXML());
+	
+	var sSvcID = "write_login_accesslog";
+	var sURL = "AppSvr::logInAccessLog.do";
+	var sInDatasets = "ds_in0=ds_log00";
+	var sOutDatasets = "ds_out=ds_out0";
+	var sArguments = "sqlId=" + nexacro.wrapQuote("write_login_accesslog");
+	var sCallback = "callbackFunction";	
+	this.transaction(sSvcID, sURL, sInDatasets, sOutDatasets, sArguments, sCallback);
+};
+
+this.fn_WriteAccessLogout = function ()
+{
+	var sSvcID = "write_logout_accesslog";
+	var sURL = "AppSvr::CommonSaveAction_Return.do";
+	var sInDatasets = "ds_in0=ds_out";
+	var sOutDatasets = "";
+	var sArguments = "sqlId=" + nexacro.wrapQuote("write_logout_accesslog");
+	var sCallback = "callbackFunction";
+	this.transaction(sSvcID, sURL, sInDatasets, sOutDatasets, sArguments, sCallback, false);
+};
+
+
+this.callbackFunction = function (strSvcID, nErrorCode, strErrorMag)
+{
+	// 에러 체크 영역
+	if (nErrorCode < 0) {
+		return;
+	}
+	
+	switch(strSvcID) {
+	case "load_menu":
+		if (HINTS.gds_User.getColumn(0, "ret") == "RET000") {
+			// Logon시 전역변수 USERCODE 지정
+			HINTS.USERCODE = HINTS.gds_User.getColumn(0, "UserCode")
+			HINTS.USERNAME = HINTS.gds_User.getColumn(0, "UserName")
+		}
+		else {
+			this.gfn_msgAlert("아이디와 패스워드를 확인해 주세요");
+			return;
+		}
+		this.setUserLog(); //로그 체크
+		break;
+		
+	case "write_login_accesslog":
+		//HINTS.gv_TopFrame.set_formurl("Frame::Form_Top.xfdl");			
+		HINTS.gv_MainFrameSet.set_separatesize("36,*,0");
+		break;
+		
+	default:
+	}
+};
+
+this.setUserLog = function ()
+{
+	if (this.ds_log.getRowCount() > 0) {
+		if (HINTS.confirm("해당 ID로 사용자 접속상태입니다. 기존 세션을 만료하고 새로 접속하시겠습니까?")) {
+			this.fn_WriteAccessLog();
+		}
+		else {
+			// 오픈되어있는 팝업 종료.
+			var oPopup = nexacro.getPopupFrames();
+			for (var j = (oPopup.length - 1); j >= 0; j--) 
+			{
+				oPopup[j].form.close(false);
+			}
+			
+			// 오픈되어있는 화면 종료.
+			var oFrameSet = HINTS.gv_FrameSet;
+			for (var i = (oFrameSet.all.length - 1); i >= 0; i--) 			{
+				oFrameSet.all[i].form.close();
+			}
+			return;
+		}
+	}
+	else {
+		this.fn_WriteAccessLog();
+		return;
+	}
+};
+
+this.fn_SetColor = function(strServerType)
+{
+	switch(strServerType) {
+	case "PRD":
+		this.set_background("url('imagerc::cat1.jpg') no-repeat center center #ffffaa'");
+		this.Div_Logon.form.Button_Logon.set_background("blue");			
+		this.Div_Logon.form.Static_Logon.set_text("PRD");	
+		// 			HINTS.gv_TopFrame.form.fn_SetIV_Color("PRD");
+		// 			HINTS.gv_LeftFrame.form.fn_Set_Dev("PRD");	
+		break;
+	case "QA":
+		this.set_background("url('imagerc::cat2.jpg') no-repeat center center #ffffaa'");
+		this.Div_Logon.form.Button_Logon.set_background("red");
+		this.Div_Logon.form.Static_Logon.set_text("QA");
+		// 			HINTS.gv_TopFrame.form.fn_SetIV_Color("QA");
+		// 			HINTS.gv_LeftFrame.form.fn_Set_Dev("QA");			
+		break;
+	case "DEV":		
+		this.set_background("url('imagerc::cat3.jpg') no-repeat center center #ffffaa'");
+		this.Div_Logon.form.Button_Logon.set_background("yellow");
+		this.Div_Logon.form.Static_Logon.set_text("DEV");
+		// 			HINTS.gv_TopFrame.form.fn_Set_Color("DEV");
+		// 			HINTS.gv_LeftFrame.form.fn_Set_Color("DEV");	
+		break;
+	default:		
+		this.set_background("url('imagerc::cat4.jpg') no-repeat center center #ffffaa'");
+		this.Div_Logon.form.Button_Logon.set_background("silver");
+		this.Div_Logon.form.Static_Logon.set_text("RUNTIME");		
+	}
+	
+};
+
+/************************************************************************
+* 
+************************************************************************/
+
+
+// 접속주소를 받아서 컴포넌트 색 변경(dev - blue / prod - red)
+this.WebBrowser_onusernotify = function(obj:nexacro.WebBrowser,e:nexacro.WebUserNotifyEventInfo)
+{
+	var vAddress = new String(e.userdata);//.substring(7,11);
+	trace("WebBrowser_Svr_onusernotify "+vAddress);
+	switch(vAddress) {
+	case this.PRD_SERVER:
+		this.SERVER_TYPE = "PRD";	
+		break;
+	case this.QA_SERVER:
+		this.SERVER_TYPE = "QA";		
+		break;
+	case this.DEV_SERVER:		
+		this.SERVER_TYPE = "DEV";	
+	default:		
+		this.SERVER_TYPE = "RUNTIME";			
+	}
+};
+
+
+this.Button_onkeyup = function(obj:nexacro.Button,e:nexacro.KeyEventInfo)
+{
+	if (e.keycode == 13) {
+		this.fn_Logon();	
+	}
+};
+
+this.Button_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	//개발시
+	this.fn_TestLogon();
+	//운영시
+	//this.fn_Logon();
+};
+
+this.Form_Logon_ontimer = function(obj:nexacro.Form,e:nexacro.TimerEventInfo)
+{
+	this.killTimer();	
+};
+
+this.Form_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	this.fn_SetColor(this.SERVER_TYPE);
+	
+	this.fn_GetLogonProperties();
+	
+};
+
+]]></Script>
+    <Objects>
+      <Dataset id="ds_in" firefirstcount="0" useclientlayout="false" updatecontrol="true" enableevent="true" loadkeymode="keep" loadfiltermode="keep" reversesubsum="false">
+        <ColumnInfo>
+          <Column id="UserCode" type="STRING" size="256"/>
+          <Column id="PassWord" type="STRING" size="256"/>
+          <Column id="Rtn" type="STRING" size="256"/>
+          <Column id="msg" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_log">
+        <ColumnInfo>
+          <Column id="UserCode" type="STRING" size="256"/>
+          <Column id="IP" type="STRING" size="256"/>
+          <Column id="MAC" type="STRING" size="256"/>
+          <Column id="PC" type="STRING" size="256"/>
+          <Column id="GUID" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_Language">
+        <ColumnInfo>
+          <Column id="Code" type="STRING" size="256"/>
+          <Column id="Data" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="Code">KO</Col>
+            <Col id="Data">한국어</Col>
+          </Row>
+          <Row>
+            <Col id="Code">EN</Col>
+            <Col id="Data">English</Col>
+          </Row>
+          <Row>
+            <Col id="Code">CN</Col>
+            <Col id="Data">中國語</Col>
+          </Row>
+          <Row>
+            <Col id="Code">JP</Col>
+            <Col id="Data">日本語</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+    </Objects>
+  </Form>
+</FDL>

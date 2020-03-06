@@ -1,0 +1,167 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.0">
+  <Form id="Sample_Popup" left="0" top="0" width="814" height="529" titletext="Sample_Popup" onload="Form_onload" ontimer="Form_Emp_ontimer">
+    <Layouts>
+      <Layout height="529" width="814">
+        <Static id="Static04" taborder="0" left="0" cssclass="sta_WF_guide1" visible="false" text="h10" height="10" width="100.00%" bottom="0"/>
+        <Static id="sta_00" taborder="1" text="Popup" left="10" top="10" width="146" height="30" cssclass="sta_WF_title"/>
+        <Static id="Static00" taborder="2" left="0" top="0" cssclass="sta_WF_guideRed" visible="false" text="h10" height="10" right="0"/>
+        <Static id="Static08" taborder="3" left="0" top="0" width="10" cssclass="sta_WF_guideRed" visible="false" bottom="0" text="w&#13;&#10;10"/>
+        <Static id="Static03" taborder="4" left="0" top="40" cssclass="sta_WF_guideBlue" visible="false" text="h10" height="10" right="0"/>
+        <Static id="Static01" taborder="5" left="10" cssclass="sta_WF_guideRed" visible="false" text="h10" right="0" bottom="0" height="10"/>
+        <Static id="Static02" taborder="6" top="0" width="10" cssclass="sta_WF_guideRed" visible="false" bottom="0" text="w&#13;&#10;10" right="0"/>
+        <Button id="btn_1" taborder="7" text="모달" top="50" width="95" height="34" right="709" visible="true" cssclass="btn_WF_main1" onclick="btn_1_onclick"/>
+        <Button id="btn_2" taborder="8" text="모달리스" top="90" width="95" height="34" right="709" visible="true" cssclass="btn_WF_main1" onclick="btn_2_onclick"/>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="ds_emp" keystring="" cancolumnchange="ds_emp_cancolumnchange" onrowsetchanged="ds_emp_onrowsetchanged" onrowposchanged="ds_emp_onrowposchanged">
+        <ColumnInfo>
+          <Column id="EMPL_ID" type="STRING" size="10"/>
+          <Column id="FULL_NAME" type="STRING" size="50"/>
+          <Column id="DEPT_CD" type="STRING" size="10"/>
+          <Column id="POS_CD" type="STRING" size="10"/>
+          <Column id="HIRE_DATE" type="DATE" size="10"/>
+          <Column id="SALARY" type="INT" size="10"/>
+          <Column id="GENDER" type="STRING" size="10"/>
+          <Column id="MARRIED" type="STRING" size="10"/>
+          <Column id="MEMO" type="STRING" size="10"/>
+          <Column id="CHK" type="STRING" size="1"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="EMPL_ID">AA001</Col>
+            <Col id="FULL_NAME">Olivia</Col>
+            <Col id="DEPT_CD">01</Col>
+            <Col id="POS_CD">03</Col>
+            <Col id="HIRE_DATE">20101003</Col>
+            <Col id="SALARY">83000</Col>
+            <Col id="GENDER">W</Col>
+            <Col id="MARRIED">true</Col>
+            <Col id="MEMO">ivory</Col>
+            <Col id="CHK">0</Col>
+          </Row>
+          <Row>
+            <Col id="EMPL_ID">AA002</Col>
+            <Col id="FULL_NAME"/>
+            <Col id="DEPT_CD">02</Col>
+            <Col id="POS_CD">04</Col>
+            <Col id="HIRE_DATE">20051011</Col>
+            <Col id="SALARY">76000</Col>
+            <Col id="GENDER">M</Col>
+            <Col id="MARRIED">false</Col>
+            <Col id="MEMO">greenyellow</Col>
+            <Col id="CHK">0</Col>
+          </Row>
+          <Row>
+            <Col id="EMPL_ID"/>
+            <Col id="FULL_NAME">Jackson</Col>
+            <Col id="DEPT_CD">03</Col>
+            <Col id="POS_CD">03</Col>
+            <Col id="HIRE_DATE">20070206</Col>
+            <Col id="SALARY">95000</Col>
+            <Col id="GENDER">M</Col>
+            <Col id="MARRIED">true</Col>
+            <Col id="MEMO">aliceblue</Col>
+            <Col id="CHK">0</Col>
+          </Row>
+          <Row>
+            <Col id="EMPL_ID">BB0</Col>
+            <Col id="FULL_NAME">Maia</Col>
+            <Col id="DEPT_CD">04</Col>
+            <Col id="POS_CD">02</Col>
+            <Col id="HIRE_DATE">20090512</Col>
+            <Col id="SALARY">60000</Col>
+            <Col id="GENDER">W</Col>
+            <Col id="MARRIED">false</Col>
+            <Col id="MEMO">ivory</Col>
+            <Col id="CHK">0</Col>
+          </Row>
+          <Row>
+            <Col id="EMPL_ID">CC001</Col>
+            <Col id="FULL_NAME">Adam</Col>
+            <Col id="DEPT_CD">01</Col>
+            <Col id="POS_CD">04</Col>
+            <Col id="HIRE_DATE">20010109</Col>
+            <Col id="SALARY">88000</Col>
+            <Col id="GENDER">M</Col>
+            <Col id="MARRIED">true</Col>
+            <Col id="MEMO">greenyellow</Col>
+            <Col id="CHK">0</Col>
+          </Row>
+          <Row>
+            <Col id="EMPL_ID">DD001</Col>
+            <Col id="FULL_NAME">Ray</Col>
+            <Col id="DEPT_CD">02</Col>
+            <Col id="POS_CD">03</Col>
+            <Col id="HIRE_DATE">20160202</Col>
+            <Col id="SALARY">60000</Col>
+            <Col id="GENDER">M</Col>
+            <Col id="MARRIED">true</Col>
+            <Col id="MEMO">lightpink</Col>
+            <Col id="CHK">0</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+    </Objects>
+    <Script type="xscript5.1"><![CDATA[this.Form_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	this.gfn_formOnLoad(this);
+};
+
+/*
+ * @class 팝업오픈
+ * @param {String} sPopupId	- 팝업ID
+ * @param {String} sUrl	 - 팝업URL
+ * @param {String} [oArg] - 전달값 {key:value, key:value}
+ * @param {String} [sPopupCallback] - 팝업콜백
+ * @param {Object} [oOption] - 팝업옵션 {key:value, key:value}
+ *	                popuptype : 팝업종류(modal, modeless, modalsync, modalwindow) default:modal 
+ *	                top : 상단 좌표
+ *	                left : 좌측 좌표
+ *	                width : 넓이
+ *	                height : 높이
+ *	                layered : 투명 윈도우 default:false
+ *	                opacity : 투명도 default:100
+ *	                autosize : autosize default:false
+ *	                titlebar : 타이틀바 default:false
+ *	                title : 타이틀
+ *                   var oOption   = {popuptype:"modeless",title:"모달리스 팝업",width:"300",height:"350"};
+ */
+
+//모달
+this.btn_1_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+    var sPopupId  = "modalPopup";
+    var sUrl      = "Sample::Sample_PopupSub.xfdl";
+	var oArg      = {pStr:"Nexacro", pNum:1234, pObj:this.ds_emp};
+	var sCallBack = "fn_popupCallback";
+    var oOption   = {title : this.gfn_getWord("popup.modal")};
+	this.gfn_openPopup(sPopupId, sUrl, oArg, sCallBack, oOption);		
+};
+
+//모달리스
+this.btn_2_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+    var sPopupId  = "modelessPopup";
+    var sUrl      = "Sample::Sample_PopupSub.xfdl";
+	var oArg      = {pStr:"Nexacro", pNum:1234, pObj:this.ds_emp};
+	var sCallBack = "fn_popupCallback";
+    var oOption   = {popuptype:"modeless",title:"모달리스 팝업",width:"300",height:"350"};
+	this.gfn_openPopup(sPopupId, sUrl, oArg, sCallBack, oOption);			
+};
+
+this.fn_popupCallback = function(sPopId, sRtn)
+{
+//     var arrRtn = sRtn.split("|");
+//     trace(arrRtn[0]);
+//     trace(arrRtn[1]);
+
+
+    var objRtn = JSON.parse(sRtn);
+     
+    trace(objRtn.deptcd);
+    trace(objRtn.deptnm);
+}]]></Script>
+  </Form>
+</FDL>

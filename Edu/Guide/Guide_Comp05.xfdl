@@ -1,0 +1,174 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.0">
+  <Form id="Guide_Comp05" width="814" height="1430" titletext="New Form" onload="Form_onload">
+    <Layouts>
+      <Layout height="1430" mobileorientation="landscape" width="814">
+        <Div id="Div00" taborder="0" left="10" top="80" height="57" width="789">
+          <Layouts>
+            <Layout>
+              <Static id="Static00" taborder="0" text="가나다라마" left="0" top="0" width="95" cssclass="sta_WF_detailLabel" height="29"/>
+              <Static id="sta_00" taborder="1" left="94" top="0" height="29" cssclass="sta_WF_detailLine" right="0"/>
+              <Static id="Static01" taborder="2" text="가나다라마" left="0" top="28" width="95" cssclass="sta_WF_detailLabel" height="29"/>
+              <Static id="sta_01" taborder="3" left="94" top="28" height="29" cssclass="sta_WF_detailLine" right="0"/>
+              <Edit id="Edit00" taborder="4" left="98" height="21" top="4" width="687"/>
+              <Edit id="Edit01" taborder="5" left="98" height="21" top="32" width="687"/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Static id="Static05" taborder="1" text="Static18" left="104" top="77" width="1" height="67" background="red"/>
+        <Static id="Static122" taborder="2" text="1px 겹침" left="82" top="142" width="51" height="21" cssclass="sta_WF_guideRedTxt"/>
+        <Static id="Static02" taborder="3" text="Static18" left="482" top="108" width="120" height="1" background="red"/>
+        <Static id="Static06" taborder="4" text="1px 겹침" left="609" top="98" width="51" height="21" cssclass="sta_WF_guideRedTxt" background="#ffffff"/>
+        <Static id="Static07" taborder="5" left="105" top="81" width="123" height="3" cssclass="sta_WF_guideRed" visible="true"/>
+        <Static id="Static08" taborder="6" left="105" top="80" width="3" height="56" cssclass="sta_WF_guideRed" visible="true"/>
+        <Static id="Static09" taborder="7" left="105" top="133" width="123" height="3" cssclass="sta_WF_guideRed" visible="true"/>
+        <Static id="Static10" taborder="8" text="사방여백 3px (배경 border포함 4px)" left="208" top="142" width="284" height="21" cssclass="sta_WF_guideRedTxt"/>
+        <Static id="Static11" taborder="9" left="105" top="109" width="123" height="3" cssclass="sta_WF_guideRed" visible="true"/>
+        <Static id="Static12" taborder="10" left="795" top="80" width="3" height="57" cssclass="sta_WF_guideRed" visible="true"/>
+        <Static id="Static22" taborder="11" text="class : sta_WF_detailLine" left="547" top="185" width="179" height="21" cssclass="sta_WF_guideBlueTxt"/>
+        <Static id="Static13" taborder="12" text="class : sta_WF_detailLabel" left="15" top="185" width="189" height="21" visible="true" cssclass="sta_WF_guideBlueTxt"/>
+        <Static id="Static25" taborder="13" left="14" top="239" width="390" height="27" text="최소 7글자 기준으로 한 글자에 12px씩 증가"/>
+        <Static id="Static15" taborder="14" text="가나" left="10" top="268" width="95" cssclass="sta_WF_detailLabel" height="29"/>
+        <Static id="Static17" taborder="15" text="가나다라" left="10" top="302" width="95" cssclass="sta_WF_detailLabel" height="29"/>
+        <Static id="Static19" taborder="16" text="가나다라마바" left="10" top="336" width="95" cssclass="sta_WF_detailLabel" height="29"/>
+        <Static id="Static20" taborder="17" text="가나다라마바사" left="11" top="370" width="107" cssclass="sta_WF_detailLabel" height="29"/>
+        <Static id="Static21" taborder="18" text="가나다라마바사아" left="11" top="404" width="119" cssclass="sta_WF_detailLabel" height="29"/>
+        <Static id="Static23" taborder="19" text="가나다라마바사아자" left="11" top="438" width="131" cssclass="sta_WF_detailLabel" height="29"/>
+        <Static id="Static24" taborder="20" text="가나다라마바사아자차" left="11" top="472" width="143" cssclass="sta_WF_detailLabel" height="29"/>
+        <Static id="Static27" taborder="21" text="width : 95" left="219" top="341" width="99" height="18" cssclass="sta_WF_guideRedTxt" background="#ffffff"/>
+        <Static id="Static31" taborder="22" text="width : 107" left="219" top="370" width="99" height="29" cssclass="sta_WF_guideRedTxt"/>
+        <Static id="Static32" taborder="23" text="width : 119" left="219" top="404" width="99" height="29" cssclass="sta_WF_guideRedTxt"/>
+        <Static id="Static33" taborder="24" text="width : 131" left="219" top="438" width="99" height="29" cssclass="sta_WF_guideRedTxt"/>
+        <Static id="Static34" taborder="25" text="width : 143" left="219" top="472" width="99" height="29" cssclass="sta_WF_guideRedTxt"/>
+        <Static id="sta_03" left="109" top="268" height="29" taborder="26" color="red" text="h29" visible="true" width="39" cssclass="sta_WF_guideRed"/>
+        <Static id="Static37" taborder="27" text="여러줄일경우 28px씩 증가" left="10" top="555" width="178" height="30"/>
+        <Div id="Div01" taborder="28" left="10" top="612" height="29" width="729">
+          <Layouts>
+            <Layout>
+              <Static id="Static00" taborder="0" text="가나다라마" left="0" top="0" width="95" cssclass="sta_WF_detailLabel" height="29"/>
+              <Static id="sta_00" taborder="1" left="94" top="0" height="29" cssclass="sta_WF_detailLine" right="0"/>
+              <Edit id="Edit00" taborder="2" left="98" height="21" top="4" width="627"/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Static id="Static38" taborder="29" left="105" top="105" width="123" height="3" cssclass="sta_WF_guideRed" visible="true"/>
+        <Static id="Static39" taborder="30" text="1줄 : Height 29px" left="10" top="585" width="178" height="27"/>
+        <Div id="Div02" taborder="31" left="10" top="825" height="85" width="729">
+          <Layouts>
+            <Layout>
+              <Static id="Static00" taborder="0" text="가나다라마" left="0" top="0" width="95" cssclass="sta_WF_detailLabel" height="29"/>
+              <Static id="sta_00" taborder="1" left="94" top="0" height="29" cssclass="sta_WF_detailLine" right="0"/>
+              <Static id="Static01" taborder="2" text="가나다라마" left="0" top="28" width="95" cssclass="sta_WF_detailLabel" height="29"/>
+              <Static id="sta_01" taborder="3" left="94" top="28" height="29" cssclass="sta_WF_detailLine" right="0"/>
+              <Edit id="Edit00" taborder="4" left="98" height="21" top="4" width="627"/>
+              <Edit id="Edit01" taborder="5" left="98" height="21" top="32" width="627"/>
+              <Static id="Static02" taborder="6" text="가나다라마" left="0" top="56" width="95" cssclass="sta_WF_detailLabel" height="29"/>
+              <Static id="sta_02" taborder="7" left="94" top="56" height="29" cssclass="sta_WF_detailLine" right="0"/>
+              <Edit id="Edit02" taborder="8" left="98" height="21" top="60" width="627"/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Static id="Static40" taborder="32" text="3줄 : Height 85px" left="10" top="798" width="138" height="27" onchanged="Static40_onchanged"/>
+        <Static id="sta_05" left="741" top="611" height="29" taborder="33" color="red" text="h29" visible="true" width="39" cssclass="sta_WF_guideRed"/>
+        <Div id="Div03" taborder="34" left="10" top="1155" height="57" width="794">
+          <Layouts>
+            <Layout>
+              <Static id="Static00" taborder="0" text="가나다라마" left="0" top="0" width="95" cssclass="sta_WF_detailLabel_ess" height="29"/>
+              <Static id="sta_00" taborder="1" left="94" top="0" height="29" cssclass="sta_WF_detailLine" right="0"/>
+              <Static id="Static01" taborder="2" text="가나다라마" left="0" top="28" width="95" cssclass="sta_WF_detailLabel_ess" height="29"/>
+              <Static id="sta_01" taborder="3" left="94" top="28" height="29" cssclass="sta_WF_detailLine" right="0"/>
+              <Edit id="Edit00" taborder="4" left="98" height="21" top="4" width="295"/>
+              <Edit id="Edit01" taborder="5" left="98" height="21" top="32" width="295"/>
+              <Static id="Static02" taborder="6" text="가나다라마" left="396" top="28" width="95" cssclass="sta_WF_detailLabel" height="29"/>
+              <Static id="Static03" taborder="7" text="가나다라마" left="396" top="0" width="95" cssclass="sta_WF_detailLabel" height="29"/>
+              <Edit id="Edit02" taborder="8" left="494" height="21" top="32" width="295"/>
+              <Edit id="Edit03" taborder="9" left="494" height="21" top="4" width="295"/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Static id="Static42" taborder="35" text="1단일 경우" left="10" top="974" width="138" height="27" cssclass="sta_WF_GuideStatus"/>
+        <Static id="Static43" taborder="36" text="여러단일경우" left="10" top="954" width="138" height="20" cssclass="sta_WF_GuideTitle01"/>
+        <Static id="Static46" taborder="37" left="598" top="224" height="299" cssclass="sta_WF_GuideLine" width="1"/>
+        <Static id="Static48" taborder="38" text="필수라벨" left="365" top="242" width="138" height="30"/>
+        <Static id="Static49" taborder="39" text="가나다라" left="365" top="302" width="95" cssclass="sta_WF_detailLabel_ess" height="29"/>
+        <Static id="Static50" taborder="40" text="가나다라마바" left="365" top="336" width="95" cssclass="sta_WF_detailLabel_ess" height="29"/>
+        <Static id="Static51" taborder="41" text="가나다라마바사" left="365" top="370" width="107" cssclass="sta_WF_detailLabel_ess" height="29"/>
+        <Static id="Static52" taborder="42" text="가나다라마바사아" left="365" top="404" width="119" cssclass="sta_WF_detailLabel_ess" height="29"/>
+        <Static id="Static53" taborder="43" text="가나" left="365" top="268" width="95" cssclass="sta_WF_detailLabel_ess" height="29"/>
+        <Static id="Static54" taborder="44" text="class : sta_WF_detailLabel_ess" left="470" top="272" width="189" height="21" visible="true" cssclass="sta_WF_guideBlueTxt"/>
+        <Div id="Div04" taborder="45" left="10" top="706" height="57" width="729">
+          <Layouts>
+            <Layout>
+              <Static id="Static00" taborder="0" text="가나다라마" left="0" top="0" width="95" cssclass="sta_WF_detailLabel" height="29"/>
+              <Static id="sta_00" taborder="1" left="94" top="0" height="29" cssclass="sta_WF_detailLine" right="0"/>
+              <Static id="Static01" taborder="2" text="가나다라마" left="0" top="28" width="95" cssclass="sta_WF_detailLabel" height="29"/>
+              <Static id="sta_01" taborder="3" left="94" top="28" height="29" cssclass="sta_WF_detailLine" right="0"/>
+              <Edit id="Edit00" taborder="4" left="98" height="21" top="4" width="627"/>
+              <Edit id="Edit01" taborder="5" left="98" height="21" top="32" width="627"/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Static id="Static44" taborder="46" text="2줄 : Height 57px" left="10" top="679" width="138" height="27"/>
+        <Static id="Static55" taborder="47" text="2단일 경우" left="10" top="1118" width="138" height="27" cssclass="sta_WF_GuideStatus"/>
+        <Div id="Div06" taborder="48" left="10" top="1291" height="57" right="10">
+          <Layouts>
+            <Layout>
+              <Static id="Static00" taborder="0" text="가나다라마" left="0" top="0" width="95" cssclass="sta_WF_detailLabel" height="29"/>
+              <Static id="sta_00" taborder="1" left="94" top="0" height="29" cssclass="sta_WF_detailLine" right="0"/>
+              <Static id="Static01" taborder="2" text="가나다라마" left="0" top="28" width="95" cssclass="sta_WF_detailLabel" height="29"/>
+              <Static id="sta_01" taborder="3" left="94" top="28" height="29" cssclass="sta_WF_detailLine" right="0"/>
+              <Edit id="Edit00" taborder="4" left="98" height="21" top="4" width="155"/>
+              <Edit id="Edit01" taborder="5" left="98" height="21" top="32" width="155"/>
+              <Static id="Static02" taborder="6" text="가나다라마" left="256" top="28" width="95" cssclass="sta_WF_detailLabel" height="29"/>
+              <Static id="Static03" taborder="7" text="가나다라마" left="256" top="0" width="95" cssclass="sta_WF_detailLabel" height="29"/>
+              <Edit id="Edit02" taborder="8" left="620" height="21" top="32" width="165"/>
+              <Edit id="Edit03" taborder="9" left="620" height="21" top="4" width="165"/>
+              <Static id="Static04" taborder="10" text="가나다라마" left="522" top="28" width="95" cssclass="sta_WF_detailLabel" height="29"/>
+              <Static id="Static05" taborder="11" text="가나다라마" left="522" top="0" width="95" cssclass="sta_WF_detailLabel" height="29"/>
+              <Edit id="Edit04" taborder="12" left="354" height="21" top="32" width="165"/>
+              <Edit id="Edit05" taborder="13" left="354" height="21" top="4" width="165"/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Static id="Static56" taborder="49" text="3단일 경우" left="10" top="1254" width="138" height="27" cssclass="sta_WF_GuideStatus"/>
+        <Div id="Div07" taborder="50" left="10" top="1011" height="57" width="794">
+          <Layouts>
+            <Layout>
+              <Static id="sta_00" taborder="2" left="94" top="0" height="29" cssclass="sta_WF_detailLine" right="0"/>
+              <Static id="sta_01" taborder="0" left="94" top="28" height="29" cssclass="sta_WF_detailLine" right="0"/>
+              <Edit id="Edit00" taborder="1" left="98" height="21" top="4" width="692"/>
+              <Edit id="Edit01" taborder="3" left="98" height="21" top="32" width="692"/>
+              <Static id="Static00" taborder="4" text="가나다라마" left="0" top="0" width="95" cssclass="sta_WF_detailLabel" height="29"/>
+              <Static id="Static01" taborder="5" text="가나다라마" left="0" top="28" width="95" cssclass="sta_WF_detailLabel" height="29"/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Static id="sta_10" left="10" top="1073" height="20" taborder="51" text="w95" visible="true" width="94" textAlign="center" cssclass="sta_WF_guideRed"/>
+        <Static id="sta_12" left="106" top="1073" height="20" taborder="52" text="w727" visible="true" width="699" textAlign="center" cssclass="sta_WF_guideRed"/>
+        <Static id="sta_13" left="108" top="1188" height="19" taborder="53" color="red" text="w295" visible="true" width="295" textAlign="center" cssclass="sta_WF_guideRed"/>
+        <Static id="Static59" taborder="54" text="Left: 396" left="366" top="1226" width="95" height="21" visible="true" color="dodgerblue" textAlign="center"/>
+        <Static id="sta_33" taborder="55" left="412" top="1207" width="1" height="20" background="dodgerblue"/>
+        <Static id="sta_34" taborder="56" left="273" top="1343" width="1" height="20" background="dodgerblue"/>
+        <Static id="Static60" taborder="57" text="Left: 256" left="250" top="1364" width="48" height="21" visible="true" color="dodgerblue" textAlign="center"/>
+        <Static id="sta_35" taborder="58" left="546" top="1344" width="1" height="20" background="dodgerblue"/>
+        <Static id="Static61" taborder="59" text="Left: 522" left="523" top="1363" width="48" height="21" visible="true" color="dodgerblue" textAlign="center"/>
+        <Static id="Static75" taborder="60" text="Detail Area" left="10" top="10" height="30" usedecorate="true" cssclass="sta_WF_title" right="702"/>
+        <Static id="Static14" taborder="61" text="Static18" left="33" top="131" width="2" height="57" background="#2391ff"/>
+        <Static id="Static00" taborder="62" text="Static18" left="564" top="138" width="2" height="47" background="#2391ff"/>
+        <Static id="Static01" taborder="63" text="가나다라마바사아자" left="364" top="438" width="131" cssclass="sta_WF_detailLabel_ess" height="29"/>
+        <Static id="Static03" taborder="64" text="가나다라마바사아자차" left="364" top="472" width="143" cssclass="sta_WF_detailLabel_ess" height="29"/>
+        <Static id="sta_00" left="741" top="706" height="57" taborder="65" color="red" text="h29" visible="true" width="39" cssclass="sta_WF_guideRed"/>
+        <Static id="sta_01" left="741" top="826" height="85" taborder="66" color="red" text="h29" visible="true" width="39" cssclass="sta_WF_guideRed"/>
+        <Static id="sta_04" left="503" top="1188" height="19" taborder="67" color="red" text="w295" visible="true" width="295" textAlign="center" cssclass="sta_WF_guideRed"/>
+        <Static id="sta_06" left="107" top="1324" height="19" taborder="68" color="red" text="w155" visible="true" width="155" textAlign="center" cssclass="sta_WF_guideRed"/>
+        <Static id="sta_07" left="364" top="1324" height="19" taborder="69" color="red" text="w165" visible="true" width="165" textAlign="center" cssclass="sta_WF_guideRed"/>
+        <Static id="sta_08" left="631" top="1324" height="19" taborder="70" color="red" text="w165" visible="true" width="165" textAlign="center" cssclass="sta_WF_guideRed"/>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[this.Form_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	this.gfn_formOnLoad(this);	
+};
+]]></Script>
+  </Form>
+</FDL>

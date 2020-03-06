@@ -1,0 +1,84 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.0">
+  <Form id="Form_Top" width="800" height="40" titletext="Form_Top" onload="Form_onload">
+    <Layouts>
+      <Layout width="800" height="40" screenid="Desktop_screen">
+        <ImageViewer id="ImageViewer_Logo" taborder="0" text="Logo Image" left="0" top="0" width="160" bottom="0" background="url('theme://images/btn_TF_Normal.png')"/>
+        <Menu id="Menu_Top" taborder="1" left="160" top="0" bottom="0" right="120" innerdataset="gds_Menu" captioncolumn="MenuName" idcolumn="MenuCode" levelcolumn="MenuLevel" userdatacolumn="MenuID" visible="true" onmenuclick="Menu_onmenuclick"/>
+        <Div id="Div_UserInfo" taborder="2" top="0" right="0" width="120" background="darkorange" bottom="0">
+          <Layouts>
+            <Layout>
+              <Button id="Button_Admin" taborder="1" left="6" top="6" width="28" background="url('imagerc::img_USER_01.png') no-repeat center center aqua" bottom="6" onclick="fn_Admin_onclick"/>
+              <Static id="Static_UserInfo" taborder="0" text="User Info" left="Button_Admin:4" top="6" bottom="6" right="4" onclick="fn_Admin_onclick"/>
+            </Layout>
+          </Layouts>
+        </Div>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[include "Library::Library.xjs";
+
+/************************************************************************
+ * 
+ ************************************************************************/
+this.SERVER_TYPE;
+
+/************************************************************************
+ * 
+ ************************************************************************/
+
+this.fn_SetColor = function(strColor) 
+{ 
+	switch(strColor) {
+	case "PRD":
+		this.ImageViewer_Logo.set_background(vColor + " URL('img::img_top_logo.png') center middle");
+		this.Menu_Top.set_background("blue");
+		break;
+	case "QA":
+		this.ImageViewer_Logo.set_background(vColor + " URL('img::img_top_logo.png') center middle");
+		this.Menu_Top.set_background("red");
+		break;
+	case "DEV":
+		this.ImageViewer_Logo.set_background(vColor + " URL('img::img_top_logo.png') center middle");
+		this.Menu_Top.set_background("yellow");
+		break;			
+	default:
+	}
+}
+
+
+this.fn_Admin_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var x = nexacro.toNumber(system.clientToScreenX(obj, 0 ));
+	//var y = nexacro.toNumber(system.clientToScreenY(obj, 0 )); 
+	
+	var objFrame  = new ChildFrame();	
+	var objParentFrame = this.getOwnerFrame();
+	
+	objFrame.init("UserInfoPop", x, 66, 300, 200);			
+	objFrame.set_formurl( "System::UserInfoPop.xfdl" );
+	objFrame.set_showtitleicon(false);
+	objFrame.set_border("2px solid red");
+	objFrame.set_showtitlebar(false);
+	objFrame.set_showstatusbar(false);
+	var vRtn = objFrame.showModal("UserInfoPop", objParentFrame, null, this, null); 
+};
+
+/************************************************************************
+ * 
+ ************************************************************************/
+
+this.Menu_onmenuclick = function(obj:nexacro.Menu,e:nexacro.MenuClickEventInfo)
+{
+ 	var aArgs = "";
+ 	this.gfn_openMenu(e.id, aArgs);
+	
+};
+
+this.Form_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	this.fn_SetColor(this.SERVER_TYPE);
+};
+]]></Script>
+    <Objects/>
+  </Form>
+</FDL>

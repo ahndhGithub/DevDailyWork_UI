@@ -1,0 +1,95 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.0">
+  <Form id="Sample_PopupSub" width="300" height="350" titletext="Sample_PopupSub" onload="Form_onload">
+    <Layouts>
+      <Layout height="350" width="300">
+        <Grid id="grd_list" taborder="0" left="20" top="20" height="262" right="20" binddataset="ds_dept" autofittype="col" oncelldblclick="fn_ok" leftbase="" topbase="" bottombase="" rightbase="" widthbase="" heightbase="">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="80"/>
+                <Column size="150"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="26"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="부서코드"/>
+                <Cell col="1" text="부서명"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:DEPT_CD" textAlign="center"/>
+                <Cell col="1" text="bind:DEPT_NAME"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Static id="Static01" taborder="1" left="0" top="0" cssclass="sta_WF_guideRed" visible="false" text="h20" height="20" width="100%"/>
+        <Static id="Static08" taborder="2" left="0" top="0" width="20" cssclass="sta_WF_guideRed" visible="false" text="w&#13;&#10;20" height="100%"/>
+        <Static id="Static02" taborder="3" top="0" width="20" cssclass="sta_WF_guideRed" visible="false" text="w&#13;&#10;20" right="0" height="100%"/>
+        <Static id="Static03" taborder="4" left="0" cssclass="sta_WF_guideRed" visible="false" text="h20" bottom="0" height="20" width="100%"/>
+        <Button id="btn_cancel" taborder="5" text="취소" left="153" top="302" width="60" height="28" cssclass="btn_WF_pop2" onclick="btn_cancel_onclick"/>
+        <Button id="btn_ok" taborder="6" text="확인" left="87" top="302" width="60" height="28" cssclass="btn_WF_pop1" onclick="btn_ok_onclick"/>
+        <Static id="Static16" taborder="7" left="10" cssclass="sta_WF_guideBlue" visible="false" text="h20" right="20" height="20" top="282"/>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="ds_dept">
+        <ColumnInfo>
+          <Column id="DEPT_CD" type="STRING" size="32"/>
+          <Column id="DEPT_NAME" type="STRING" size="32"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="DEPT_CD">01</Col>
+            <Col id="DEPT_NAME">Accounting</Col>
+          </Row>
+          <Row>
+            <Col id="DEPT_CD">02</Col>
+            <Col id="DEPT_NAME">HR</Col>
+          </Row>
+          <Row>
+            <Col id="DEPT_CD">03</Col>
+            <Col id="DEPT_NAME">Sales</Col>
+          </Row>
+          <Row>
+            <Col id="DEPT_CD">04</Col>
+            <Col id="DEPT_NAME">Design</Col>
+          </Row>
+          <Row>
+            <Col id="DEPT_CD">05</Col>
+            <Col id="DEPT_NAME">Education</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+    </Objects>
+    <Script type="xscript5.1"><![CDATA[this.Form_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+    var paramStr = this.getOwnerFrame().pStr;
+    var paramNum = this.getOwnerFrame().pNum;
+    var paramObj = this.getOwnerFrame().pObj;
+    
+    trace(paramStr + " : " + paramNum + " : " + paramObj);
+};
+
+this.btn_ok_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+    var sCode = this.ds_dept.getColumn(this.ds_dept.rowposition, "DEPT_CD");
+    var sName = this.ds_dept.getColumn(this.ds_dept.rowposition, "DEPT_NAME");
+    
+//     this.close(sCode+"|"+sName);
+
+	var objRtn = { deptcd : sCode,
+			       deptnm : sName };    
+
+	this.close(JSON.stringify(objRtn));
+};
+
+this.btn_cancel_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.close();
+};
+]]></Script>
+  </Form>
+</FDL>

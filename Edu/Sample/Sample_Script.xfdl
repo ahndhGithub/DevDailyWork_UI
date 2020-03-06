@@ -1,0 +1,447 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.0">
+  <Form id="Sample_Script" left="0" top="0" width="814" height="529" titletext="Sample_Script" onload="Form_onload" ontimer="Form_Emp_ontimer">
+    <Layouts>
+      <Layout height="529" width="814">
+        <Div id="div_search" taborder="1" left="10" top="40" height="39" right="10" leftbase="" topbase="" bottombase="" rightbase="" widthbase="" heightbase="" cssclass="div_WF_search">
+          <Layouts>
+            <Layout>
+              <Edit id="edt_deptCode" taborder="0" left="73" top="8" width="60" height="21"/>
+              <Button id="btn_dept" taborder="1" text="" left="133" top="8" width="21" height="21" verticalAlign="" onclick="div_search_btn_dept_onclick" cssclass="btn_WF_search"/>
+              <Edit id="edt_deptName" taborder="2" left="154" top="8" width="120" height="21"/>
+              <Radio id="rdo_gender" taborder="3" left="335" top="8" width="168" height="21" codecolumn="codecolumn" datacolumn="datacolumn" rowcount="-1" index="0" onitemchanged="div_search_rdo_gender_onitemchanged" innerdataset="innerdataset" columncount="-1">
+                <Dataset id="innerdataset">
+                  <ColumnInfo>
+                    <Column id="codecolumn" size="256"/>
+                    <Column id="datacolumn" size="256"/>
+                  </ColumnInfo>
+                  <Rows>
+                    <Row>
+                      <Col id="codecolumn">A</Col>
+                      <Col id="datacolumn">전체</Col>
+                    </Row>
+                    <Row>
+                      <Col id="codecolumn">M</Col>
+                      <Col id="datacolumn">남자</Col>
+                    </Row>
+                    <Row>
+                      <Col id="codecolumn">W</Col>
+                      <Col id="datacolumn">여자</Col>
+                    </Row>
+                  </Rows>
+                </Dataset>
+              </Radio>
+              <Button id="btn_reset" taborder="4" text="초기화" top="8" width="49" height="21" right="8" onclick="div_cont_btn_reset_onclick" leftbase="" topbase="" bottombase="" rightbase="" widthbase="" heightbase=""/>
+              <Static id="Static04" taborder="5" text="성별" left="274" top="8" width="61" height="21" cssclass="sta_WF_searchLabel"/>
+              <Static id="Static00" taborder="6" text="부서명" left="0" top="8" width="73" height="21" leftbase="" topbase="" bottombase="" rightbase="" widthbase="" heightbase="" cssclass="sta_WF_searchLabel"/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Grid id="grd_list" taborder="0" left="10" top="119" right="10" bottom="10" binddataset="ds_emp">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="80"/>
+                <Column size="70"/>
+                <Column size="120"/>
+                <Column size="130"/>
+                <Column size="120"/>
+                <Column size="80"/>
+                <Column size="70"/>
+                <Column size="70"/>
+                <Column size="120"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="26"/>
+                <Row size="26" band="summ"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="성명"/>
+                <Cell col="1" text="사원번호"/>
+                <Cell col="2" text="부서"/>
+                <Cell col="3" text="직급"/>
+                <Cell col="4" text="입사일자"/>
+                <Cell col="5" text="급여"/>
+                <Cell col="6" text="성별"/>
+                <Cell col="7" text="결혼여부"/>
+                <Cell col="8" text="비고사항"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:FULL_NAME" edittype="text"/>
+                <Cell col="1" text="bind:EMPL_ID" editlimit="" edittype="mask" maskeditformat="AA-###" displaytype="mask" maskedittype="string"/>
+                <Cell col="2" text="bind:DEPT_CD" displaytype="combotext" edittype="combo" combodataset="ds_dept" combocodecol="DEPT_CD" combodatacol="DEPT_NAME"/>
+                <Cell col="3" text="bind:POS_CD" combodataset="ds_pos" combocodecol="POS_CD" combodatacol="POS_NAME" displaytype="combocontrol" edittype="combo"/>
+                <Cell col="4" text="bind:HIRE_DATE" displaytype="date" edittype="date" textAlign="center" calendarpopupsize="200 220"/>
+                <Cell col="5" text="bind:SALARY" displaytype="number" edittype="mask" textAlign="right" maskeditformat="#,###"/>
+                <Cell col="6" text="expr:GENDER == &quot;M&quot; ? &quot;남&quot; : &quot;여&quot;" textAlign="center"/>
+                <Cell col="7" text="bind:MARRIED" displaytype="checkboxcontrol" edittype="checkbox"/>
+                <Cell col="8" text="bind:MEMO" edittype="normal"/>
+              </Band>
+              <Band id="summary">
+                <Cell text="expr: &quot;Count: &quot; + dataset.getRowCount()" textAlign="right"/>
+                <Cell col="1"/>
+                <Cell col="2"/>
+                <Cell col="3"/>
+                <Cell col="4"/>
+                <Cell col="5" text="expr:dataset.getAvg(&quot;SALARY&quot;)" displaytype="number" textAlign="right"/>
+                <Cell col="6"/>
+                <Cell col="7"/>
+                <Cell col="8"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Static id="Static04" taborder="2" left="0" cssclass="sta_WF_guide1" visible="false" text="h10" height="10" width="100.00%" bottom="0"/>
+        <Static id="sta_00" taborder="3" text="조회조건" left="10" top="10" width="66" height="30" cssclass="sta_WF_title"/>
+        <Static id="Static00" taborder="4" left="0" top="0" cssclass="sta_WF_guideRed" visible="false" text="h10" height="10" right="0"/>
+        <Static id="Static08" taborder="5" left="0" top="0" width="10" cssclass="sta_WF_guideRed" visible="false" bottom="0" text="w&#13;&#10;10"/>
+        <Static id="Static03" taborder="6" left="0" top="79" cssclass="sta_WF_guideBlue" visible="false" text="h10" height="10" right="0"/>
+        <Static id="Static01" taborder="7" left="10" cssclass="sta_WF_guideRed" visible="false" text="h10" right="0" bottom="0" height="10"/>
+        <Static id="Static02" taborder="8" top="0" width="10" cssclass="sta_WF_guideRed" visible="false" bottom="0" text="w&#13;&#10;10" right="0"/>
+        <Static id="Static05" taborder="9" text="조회결과" left="10" top="89" width="97" height="30" cssclass="sta_WF_title"/>
+        <Button id="btn_save" taborder="10" text="저장" top="10" width="45" height="24" right="10" visible="true" onclick="btn_save_onclick" cssclass="btn_WF_main1"/>
+        <Button id="btn_delete" taborder="11" text="삭제" top="10" width="45" height="24" right="58" visible="true" onclick="btn_del_onclick" cssclass="btn_WF_main1"/>
+        <Button id="btn_add" taborder="12" text="입력" top="10" width="45" height="24" right="106" visible="true" onclick="btn_add_onclick" cssclass="btn_WF_main1"/>
+        <Button id="btn_search" taborder="13" text="조회" top="10" width="45" height="24" right="154" visible="true" cssclass="btn_WF_main1" onclick="btn_search_onclick"/>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="ds_emp" keystring="">
+        <ColumnInfo>
+          <Column id="EMPL_ID" type="STRING" size="10"/>
+          <Column id="FULL_NAME" type="STRING" size="50"/>
+          <Column id="DEPT_CD" type="STRING" size="10"/>
+          <Column id="POS_CD" type="STRING" size="10"/>
+          <Column id="HIRE_DATE" type="DATE" size="10"/>
+          <Column id="SALARY" type="INT" size="10"/>
+          <Column id="GENDER" type="STRING" size="10"/>
+          <Column id="MARRIED" type="STRING" size="10"/>
+          <Column id="MEMO" type="STRING" size="10"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="EMPL_ID">AA001</Col>
+            <Col id="FULL_NAME">Olivia</Col>
+            <Col id="DEPT_CD">01</Col>
+            <Col id="POS_CD">03</Col>
+            <Col id="HIRE_DATE">20101003</Col>
+            <Col id="SALARY">83000</Col>
+            <Col id="GENDER">W</Col>
+            <Col id="MARRIED">true</Col>
+            <Col id="MEMO">ivory</Col>
+          </Row>
+          <Row>
+            <Col id="EMPL_ID">AA002</Col>
+            <Col id="FULL_NAME"/>
+            <Col id="DEPT_CD">02</Col>
+            <Col id="POS_CD">04</Col>
+            <Col id="HIRE_DATE">20051011</Col>
+            <Col id="SALARY">76000</Col>
+            <Col id="GENDER">M</Col>
+            <Col id="MARRIED">false</Col>
+            <Col id="MEMO">greenyellow</Col>
+          </Row>
+          <Row>
+            <Col id="EMPL_ID"/>
+            <Col id="FULL_NAME">Jackson</Col>
+            <Col id="DEPT_CD">03</Col>
+            <Col id="POS_CD">03</Col>
+            <Col id="HIRE_DATE">20070206</Col>
+            <Col id="SALARY">95000</Col>
+            <Col id="GENDER">M</Col>
+            <Col id="MARRIED">true</Col>
+            <Col id="MEMO">aliceblue</Col>
+          </Row>
+          <Row>
+            <Col id="EMPL_ID">BB0</Col>
+            <Col id="FULL_NAME">Maia</Col>
+            <Col id="DEPT_CD">04</Col>
+            <Col id="POS_CD">02</Col>
+            <Col id="HIRE_DATE">20090512</Col>
+            <Col id="SALARY">60000</Col>
+            <Col id="GENDER">W</Col>
+            <Col id="MARRIED">false</Col>
+            <Col id="MEMO">ivory</Col>
+          </Row>
+          <Row>
+            <Col id="EMPL_ID">CC001</Col>
+            <Col id="FULL_NAME">Adam</Col>
+            <Col id="DEPT_CD">01</Col>
+            <Col id="POS_CD">04</Col>
+            <Col id="HIRE_DATE">20010109</Col>
+            <Col id="SALARY">88000</Col>
+            <Col id="GENDER">M</Col>
+            <Col id="MARRIED">true</Col>
+            <Col id="MEMO">greenyellow</Col>
+          </Row>
+          <Row>
+            <Col id="EMPL_ID">DD001</Col>
+            <Col id="FULL_NAME">Ray</Col>
+            <Col id="DEPT_CD">02</Col>
+            <Col id="POS_CD">03</Col>
+            <Col id="HIRE_DATE">20160202</Col>
+            <Col id="SALARY">60000</Col>
+            <Col id="GENDER">M</Col>
+            <Col id="MARRIED">true</Col>
+            <Col id="MEMO">lightpink</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="ds_pos">
+        <ColumnInfo>
+          <Column id="POS_CD" type="string" size="32"/>
+          <Column id="POS_NAME" type="string" size="32"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="POS_CD">04</Col>
+            <Col id="POS_NAME">Officer</Col>
+          </Row>
+          <Row>
+            <Col id="POS_CD">03</Col>
+            <Col id="POS_NAME">Assistant Manager</Col>
+          </Row>
+          <Row>
+            <Col id="POS_CD">02</Col>
+            <Col id="POS_NAME">Division Manager</Col>
+          </Row>
+          <Row>
+            <Col id="POS_CD">01</Col>
+            <Col id="POS_NAME">Chairman</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="ds_dept">
+        <ColumnInfo>
+          <Column id="DEPT_CD" type="STRING" size="32"/>
+          <Column id="DEPT_NAME" type="STRING" size="32"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="DEPT_CD">01</Col>
+            <Col id="DEPT_NAME">Accounting Team</Col>
+          </Row>
+          <Row>
+            <Col id="DEPT_CD">02</Col>
+            <Col id="DEPT_NAME">HR Team</Col>
+          </Row>
+          <Row>
+            <Col id="DEPT_CD">03</Col>
+            <Col id="DEPT_NAME">Sales Team</Col>
+          </Row>
+          <Row>
+            <Col id="DEPT_CD">04</Col>
+            <Col id="DEPT_NAME">Design Team</Col>
+          </Row>
+          <Row>
+            <Col id="DEPT_CD">05</Col>
+            <Col id="DEPT_NAME">Education Team</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+    </Objects>
+    <Script type="xscript5.1"><![CDATA[/********************************************************************
+    file    : Sample::Sample_Script.xfdl
+    Created : 2018/12/01
+    author  : Education
+    Desc.   : 스크립트 표준 정의		  
+    
+************** 소스 수정 이력 *************************************
+*  date          author         Description
+*  2018/12/01    Education 	    최초 생성    
+ ************************************************************************/
+
+/************************************************************************
+ * include 영역
+ ************************************************************************/
+//include "Lib::Lib_Util.xjs"
+
+
+/************************************************************************
+ * Form 변수 선언 영역
+ ************************************************************************/
+this.fv_user = "nexacro";
+
+
+/************************************************************************
+ * Form Event 영역
+ ************************************************************************/
+/*
+ *	화면 onload시 처리
+ */
+this.Form_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+    this.gfn_formOnLoad(this);
+    this.fn_commCode();
+};
+
+/************************************************************************
+ * Callback 처리 영역
+ ************************************************************************/
+/*
+ *	Transaction Callback
+ */
+this.fn_callback = function(svcID, errCD, errMSG)
+{
+	if(svcID == "svcSave"){
+		this.gfn_alert("msg.save.success");	
+	}
+}
+
+/*
+ *	Popup Callback
+ */
+this.fn_popupCallback = function(sPopupId, sReturn)
+{
+	if(sReturn == undefined){
+		sReturn = "";
+	}
+	if(sPopupId == "popDept"){
+		if(sReturn.length > 0){
+			var arrRtn = sReturn.split("|");
+			this.div_search.form.edt_deptCode.set_value(arrRtn[0]);
+			this.div_search.form.edt_deptName.set_value(arrRtn[1]);
+		}
+	}
+}
+
+/*
+ *	Message Callback
+ */
+this.fn_msgCallback = function (strId, strVal)
+{
+	if(strId == "confirm.before.delete"){
+		if(strVal)
+		{
+            this.ds_emp.deleteRow(this.ds_emp.rowposition);
+        }		
+	}
+};
+
+
+/************************************************************************
+ * CRUD, 서비스 호출 영역
+ ************************************************************************/
+/*
+ *	공통코드 호출
+ */
+this.fn_commCode = function()
+{
+    var sSvcID    = "svcCode";
+    var sURL      = "SvcUrl::select_code.jsp";
+    var sInDs     = "";
+    var sOutDs    = "ds_dept=out_dept ds_pos=out_pos";
+    var sParam    = "";
+    var sCallBack = "fn_callback";
+	this.gfn_transaction(sSvcID, sURL, sInDs, sOutDs, sParam, sCallBack);
+}
+
+/*
+ *	조회
+ */
+this.btn_search_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var sDeptCode = this.div_search.form.edt_deptCode.value;	
+    var sSvcID    = "svcSelect";
+    var sURL      = "SvcUrl::select_emp.jsp?sDept="+sDeptCode;
+    var sInDs     = "";
+    var sOutDs    = "ds_emp=out_emp";
+    var sParam    = "";
+    var sCallBack = "fn_callback";
+	this.gfn_transaction(sSvcID, sURL, sInDs, sOutDs, sParam, sCallBack);    
+};
+
+/*
+ *	입력
+ */
+this.btn_add_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.ds_emp.addRow();
+};
+
+/*
+ *	삭제
+ */
+this.btn_del_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+    var strMsgId = "confirm.before.delete";
+    var arrArg = "";
+    var strPopId = "confirm.before.delete";
+    var strCallback = "fn_msgCallback"; 
+    this.gfn_alert(strMsgId, arrArg, strPopId, strCallback);
+};
+
+/*
+ *	저장
+ */
+this.btn_save_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	if(this.gfn_dsIsUpdated(this.ds_emp) == false) {
+		this.gfn_alert("msg.save.nochange");
+		return;
+	}
+
+    this.gfn_clearValidation(this.ds_emp);
+    this.gfn_setValidation(this.ds_emp, "FULL_NAME", "성명"  , "required");
+    this.gfn_setValidation(this.ds_emp, "EMPL_ID"  , "아이디", "required,length:5");
+  	if(this.gfn_validation(this.ds_emp, "U") == false) return;
+
+    var sSvcID    = "svcSave";
+    var sURL      = "SvcUrl::save_emp.jsp";
+    var sInDs     = "in_emp=ds_emp:u";
+    var sOutDs    = "";
+    var sParam    = "";    
+    var sCallBack = "fn_callback";
+	this.gfn_transaction(sSvcID, sURL, sInDs, sOutDs, sParam, sCallBack);    
+};
+
+
+/************************************************************************
+ * 사용자 함수 영역
+ ************************************************************************/
+/*
+ *	
+ */
+
+
+/************************************************************************
+ * Component 별 Event 스크립트 영역
+ ************************************************************************/
+/*
+ *	조회조건 영역 부서팝업 호출
+ */
+this.div_search_btn_dept_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+    var sPopupId  = "modalPopup";
+    var sUrl      = "Sample::Sample_PopupSub.xfdl";
+	var oArg      = {pStr:"Nexacro", pNum:1234, pObj:this.ds_emp};
+	var sCallBack = "fn_popupCallback";
+    var oOption   = {title : this.gfn_getWord("popup.modal")};
+	this.gfn_openPopup(sPopupId, sUrl, oArg, sCallBack, oOption);		
+};
+
+/*
+ *	조회조건 영역 성별 필터
+ */
+this.div_search_rdo_gender_onitemchanged = function(obj:nexacro.Radio,e:nexacro.ItemChangeEventInfo)
+{
+	if(e.postvalue == "A"){
+		this.ds_emp.filter("");
+	}
+	else{
+		this.ds_emp.filter("GENDER == '" + e.postvalue + "'");
+	}	
+};
+
+/*
+ *	조회조건 영역 초기화
+ */
+this.div_cont_btn_reset_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.div_search.form.edt_deptCode.set_value("");
+	this.div_search.form.edt_deptName.set_value("");
+	this.div_search.form.rdo_gender.set_value("A");
+};]]></Script>
+  </Form>
+</FDL>

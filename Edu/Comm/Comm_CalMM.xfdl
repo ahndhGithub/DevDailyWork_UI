@@ -1,0 +1,134 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.0">
+  <Form id="Comm_CalMM2" width="96" height="21" titletext="월 달력" onload="form_onload">
+    <Layouts>
+      <Layout height="21" width="96">
+        <Calendar id="cal_yM" taborder="0" left="0" top="0" width="96" height="21" dateformat="yyyy-MM" editformat="yyyy-MM" popuptype="none" ondropdown="cal_yM_ondropdown" onchanged="cal_yM_onchanged"/>
+        <PopupDiv id="pdv_cal" text="PopupDiv00" visible="false" left="0" top="21" width="181" height="160" url="Edu_Comm::Comm_CalMMPdv.xfdl" background="#ffffff" border="1px solid #cccccc" oncloseup="pdv_cal_oncloseup"/>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[/**
+*  @MenuPath    Comm > Comm_CalMM2 (공통 월달력)
+*  @FileName 	Comm_CalMM.xfdl 
+*  @Creator 	Education
+*  @CreateDate 	2019.01.10
+*  @Desction    월달력
+************** 소스 수정 이력 ***************************************************
+*  date          		Modifier                Description
+*******************************************************************************
+*  2019.01.10     	Education 	                최초 생성 
+* PopupDiv Url로 적용
+*******************************************************************************
+*/
+
+/************************************************************************************************
+ * FORM 변수 선언 영역
+ ************************************************************************************************/
+
+this.fv_today;
+this.pdv_cal.calObj = this.cal_yM;
+
+
+this.form_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	this.gfn_formOnLoad(this);//초기화[필수]	
+	this.fv_today = this.gfn_getDate(); //오늘날짜세팅
+	this.fn_init();
+};
+
+/**
+* @description 달력초기화
+*/
+this.fn_init = function()
+{
+	//요구사항에 따라 오늘날짜 3개월 등등 지정 현재 디폴트="";
+	this.cal_yM.set_value("");
+};
+
+/**
+* @description  컴포넌트 날짜 값 호출
+*/ 
+this.fn_getValue = function()
+{
+	if(this.cal_yM.value != "" ){
+		var rtn = this.cal_yM.value.substr(0,6);
+	}
+	return rtn;
+};
+
+/**
+* @description   컴포넌트 날짜 값 셋팅
+*/  
+this.fn_setValue = function(sDate)
+{
+	this.cal_yM.set_value(sDate);
+};
+
+/**
+* @description    컴포넌트 enable 셋팅
+*/   
+this.fn_setEnable = function(bValue)
+{
+	this.cal_yM.set_enable(bValue);
+};
+
+/**
+* @description    컴포넌트 Readonly 셋팅
+*/ 
+this.fn_setReadonly = function(bValue)
+{
+	this.cal_yM.set_readonly(bValue);
+};
+
+/**
+* @description    컴포넌트 필수 css 셋팅
+*/  
+this.fn_setEssential = function(bValue)
+{
+	if(bValue){
+		this.cal_yM.set_cssclass("essential");
+	}else{
+		this.cal_yM.set_cssclass("");
+	}
+};
+
+/*
+ * @description   Calendar_ondropdown 이벤트 시 popDiv컴포넌트 띄우기
+ */   
+this.cal_yM_ondropdown = function(obj:nexacro.Calendar,e:nexacro.EventInfo)
+{
+	this.pdv_cal.trackPopupByComponent(obj, 0, obj.height);
+};
+
+
+/*
+ * @description   Calendar 직접 변경시
+ */   
+this.cal_yM_onchanged = function(obj:nexacro.Calendar,e:nexacro.ChangeEventInfo)
+{    
+	var sDate = e.postvalue;
+	if(this.gfn_isNull(sDate)) sDate = this.fv_today;	
+	this.pdv_cal.form.sta_year.set_text(sDate.substr(0,4));
+};
+
+this.pdv_cal_oncloseup = function(obj:nexacro.PopupDiv,e:nexacro.EventInfo)
+{
+    this.fn_callback(this.cal_yM.value.substr(0,6));	
+};
+
+this.fn_callback = function(sMonth)
+{
+	var sCallback = this.parent.callbackfunc;    
+	if (!this.gfn_isNull(sCallback)) {	
+		try {
+			var svcId = this.parent.name;
+			this.lookupFunc(sCallback).call(svcId, sMonth); 
+		} catch(e) {
+			//trace("함수 실행시 오류가 발생했습니다.");
+		}
+	}    
+};
+
+]]></Script>
+  </Form>
+</FDL>

@@ -1,0 +1,383 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.0">
+  <Form id="Form_Scrip5" width="814" height="529" titletext="Form_Scrip5" onload="Form_onload">
+    <Layouts>
+      <Layout height="529" mobileorientation="landscape" width="814">
+        <Static id="Static08" taborder="0" left="0" top="0" width="10" cssclass="sta_WF_guideRed" visible="false" bottom="0" text="w&#13;&#10;10"/>
+        <Static id="Static01" taborder="1" top="0" width="10" cssclass="sta_WF_guideRed" visible="false" bottom="0" text="w&#13;&#10;10" right="0"/>
+        <Grid id="grd_emp" taborder="2" left="293" top="149" height="121" scrolltype="both" autofittype="col" onexpandup="grd_emp_onexpandup" binddataset="ds_emp" right="10" onrbuttondown="grd_emp_onrbuttondown">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="130"/>
+                <Column size="120"/>
+                <Column size="70"/>
+                <Column size="60"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="26"/>
+                <Row size="26" band="summ"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="성명"/>
+                <Cell col="1" text="사원번호"/>
+                <Cell col="2" text="직급"/>
+                <Cell col="3" text="입사일자"/>
+                <Cell col="4" text="급여"/>
+                <Cell col="5" text="성별"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:FULL_NAME" edittype="text"/>
+                <Cell col="1" text="bind:EMPL_ID" editlimit="" edittype="mask" maskeditformat="AA-###" displaytype="mask" maskedittype="string"/>
+                <Cell col="2" text="bind:POS_CD"/>
+                <Cell col="3" text="bind:HIRE_DATE" displaytype="date" edittype="date" textAlign="center" calendarpopupsize="200 220"/>
+                <Cell col="4" text="bind:SALARY" displaytype="number" edittype="mask" textAlign="right" maskeditformat="#,###"/>
+                <Cell col="5" text="expr:GENDER == &quot;M&quot; ? &quot;남&quot; : &quot;여&quot;" textAlign="center"/>
+              </Band>
+              <Band id="summary">
+                <Cell text="expr: &quot;Count: &quot; + dataset.getRowCount()" textAlign="right"/>
+                <Cell col="1"/>
+                <Cell col="2"/>
+                <Cell col="3"/>
+                <Cell col="4" text="expr:dataset.getAvg(&quot;SALARY&quot;)" displaytype="number" textAlign="right"/>
+                <Cell col="5"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Static id="Static04" taborder="3" left="0" cssclass="sta_WF_guideBlue" visible="false" text="h10" right="0" height="10" bottom="0"/>
+        <Static id="sta_04" left="763" top="-331" height="64" taborder="4" color="red" text="h64" visible="true" width="39" cssclass="sta_WF_guideRed"/>
+        <Static id="sta_08" left="468" top="-315" height="12" taborder="5" color="red" text="h4" visible="true" width="29" cssclass="sta_WF_guideRedTxt"/>
+        <Static id="Static20" taborder="6" left="103" top="-301" width="649" height="4" cssclass="sta_WF_guideRed" visible="true"/>
+        <Static id="Static03" taborder="7" text="조건" left="293" top="10" width="80" height="30" cssclass="sta_WF_title"/>
+        <Static id="Static00" taborder="8" left="0" top="0" cssclass="sta_WF_guideBlue" visible="false" text="h10" height="10" right="0"/>
+        <Static id="Static02" taborder="9" text="부서별 사원정보" left="293" top="119" width="120" height="30" cssclass="sta_WF_title"/>
+        <Grid id="grd_dept" taborder="10" left="10" top="45" height="474" binddataset="ds_dept" right="531" autofittype="col" griduserproperty="no,,rowfix,colfix,!filter,!initial,export" onlbuttondown="grd_dept_onlbuttondown" onrbuttondown="grd_dept_onrbuttondown">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="113"/>
+                <Column size="209"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="26"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="부서코드"/>
+                <Cell col="1" text="부서명"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:DEPT_CD" textAlign="center" suppress="1"/>
+                <Cell col="1" text="bind:DEPT_NAME" textAlign="center" suppress="2"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Button id="btn_save" taborder="11" text="저장" top="10" width="45" height="24" right="10" visible="true" onclick="btn_save_onclick" cssclass="btn_WF_main1"/>
+        <Button id="btn_delete" taborder="12" text="삭제" top="10" width="45" height="24" right="58" visible="true" onclick="btn_del_onclick" cssclass="btn_WF_main1"/>
+        <Button id="btn_add" taborder="13" text="입력" top="10" width="45" height="24" right="106" visible="true" onclick="btn_add_onclick" cssclass="btn_WF_main1"/>
+        <Button id="btn_search" taborder="14" text="조회" top="10" width="45" height="24" right="154" visible="true" cssclass="btn_WF_main1" onclick="btn_search_onclick"/>
+        <Div id="div_search" taborder="15" left="293" top="45" height="64" right="10" leftbase="" topbase="" bottombase="" rightbase="" widthbase="" heightbase="" text="" cssclass="div_WF_search">
+          <Layouts>
+            <Layout>
+              <Static id="Static00" taborder="0" text="입사일자" left="0" top="9" width="85" height="21" leftbase="" topbase="" bottombase="" rightbase="" widthbase="" heightbase="" cssclass="sta_WF_searchLabel"/>
+              <Static id="Static01" taborder="1" text="성      별" left="0" top="33" width="85" height="21" leftbase="" topbase="" bottombase="" rightbase="" widthbase="" heightbase="" cssclass="sta_WF_searchLabel"/>
+              <Radio id="rdo_gender" taborder="2" left="85" top="33" width="168" height="21" rowcount="-1" index="0" onitemchanged="div_search_rdo_gender_onitemchanged" columncount="-1"/>
+              <Button id="btn_reset" taborder="3" text="초기화" top="9" width="52" height="24" right="5" onclick="div_cont_btn_reset_onclick" leftbase="" topbase="" bottombase="" rightbase="" widthbase="" heightbase=""/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Static id="Static05" taborder="16" left="290" top="109" cssclass="sta_WF_guideBlue" visible="false" text="h10" height="10" right="-290"/>
+        <Static id="Static06" taborder="17" text="부서정보" left="10" top="10" width="80" height="30" cssclass="sta_WF_title"/>
+        <Static id="Static07" taborder="18" top="10" width="10" cssclass="sta_WF_guideBlue" visible="false" bottom="2" text="w&#13;&#10;10" right="521"/>
+        <Grid id="Grid00" taborder="19" left="830" top="124" width="389" height="292" binddataset="ds_dept">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="80"/>
+                <Column size="80"/>
+              </Columns>
+              <Rows>
+                <Row band="head" size="24"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="DEPT_CD"/>
+                <Cell col="1" text="DEPT_NAME"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:DEPT_CD"/>
+                <Cell col="1" text="bind:DEPT_NAME"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="ds_dept" useclientlayout="true" onrowposchanged="ds_dept_onrowposchanged">
+        <ColumnInfo>
+          <Column id="DEPT_CD" type="STRING" size="32"/>
+          <Column id="DEPT_NAME" type="STRING" size="32"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="DEPT_CD">01</Col>
+            <Col id="DEPT_NAME">Accounting Team</Col>
+          </Row>
+          <Row>
+            <Col id="DEPT_CD">02</Col>
+            <Col id="DEPT_NAME">HR Team</Col>
+          </Row>
+          <Row>
+            <Col id="DEPT_CD">03</Col>
+            <Col id="DEPT_NAME">Sales Team</Col>
+          </Row>
+          <Row>
+            <Col id="DEPT_CD">04</Col>
+            <Col id="DEPT_NAME">Design Team</Col>
+          </Row>
+          <Row>
+            <Col id="DEPT_CD">05</Col>
+            <Col id="DEPT_NAME">Education Team</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="ds_gender">
+        <ColumnInfo>
+          <Column id="GROUP" type="STRING" size="256"/>
+          <Column id="GROUP_NAME" type="STRING" size="256"/>
+          <Column id="CODE" type="STRING" size="256"/>
+          <Column id="CODE_NAME" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_emp" keystring="">
+        <ColumnInfo>
+          <Column id="EMPL_ID" type="STRING" size="10"/>
+          <Column id="FULL_NAME" type="STRING" size="50"/>
+          <Column id="DEPT_CD" type="STRING" size="10"/>
+          <Column id="POS_CD" type="STRING" size="10"/>
+          <Column id="HIRE_DATE" type="DATE" size="10"/>
+          <Column id="SALARY" type="INT" size="10"/>
+          <Column id="GENDER" type="STRING" size="10"/>
+          <Column id="MARRIED" type="STRING" size="10"/>
+          <Column id="MEMO" type="STRING" size="10"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="EMPL_ID">AA001</Col>
+            <Col id="FULL_NAME">Olivia</Col>
+            <Col id="DEPT_CD">01</Col>
+            <Col id="POS_CD">03</Col>
+            <Col id="HIRE_DATE">20101003</Col>
+            <Col id="SALARY">83000</Col>
+            <Col id="GENDER">W</Col>
+            <Col id="MARRIED">true</Col>
+            <Col id="MEMO">ivory</Col>
+          </Row>
+          <Row>
+            <Col id="EMPL_ID">AA002</Col>
+            <Col id="FULL_NAME">John</Col>
+            <Col id="DEPT_CD">02</Col>
+            <Col id="POS_CD">04</Col>
+            <Col id="HIRE_DATE">20051011</Col>
+            <Col id="SALARY">76000</Col>
+            <Col id="GENDER">M</Col>
+            <Col id="MARRIED">false</Col>
+            <Col id="MEMO">greenyellow</Col>
+          </Row>
+          <Row>
+            <Col id="EMPL_ID">BB001</Col>
+            <Col id="FULL_NAME">Jackson</Col>
+            <Col id="DEPT_CD">03</Col>
+            <Col id="POS_CD">03</Col>
+            <Col id="HIRE_DATE">20070206</Col>
+            <Col id="SALARY">95000</Col>
+            <Col id="GENDER">M</Col>
+            <Col id="MARRIED">true</Col>
+            <Col id="MEMO">aliceblue</Col>
+          </Row>
+          <Row>
+            <Col id="EMPL_ID">BB002</Col>
+            <Col id="FULL_NAME">Maia</Col>
+            <Col id="DEPT_CD">04</Col>
+            <Col id="POS_CD">02</Col>
+            <Col id="HIRE_DATE">20090512</Col>
+            <Col id="SALARY">60000</Col>
+            <Col id="GENDER">W</Col>
+            <Col id="MARRIED">false</Col>
+            <Col id="MEMO">ivory</Col>
+          </Row>
+          <Row>
+            <Col id="EMPL_ID">CC001</Col>
+            <Col id="FULL_NAME">Adam</Col>
+            <Col id="DEPT_CD">01</Col>
+            <Col id="POS_CD">04</Col>
+            <Col id="HIRE_DATE">20010109</Col>
+            <Col id="SALARY">88000</Col>
+            <Col id="GENDER">M</Col>
+            <Col id="MARRIED">true</Col>
+            <Col id="MEMO">greenyellow</Col>
+          </Row>
+          <Row>
+            <Col id="EMPL_ID">DD001</Col>
+            <Col id="FULL_NAME">Ray</Col>
+            <Col id="DEPT_CD">02</Col>
+            <Col id="POS_CD">03</Col>
+            <Col id="HIRE_DATE">20160202</Col>
+            <Col id="SALARY">60000</Col>
+            <Col id="GENDER">M</Col>
+            <Col id="MARRIED">true</Col>
+            <Col id="MEMO">lightpink</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="ds_position">
+        <ColumnInfo>
+          <Column id="CODE" type="STRING" size="256"/>
+          <Column id="CODE_NAME" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="CODE">01</Col>
+            <Col id="CODE_NAME">Chairman</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">02</Col>
+            <Col id="CODE_NAME">President</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">03</Col>
+            <Col id="CODE_NAME">Division Manager</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">04</Col>
+            <Col id="CODE_NAME">Department Manager</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">05</Col>
+            <Col id="CODE_NAME">Assistant Manager</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">06</Col>
+            <Col id="CODE_NAME">Supervisor</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">07</Col>
+            <Col id="CODE_NAME">Officer</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+    </Objects>
+    <Script type="xscript5.1"><![CDATA[include "EduLibXjs::All_EduLibXjs.xjs";
+
+/*    
+# 그리드 표현
+    1 좌측 Grid 맨 앞쪽에 순번 표현, 데이터 Sort 가능, 우클릭 팝업메뉴 미사용
+    2 우측 Grid 맨 앞쪽에 체크박스 표현, 우클릭 팝업메뉴 기본값 사용    
+
+# 공통코드 가져오기
+    1. 성별코드: D001, 상단 조건영역 Radio에 바인딩, 전체 표현
+    2. 직급코드: C001, 우측 그리드 직급코드에 적용
+
+# 조회버튼 
+    1. 좌측 Grid 부서 데이터 가져오기
+       - 조회 서비스: SvcUrl::select_code.jsp
+       - 서버에서 보내주는 Dataset ID: out_dept
+    2. 좌측 선택된 부서에 해당하는 사원 가져오기
+       - 조회 서비스 : select_emp.jsp
+       ※조회조건으로 사용하는 부서코드는 URL 뒤에 Get방식 전송
+       ex) SvcUrl::select_emp.jsp?sDept=01
+       - 서버에서 전송받는 데이터셋ID : out_emp
+  
+# 입력버튼
+    1. 사원 데이터에 빈 Row 추가
+    2. 추가한 Row에 좌측에 선택 되어있는 부서코드를 디폴트로 지정
+
+# 삭제버튼
+    1. 삭제하시겠습니까? 확인 메세지 처리 후 true인 경우 Row 삭제
+       - 삭제 메세지ID : confirm.before.delete
+       
+# 저장 버튼
+    1. 데이터 유효성 체크
+       - 성명(FULL_NAME) 필수
+       - 아이디(EMPL_ID) 필수, 5자리
+    2. 데이터 저장
+       - 저장 서비스 : SvcUrl::save_emp.jsp
+       - 서버로 보내는 Dataset ID: in_emp
+
+# 상단 조건
+    1. 입사일자에 기간달력 표현
+    2. 달력 선택 후 해당 값으로 사원정보 필터링
+    3. 성별 Radio 선택시 사원정보 필터링
+    4. 초기화 버튼으로 조건 초기화
+
+*/
+
+this.Form_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+     this.gfn_formOnLoad(this);
+};
+
+// Retrieve Button
+this.btn_search_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+
+};
+
+this.fn_callback = function(svcID, errCD, errMSG)
+{
+
+}
+
+
+// Add Button
+this.btn_add_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+
+};
+
+// Delete Button
+this.btn_del_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+
+};
+
+
+// Save Button
+this.btn_save_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+
+};
+
+
+this.div_cont_btn_reset_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+
+};
+
+this.grd_dept_onlbuttondown = function(obj:nexacro.Grid,e:nexacro.GridMouseEventInfo)
+{
+	
+};
+
+this.grd_dept_onrbuttondown = function(obj:nexacro.Grid,e:nexacro.GridMouseEventInfo)
+{
+	trace("------------");
+};
+
+this.grd_emp_onrbuttondown = function(obj:nexacro.Grid,e:nexacro.GridMouseEventInfo)
+{
+	trace("XXXXXXXXXXXXX");
+};
+]]></Script>
+    <Bind>
+      <BindItem id="item2" compid="div_calFromTo00.form.calFrom" propid="value" datasetid="dsList" columnid="dtFrom"/>
+      <BindItem id="item3" compid="div_calFromTo00.form.calTo" propid="value" datasetid="dsList" columnid="dtTo"/>
+    </Bind>
+  </Form>
+</FDL>

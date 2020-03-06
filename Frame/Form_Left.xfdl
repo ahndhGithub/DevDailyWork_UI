@@ -1,0 +1,187 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.0">
+  <Form id="Form_Left" width="265" height="720" titletext="Form_Left" onload="Form_onload">
+    <Layouts>
+      <Layout width="265" height="720" screenid="Desktop_screen">
+        <Button id="Button_MyMenu" taborder="0" text="My Menu" left="10" top="4" width="75" height="28" onclick="Button_onclick"/>
+        <Button id="Button_ExpandAll" taborder="2" top="4" height="28" background="url('imagerc::btn_WF_TreeExpand.png') no-repeat center center" onclick="fn_Button_onclick" right="70" width="28"/>
+        <Button id="Button_Menu" taborder="1" text="Menu" left="Button_MyMenu:2" top="4" height="28" onclick="Button_onclick" right="Button_ExpandAll:2"/>
+        <Button id="Button_CollapseAll" taborder="3" top="4" height="28" background="url('imagerc::btn_WF_TreeCollapse.png') no-repeat center center" onclick="Button_onclick" right="40" width="28"/>
+        <Button id="Button_MenuSearch" taborder="4" top="4" height="28" background="url('imagerc::btn_Menu_Search.png') no-repeat center center" onclick="Button_onclick" right="10" width="28"/>
+        <Div id="Div_MenuGrid" taborder="5" text="Div_00" left="10" top="36" bottom="10" right="10">
+          <Layouts>
+            <Layout>
+              <Grid id="Grid_Menu" taborder="0" left="0" top="0" binddataset="gds_Menu" autofittype="col" accessibilityrole="treegrid" treeasynctoggle="true" treeusebutton="use" treeinitstatus="collapse,null" treeusecheckbox="false" treeuseexpandkey="true" treeuseimage="true" treeuseline="true" useselcolor="true" right="0" bottom="0" onrbuttondown="Grid_onrbuttondown" onkillfocus="Grid_onkillfocus" oncellclick="Grid_oncellclick">
+                <Formats>
+                  <Format id="default">
+                    <Columns>
+                      <Column size="220"/>
+                    </Columns>
+                    <Rows>
+                      <Row size="30"/>
+                    </Rows>
+                    <Band id="body">
+                      <Cell displaytype="treeitemcontrol" edittype="tree" treelevel="bind:MenuLevel" text="bind:MenuName" border="1px none #dbdee2"/>
+                    </Band>
+                  </Format>
+                </Formats>
+              </Grid>
+            </Layout>
+          </Layouts>
+        </Div>
+      </Layout>
+    </Layouts>
+    <Objects/>
+    <Script type="xscript5.1"><![CDATA[include "Library::Library.xjs";
+
+this.fv_bMyMenu = false; // MyMenu 
+
+this.Button_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	switch(obj.id) {
+	case "Button_MyMenu":		
+		this.Button_MyMenu.set_border("1px solid red");
+		this.Button_Menu.set_border("1px solid ");
+		this.fv_bMyMenu = true;
+		this.Div_MenuGrid.form.Grid_Menu.set_binddataset("ds_MyMenu");
+		break;
+	case "Button_Menu":
+		this.Button_MyMenu.set_border("1px solid #999999");
+		this.Button_Menu.set_border("1px solid red");		
+		this.fv_bMyMenu = false;
+		this.Div_MenuGrid.form.Grid_Menu.set_binddataset("gds_Menu");
+		break;
+	case "Button_ExpandAll":	
+		this.Div_MenuGrid.form.Grid_Menu.set_treeinitstatus("expand,all");	
+		break;
+	case "Button_CollapseAll":
+		this.Div_MenuGrid.form.Grid_Menu.set_treeinitstatus("collapse,all");	
+		break;
+	case "Button_MenuSearch":
+		break;
+	default:
+		this.alert("준비중입니다. (CTRL) : " + obj.id);
+		break;
+	}
+};
+
+this.Grid_onrbuttondown = function(obj:nexacro.Grid,e:nexacro.GridMouseEventInfo)
+{
+	if(this.fv_bMyMenu)
+	{
+		var bOK = HINTS.confirm( "My Menu에서 삭제할까요?" , "My Menu", "question" );
+		if (! bOK) return;
+		
+		this.ds_MyMenu.setColumn(e.row, "ROW_STS", "D");
+		this.fn_SaveMyMenu();
+	}
+	else{
+		
+		if(HINTS.gds_Menu.getColumn(e.row, "LeafYn") == "N") return;
+		
+		if(HINTS.gds_MyMenu.findRow("idcolumn", HINTS.gds_Menu.getColumn(e.row, "FormID")) > -1 ) { 
+			this.alert("이미 추가된 메뉴입니다."); 
+			return;
+		}
+		
+		var bOK = HINTS.confirm( "My Menu에 추가할까요?" , "My Menu", "question" );
+		if (! bOK) return;
+		
+		var strArgs = "";
+		var bSucc;
+		var nRow =this.ds_MyMenu.addRow();
+		bSucc = HINTS.ds_MyMenu.copyRow(nRow, HINTS.gds_Menu, e.row);
+		
+		this.ds_MyMenu.setColumn(nRow, "ROW_STS", "I");
+		this.ds_MyMenu.setColumn(nRow, "BM_IDX", HINTS.gds_Menu.getColumn(e.row, "IDX"));
+		this.ds_MyMenu.setColumn(nRow, "UserCode", HINTS.gds_User.getColumn(0, "UserCode"));
+		this.ds_MyMenu.setColumn(nRow, "idcolumn", HINTS.gds_Menu.getColumn(e.row, "FormID"));
+		
+		this.fn_SaveMyMenu();
+	}
+};
+
+this.fn_SaveMyMenu = function()
+{
+	this.ds_in.clearData();
+	for(var i = 0; i < this.ds_MyMenu.getRowCount(); i++){
+		if(  this.ds_MyMenu.getColumn(i, "ROW_STS") == "I" 
+			|| this.ds_MyMenu.getColumn(i, "ROW_STS") == "U" 
+			|| this.ds_MyMenu.getColumn(i, "ROW_STS") == "D"){
+			
+			var nRow = this.ds_in.addRow();
+			
+			this.ds_in.copyRow(nRow, this.ds_MyMenu, i);
+		}
+	}
+	
+	var sSvcID			= "save_mymenu";
+	var sURL			= "AppSvr::CommonSaveAction_Return.do";
+	var sInDatasets		= "ds_in0=ds_in";
+	var sOutDatasets	= "ds_MyMenu=ds_out0";
+	var sArguments		= "sqlId=" + nexacro.wrapQuote("save_mymenu");
+	
+	this.transaction(sSvcID, sURL, sInDatasets, sOutDatasets, sArguments, "callbackFunction");
+}
+
+this.callbackFunction = function(strSvcID, nErrorCode, strErrorMag) 
+{ 
+	if(nErrorCode < 0)
+	{
+		return;
+	}
+	
+	switch(strSvcID) {
+	case "save_mymenu":
+		this.Div_MenuGrid.form.Grid_Menu.updateToDataset();
+		break;
+	case "load_menu":
+		break;
+	default:
+	}
+}
+
+this.Grid_onkillfocus = function(obj:nexacro.Grid,e:nexacro.KillFocusEventInfo)
+{
+	if(e.newcomponent.name == "Setfocus")
+	{
+
+			HINTS.gv_TabFrame.form.frame_focus.setFocus() ;
+	}
+};
+
+this.Grid_oncellclick = function(obj:nexacro.Grid,e:nexacro.GridClickEventInfo)
+{
+	HINTS.gv_MdiFrameSet.set_separatesize("36,*");
+	
+	var objDs = obj.getBindDataset();
+	var strArgs = "";
+	
+	menu = objDs.getColumn(e.row, HINTS.gv_MenuCodeCol);
+	
+ 	this.gfn_openMenu(menu, strArgs);
+};
+
+this.fn_SetColor = function(strColor) 
+{ 
+	switch(strColor) {
+	case "PRD":
+		this.Div_MenuGrid.form.Grid_Menu.set_background("blue");
+		break;
+	case "QA":
+		this.Div_MenuGrid.form.Grid_Menu.set_background("red");
+		break;
+	case "DEV":
+		this.Div_MenuGrid.form.Grid_Menu.set_background("yellow");
+		break;			
+	default:
+	}
+}
+
+this.Form_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	this.Button_MyMenu.setSelectStatus(true);	
+};
+]]></Script>
+  </Form>
+</FDL>

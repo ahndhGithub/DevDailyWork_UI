@@ -1,0 +1,191 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.0">
+  <Form id="Comm_ColumnHide" width="300" height="415" titletext="그리드컬럼숨김" onload="form_onload">
+    <Layouts>
+      <Layout height="415" mobileorientation="landscape" width="300">
+        <Grid id="grd_list" taborder="0" left="20" top="20" height="327" right="19" binddataset="ds_filter" autofittype="col" griduserproperty="!sort,checkbox,!sort,!rowfix,!colfix,!filter,!initial">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="225"/>
+              </Columns>
+              <Rows>
+                <Row size="28" band="head"/>
+                <Row size="30"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="컬럼선택" expandchar="popup.columnselect"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:columnText"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Button id="btn_ok" taborder="1" text="확인" left="87" top="367" width="60" height="28" tabstop="true" uWord="popup.ok" cssclass="btn_WF_pop1" onclick="btn_ok_onclick"/>
+        <Button id="btn_close" taborder="2" text="닫기" left="153" top="367" width="60" height="28" uWord="popup.close" cssclass="btn_WF_pop2" onclick="btn_close_onclick"/>
+        <Grid id="grd00" taborder="3" left="301" top="20" width="261" height="327" visible="false"/>
+        <Static id="Static00" taborder="4" left="0" top="0" cssclass="sta_WF_guideRed" visible="false" text="h20" height="20" right="0"/>
+        <Static id="Static08" taborder="5" left="0" top="0" width="20" cssclass="sta_WF_guideRed" visible="false" bottom="0" text="w&#13;&#10;20"/>
+        <Static id="Static01" taborder="6" top="0" width="20" cssclass="sta_WF_guideRed" visible="false" bottom="0" text="w&#13;&#10;20" right="0"/>
+        <Static id="Static02" taborder="7" left="0" cssclass="sta_WF_guideRed" visible="false" text="h20" right="0" bottom="0" height="20"/>
+        <Static id="Static16" taborder="8" left="15" cssclass="sta_WF_guideBlue" visible="false" text="h5" right="0" height="20" top="347"/>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="ds_filter" keystring="S:+ROW_CHK">
+        <ColumnInfo>
+          <Column id="columnText" type="STRING" size="256"/>
+          <Column id="columnIndex" type="STRING" size="256"/>
+          <Column id="body" type="STRING" size="256"/>
+          <Column id="orgSize" type="STRING" size="256"/>
+          <Column id="bindCol" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_copy"/>
+    </Objects>
+    <Script type="xscript5.1"><![CDATA[/**
+*  @Desction    그리드 컬럼 숨기기/보이기 공통팝업
+*/
+include "Src_HintsEduLib::All_EduLib.xjs";
+/************************************************************************************************
+* FORM 변수 선언 영역
+************************************************************************************************/
+this.fv_targetGrid; 	  	//대상그리드 OBJECT
+this.fv_targetDataset; 		//대상데이터셋 OBJECT
+ 
+/***********************************************************************************************
+* FORM EVENT 영역(onload)
+/***********************************************************************************************/
+this.form_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+																		var gtrcPos = "Comm_SubSum.xfdl.form_onload";
+																		
+	this.gfn_formOnLoad(this);
+		
+	//초기값 설정
+	this.fv_targetGrid    = this.getOwnerFrame().pvGrid;				this.gtrace("fv_targetGrid.name--->"+this.fv_targetGrid.name, gtrcPos);
+	this.fv_targetDataset = this.fv_targetGrid.getBindDataset();		this.gtrace("fv_targetDataset.name--->"+this.fv_targetDataset.name, gtrcPos);
+	this.fn_getHeadTextAndBindingInfo();
+	
+	//compare grid setting
+	this.fn_setGrd();
+	
+	//체크된 것 위로
+	this.ds_filter.set_keystring("S:-ROW_CHK+currow");
+};
+
+/************************************************************************************************
+* TRANSACTION 서비스 호출 처리
+************************************************************************************************/
+
+/************************************************************************************************
+* CALLBACK 콜백 처리부분
+************************************************************************************************/
+
+/************************************************************************************************
+* 사용자 FUNCTION 영역
+************************************************************************************************/
+/**
+ * @description 비교그리드 세팅
+*/
+this.fn_setGrd = function()
+{
+	this.grd00.set_enableredraw(false);
+	this.grd00.set_formats(this.fv_targetGrid.orgformat2);
+	this.grd00.set_enableredraw(true);
+};
+
+/**
+ * @description 그리드의 헤드정보를 받아와 콤보 세팅
+*/
+this.fn_getHeadTextAndBindingInfo = function ()
+{
+															var gtrcPos = "Comm_SubSum.xfdl.fn_getHeadTextAndBindingInfo";
+	this.grd_list.set_enableredraw(false);
+// 																this.gtrace("getCellCount(body)--->"+this.fv_targetGrid.getCellCount("body"),gtrcPos);
+// 																this.gtrace("getCellCount(head)--->"+this.fv_targetGrid.getCellCount("head"),gtrcPos);
+// 																this.gtrace("getFormatColCount--->"+this.fv_targetGrid.getFormatColCount(),gtrcPos);
+//																this.gtrace("fv_targetDataset.keystring --->"+this.gfn_nvl(this.fv_targetDataset.keystring,"") , gtrcPos);
+																
+	for( var i=0; i<this.fv_targetGrid.getFormatColCount(); i++)
+	{
+		var columnText = "";//i + "번째 컬럼 ";
+		
+		for (var j=0, len=this.fv_targetGrid.getCellCount("head"); j<len; j++) {
+			var maxHeadRow = 0;
+			var row = this.fv_targetGrid.getCellProperty("head", j, "row");
+			if (maxHeadRow < row) {
+				maxHeadRow = row;
+			}
+			var nRow = parseInt(this.fv_targetGrid.getCellProperty("head", j, "row"));
+			var nCol = parseInt(this.fv_targetGrid.getCellProperty("head",j, "col"));
+			var headText = this.gfn_nvl(this.fv_targetGrid.getCellProperty("head", j, "text"), " ");
+			if( nRow == maxHeadRow && nCol == i )
+			{	
+				columnText += "[" + headText + "]";
+			}
+		}
+		
+		var nchk = 0;		// 기본 체크 안되도록 함.
+		var columnIndex = i;
+		if( this.fv_targetGrid.getRealColSize(columnIndex) == 0 ) nchk = 0;
+		
+		if( columnText == "[Seq.]" || columnText == "[상태]" ) continue;
+		if( columnText == "[0]" && this.fv_targetGrid.getCellProperty("Body", i, "text") == "bind:gridcmmcheck" ) continue;
+		var nRow = this.ds_filter.addRow();
+		this.ds_filter.setColumn(nRow, "columnText",  columnText);
+		this.ds_filter.setColumn(nRow, "ROW_CHK",  		 nchk);
+		this.ds_filter.setColumn(nRow, "columnIndex", columnIndex);
+		this.ds_filter.setColumn(nRow, "bindCol", this.fv_targetGrid.getCellProperty("Body", i, "text").replace("bind:",""));
+	}
+
+	var arrKeyStrBindCol = this.fv_targetDataset.keystring.split(",");
+
+	for(var k=0 ; k < arrKeyStrBindCol.length ; k++)
+	{
+																//				this.gtrace("arrKeyStrBindCol["+k+"]--->"+arrKeyStrBindCol[k], gtrcPos);
+		var tempBindCol = arrKeyStrBindCol[k].replace("G:","");					this.gtrace("tempBindCol--->"+tempBindCol, gtrcPos);
+		var fRow = this.ds_filter.findRow("bindCol",tempBindCol);	this.gtrace("fRow--->"+fRow, gtrcPos);
+		this.ds_filter.setColumn(fRow, "ROW_CHK","1");
+	}
+
+this.grd_list.set_enableredraw(true);
+};
+
+/************************************************************************************************
+* 각 COMPONENT 별 EVENT 영역
+************************************************************************************************/
+this.btn_ok_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+													var gtrcPos = "Comm_SubSum.xfdl.btn_ok_onclick";
+	var sNewKeyStr = "";
+ 	this.fv_targetGrid.set_enableredraw(false);	
+	
+ 	var nRowCnt = this.ds_filter.getRowCount();			this.gtrace("nRowCnt--->"+nRowCnt, gtrcPos);
+	for( var i=0; i<nRowCnt; i++)
+	{
+		var nChk    = this.ds_filter.getColumn(i, "ROW_CHK");
+		var sBindCol= this.ds_filter.getColumn(i, "bindCol");
+
+		if(nChk == 1)
+		{
+			sNewKeyStr += (sNewKeyStr!=""?",":"") + "G:" + sBindCol;
+		}
+	}
+														this.gtrace("sNewKeyStr--->"+sNewKeyStr, gtrcPos);
+	this.fv_targetDataset.set_keystring("");	// 초기화
+	this.fv_targetDataset.set_keystring(sNewKeyStr);		
+
+	this.fv_targetGrid.set_enableredraw(true);
+ 	
+	this.close();
+};
+
+this.btn_close_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.close();
+};
+]]></Script>
+  </Form>
+</FDL>

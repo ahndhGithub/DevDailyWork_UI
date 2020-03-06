@@ -1,0 +1,79 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.0">
+  <Form id="Form_Main_Home" width="1340" height="900" titletext="Home(관리자)" onload="fn_Onload">
+    <Layouts>
+      <Layout stepcount="0">
+        <Div id="Div00" taborder="0" text="Div00" left="0" top="0" bottom="0" right="0" formscrolltype="none">
+          <Layouts>
+            <Layout>
+              <Button id="Button_Grid" taborder="0" text="Grid Sample" left="244" top="137" width="120" height="50" onclick="Button_onclick"/>
+              <Button id="Button_Tx" taborder="1" text="Transact Samle" left="244" top="225" width="120" height="50" onclick="Button_onclick"/>
+              <Button id="Button_Grid_Obj" taborder="2" text="Grid Sample_Obj" left="394" top="137" width="120" height="50" onclick="Button_onclick"/>
+              <Button id="Button_POList" taborder="3" text="Purchase Order" left="394" top="227" width="120" height="50" onclick="Button_onclick"/>
+            </Layout>
+          </Layouts>
+        </Div>
+      </Layout>
+    </Layouts>
+    <Objects/>
+    <Script type="xscript5.1"><![CDATA[include "Src_HintsEduLib::All_EduLib.xjs";
+include "Library::Library.xjs";
+
+this.Button_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+													var gtrcPos = "Form_Work.xfdl.Button_onclick";
+													this.gtrace("obj.name--->"+obj.name, gtrcPos);
+	//Test 로 입력함
+	var objDsMenu = HINTS.gds_Menu;
+	if (objDsMenu.findRow( HINTS.gv_MenuCodeCol, "TxTest" ) == -1 ) {
+		var nMenuRow = objDsMenu.addRow();
+		objDsMenu.setColumn(nMenuRow, HINTS.gv_MenuCodeCol,"TxTest");
+		objDsMenu.setColumn(nMenuRow, HINTS.gv_MenuNameCol,"테스트Transaction");
+		objDsMenu.setColumn(nMenuRow, HINTS.gv_MenuURLCol,"Base::Transact_Test.xfdl");
+		objDsMenu.setColumn(nMenuRow, HINTS.gv_MenuIsDUPCol,"N");
+		objDsMenu.setColumn(nMenuRow, HINTS.gv_MenuIsLeafCol,"Y");
+	}
+	if (objDsMenu.findRow( HINTS.gv_MenuCodeCol, "GridDemo" ) == -1 ) {
+		var nMenuRow = objDsMenu.addRow();
+		objDsMenu.setColumn(nMenuRow, HINTS.gv_MenuCodeCol,"GridDemo");
+		objDsMenu.setColumn(nMenuRow, HINTS.gv_MenuNameCol,"Grid 샘플");
+		objDsMenu.setColumn(nMenuRow, HINTS.gv_MenuURLCol,"Base::Grid_Sample.xfdl");
+		objDsMenu.setColumn(nMenuRow, HINTS.gv_MenuIsDUPCol,"N");
+		objDsMenu.setColumn(nMenuRow, HINTS.gv_MenuIsLeafCol,"Y");	
+	}
+	if (objDsMenu.findRow( HINTS.gv_MenuCodeCol, "GridDemo_Obj" ) == -1 ) {
+		var nMenuRow = objDsMenu.addRow();
+		objDsMenu.setColumn(nMenuRow, HINTS.gv_MenuCodeCol,"GridDemo_Obj");
+		objDsMenu.setColumn(nMenuRow, HINTS.gv_MenuNameCol,"Grid 샘플_Obj");
+		objDsMenu.setColumn(nMenuRow, HINTS.gv_MenuURLCol,"Base::Grid_Sample_Obj.xfdl");
+		objDsMenu.setColumn(nMenuRow, HINTS.gv_MenuIsDUPCol,"N");
+		objDsMenu.setColumn(nMenuRow, HINTS.gv_MenuIsLeafCol,"Y");	
+	}
+	if (objDsMenu.findRow( HINTS.gv_MenuCodeCol, "POList" ) == -1 ) {
+		var nMenuRow = objDsMenu.addRow();
+		objDsMenu.setColumn(nMenuRow, HINTS.gv_MenuCodeCol,"POList");
+		objDsMenu.setColumn(nMenuRow, HINTS.gv_MenuNameCol,"POList");
+		objDsMenu.setColumn(nMenuRow, HINTS.gv_MenuURLCol,"Base::POList.xfdl");
+		objDsMenu.setColumn(nMenuRow, HINTS.gv_MenuIsDUPCol,"N");
+		objDsMenu.setColumn(nMenuRow, HINTS.gv_MenuIsLeafCol,"Y");	
+	}
+	switch(obj.name) {
+	case "Button_Tx":
+		this.gfn_openMenu("TxTest","");
+		break;
+	case "Button_Grid":
+		this.gfn_openMenu("GridDemo","");
+		break;
+	case "Button_Grid_Obj":
+		this.gfn_openMenu("GridDemo_Obj","");
+		break;
+	case "Button_POList":
+		this.gfn_openMenu("POList","");
+		break;
+	default:
+	}
+	
+};
+]]></Script>
+  </Form>
+</FDL>

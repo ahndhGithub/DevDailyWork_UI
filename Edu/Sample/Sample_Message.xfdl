@@ -1,0 +1,120 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.0">
+  <Form id="Sample_Message" left="0" top="0" width="814" height="529" titletext="Sample_Message" onload="Form_onload" ontimer="Form_Emp_ontimer">
+    <Layouts>
+      <Layout height="529" width="814">
+        <Grid id="grd_list" taborder="0" left="10" top="40" right="264" bottom="10" binddataset="gds_message" onheadclick="grd_list_onheadclick" autofittype="col">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="120"/>
+                <Column size="300"/>
+                <Column size="80"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="26"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="MSG_ID"/>
+                <Cell col="1" text="MSG_TEXT"/>
+                <Cell col="2" text="MSG_TYPE"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:MSG_ID"/>
+                <Cell col="1" text="bind:MSG_TEXT"/>
+                <Cell col="2" text="bind:MSG_TYPE"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Static id="Static04" taborder="1" left="0" cssclass="sta_WF_guide1" visible="false" text="h10" height="10" width="100.00%" bottom="0"/>
+        <Static id="sta_00" taborder="2" text="Message" left="10" top="10" width="86" height="30" cssclass="sta_WF_title"/>
+        <Static id="Static00" taborder="3" left="0" top="0" cssclass="sta_WF_guideRed" visible="false" text="h10" height="10" right="0"/>
+        <Static id="Static08" taborder="4" left="0" top="0" width="10" cssclass="sta_WF_guideRed" visible="false" bottom="0" text="w&#13;&#10;10"/>
+        <Static id="Static01" taborder="5" left="10" cssclass="sta_WF_guideRed" visible="false" text="h10" right="0" bottom="0" height="10"/>
+        <Static id="Static02" taborder="6" top="0" width="10" cssclass="sta_WF_guideRed" visible="false" bottom="0" text="w&#13;&#10;10" right="0"/>
+        <Button id="btn_word" taborder="7" text="Word" top="10" width="75" height="24" right="10" visible="true" cssclass="btn_WF_main1" onclick="btn_word_onclick"/>
+        <Button id="btn_alert" taborder="8" text="Message-Alert" top="10" width="125" height="24" right="393" visible="true" cssclass="btn_WF_main1" onclick="btn_alert_onclick"/>
+        <Grid id="grd_word" taborder="9" top="40" right="10" bottom="10" onheadclick="grd_list_onheadclick" binddataset="gds_word" autofittype="col" width="244">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="110"/>
+                <Column size="110"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="26"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="WORD_ID"/>
+                <Cell col="1" text="KR"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:WORD_ID"/>
+                <Cell col="1" text="bind:KR"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Button id="btn_confirm" taborder="10" text="Message-Confirm" top="10" width="125" height="24" right="262" visible="true" cssclass="btn_WF_main1" onclick="btn_confirm_onclick"/>
+      </Layout>
+    </Layouts>
+    <Objects/>
+    <Script type="xscript5.1"><![CDATA[
+this.Form_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	this.gfn_formOnLoad(this);
+};
+
+/*
+ * @class 메세지 알림, 확인창 호출
+ * AppVariables Datasets gds_message에 메세지 등록 후 사용
+ *
+ *
+ * 메세지 호출
+   var sMsgId       = "msg.err.validator.length";   //메세지 ID 
+   var arrArg       = ["사원번호", "5자리"];      //메세지 치환 될 배열 값 [생략가능]
+   var sPopId       = sMsgId;                       //메세지 팝업창 ID [생략가능]
+   var sMsgCallback = "fn_msgCallback"              //팝업 콜백 [생략가능, Confirm성 메세지 사용시 필수]
+   this.gfn_alert(sMsgId, arrArg);		
+   this.gfn_alert(sMsgId, arrArg, sPopId, sMsgCallback);		
+ 
+ */
+
+this.btn_alert_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+    //{0}의 입력값의 길이는 {1} 이하이어야 합니다.
+    this.gfn_alert("msg.err.validator.length", ["사원번호", "5자리"]);		
+};
+
+this.btn_confirm_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+    //변경된 내역을 저장 하시겠습니까?
+   var sMsgId       = "confirm.before.save";
+   var arrArg       = "";
+   var sPopId       = sMsgId;
+   var sMsgCallback = "fn_msgCallback"
+   this.gfn_alert(sMsgId, arrArg, sPopId, sMsgCallback);		
+};
+
+this.fn_msgCallback = function(sPopupId, sValue)
+{
+    if(sPopupId == "confirm.before.save"){
+        if(sValue){
+            //Save Script
+            trace(sPopupId + " : " + sValue);
+        }
+    }
+}
+
+
+this.btn_word_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+    var sWord = this.gfn_getWord("user.jumin")
+    this.alert(sWord);
+};
+]]></Script>
+  </Form>
+</FDL>

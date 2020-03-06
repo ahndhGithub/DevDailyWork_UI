@@ -1,0 +1,354 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.0">
+  <Form id="Sample_TransactionSpring" left="0" top="0" width="814" height="529" titletext="Sample_TransactionSpring" onload="Form_onload" ontimer="Form_Emp_ontimer">
+    <Layouts>
+      <Layout height="529" width="814">
+        <Div id="div_search" taborder="1" left="10" top="40" height="39" right="10" leftbase="" topbase="" bottombase="" rightbase="" widthbase="" heightbase="" cssclass="div_WF_search">
+          <Layouts>
+            <Layout>
+              <Edit id="edt_name" taborder="0" left="61" top="8" width="80" height="21"/>
+              <Static id="Static00" taborder="1" text="성명" left="0" top="8" width="61" height="21" leftbase="" topbase="" bottombase="" rightbase="" widthbase="" heightbase="" cssclass="sta_WF_searchLabel"/>
+              <Static id="Static01" taborder="2" text="부서" left="141" top="8" width="61" height="21" leftbase="" topbase="" bottombase="" rightbase="" widthbase="" heightbase="" cssclass="sta_WF_searchLabel"/>
+              <Static id="Static02" taborder="3" text="직급" left="342" top="8" width="61" height="21" leftbase="" topbase="" bottombase="" rightbase="" widthbase="" heightbase="" cssclass="sta_WF_searchLabel"/>
+              <Combo id="cmb_dept" taborder="4" text="가나다" left="202" top="8" width="140" height="21" innerdataset="ds_dept" codecolumn="DEPT_CD" datacolumn="DEPT_NAME" index="0" value="01"/>
+              <Combo id="cmb_pos" taborder="5" text="가나다" left="403" top="8" width="140" height="21" innerdataset="ds_pos" codecolumn="POS_CD" datacolumn="POS_NAME" index="0" value="01"/>
+              <Button id="btn_reset" taborder="6" text="초기화" top="8" width="49" height="21" right="8" leftbase="" topbase="" bottombase="" rightbase="" widthbase="" heightbase="" onclick="div_search_btn_reset_onclick"/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Grid id="grd_list" taborder="0" left="10" top="119" right="10" bottom="10" binddataset="ds_emp" onheadclick="grd_list_onheadclick">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="35"/>
+                <Column size="35"/>
+                <Column size="80"/>
+                <Column size="70"/>
+                <Column size="120"/>
+                <Column size="130"/>
+                <Column size="120"/>
+                <Column size="80"/>
+                <Column size="70"/>
+                <Column size="70"/>
+                <Column size="120"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="26"/>
+                <Row size="26" band="summ"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="No"/>
+                <Cell col="1" displaytype="checkboxcontrol" edittype="checkbox" text="0"/>
+                <Cell col="2" text="성명"/>
+                <Cell col="3" text="사원번호"/>
+                <Cell col="4" text="부서"/>
+                <Cell col="5" text="직급"/>
+                <Cell col="6" text="입사일자"/>
+                <Cell col="7" text="급여"/>
+                <Cell col="8" text="성별"/>
+                <Cell col="9" text="결혼여부"/>
+                <Cell col="10" text="비고사항"/>
+              </Band>
+              <Band id="body">
+                <Cell text="expr:currow+1" textAlign="center" celltype="head"/>
+                <Cell col="1" displaytype="checkboxcontrol" edittype="checkbox" text="bind:CHK"/>
+                <Cell col="2" text="bind:FULL_NAME" edittype="text"/>
+                <Cell col="3" text="bind:EMPL_ID" editlimit="" edittype="mask" maskeditformat="AA-###" displaytype="mask" maskedittype="string"/>
+                <Cell col="4" text="bind:DEPT_CD" displaytype="combotext" edittype="combo" combodataset="ds_dept" combocodecol="DEPT_CD" combodatacol="DEPT_NAME"/>
+                <Cell col="5" text="bind:POS_CD" combodataset="ds_pos" combocodecol="POS_CD" combodatacol="POS_NAME" displaytype="combocontrol" edittype="combo"/>
+                <Cell col="6" text="bind:HIRE_DATE" displaytype="date" edittype="date" textAlign="center" calendarpopupsize="200 220"/>
+                <Cell col="7" text="bind:SALARY" displaytype="number" edittype="mask" textAlign="right" maskeditformat="#,###"/>
+                <Cell col="8" text="expr:GENDER == &quot;M&quot; ? &quot;남&quot; : &quot;여&quot;" textAlign="center"/>
+                <Cell col="9" text="bind:MARRIED" displaytype="checkboxcontrol" edittype="checkbox"/>
+                <Cell col="10" text="bind:MEMO" edittype="normal"/>
+              </Band>
+              <Band id="summary">
+                <Cell colspan="3" text="expr: &quot;Count: &quot; + dataset.getRowCount()" textAlign="right"/>
+                <Cell col="3"/>
+                <Cell col="4"/>
+                <Cell col="5"/>
+                <Cell col="6"/>
+                <Cell col="7" text="expr:dataset.getAvg(&quot;SALARY&quot;)" displaytype="number" textAlign="right"/>
+                <Cell col="8"/>
+                <Cell col="9"/>
+                <Cell col="10"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Static id="Static04" taborder="2" left="0" cssclass="sta_WF_guide1" visible="false" text="h10" height="10" width="100.00%" bottom="0"/>
+        <Static id="sta_00" taborder="3" text="조회조건" left="10" top="10" width="66" height="30" cssclass="sta_WF_title"/>
+        <Static id="Static00" taborder="4" left="0" top="0" cssclass="sta_WF_guideRed" visible="false" text="h10" height="10" right="0"/>
+        <Static id="Static08" taborder="5" left="0" top="0" width="10" cssclass="sta_WF_guideRed" visible="false" bottom="0" text="w&#13;&#10;10"/>
+        <Static id="Static03" taborder="6" left="0" top="79" cssclass="sta_WF_guideBlue" visible="false" text="h10" height="10" right="0"/>
+        <Static id="Static01" taborder="7" left="10" cssclass="sta_WF_guideRed" visible="false" text="h10" right="0" bottom="0" height="10"/>
+        <Static id="Static02" taborder="8" top="0" width="10" cssclass="sta_WF_guideRed" visible="false" bottom="0" text="w&#13;&#10;10" right="0"/>
+        <Static id="Static05" taborder="9" text="조회결과" left="10" top="89" width="97" height="30" cssclass="sta_WF_title"/>
+        <Button id="btn_save" taborder="10" text="저장" top="10" width="45" height="24" right="190" visible="true" onclick="btn_save_onclick" cssclass="btn_WF_main1"/>
+        <Button id="btn_delete" taborder="11" text="삭제" top="10" width="45" height="24" right="240" visible="true" onclick="btn_del_onclick" cssclass="btn_WF_main1"/>
+        <Button id="btn_add" taborder="12" text="입력" top="10" width="45" height="24" right="290" visible="true" onclick="btn_add_onclick" cssclass="btn_WF_main1"/>
+        <Button id="btn_search" taborder="13" text="조회" top="10" width="45" height="24" right="340" visible="true" cssclass="btn_WF_main1" onclick="btn_search_onclick"/>
+        <Button id="btn_code" taborder="14" text="공통코드" left="359" top="10" width="65" height="24" onclick="fn_commCode" cssclass="btn_WF_main1"/>
+        <Button id="btn_excelExport" taborder="15" text="엑셀 Export" top="10" width="85" height="24" right="100" visible="true" cssclass="btn_WF_main1" onclick="btn_excelExport_onclick"/>
+        <Button id="btn_excelImport" taborder="16" text="엑셀 Import" top="10" width="85" height="24" right="10" visible="true" cssclass="btn_WF_main1" onclick="btn_excelImport_onclick"/>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="ds_emp" keystring="" cancolumnchange="ds_emp_cancolumnchange" onrowsetchanged="ds_emp_onrowsetchanged" onrowposchanged="ds_emp_onrowposchanged">
+        <ColumnInfo>
+          <Column id="EMPL_ID" type="STRING" size="10"/>
+          <Column id="FULL_NAME" type="STRING" size="50"/>
+          <Column id="DEPT_CD" type="STRING" size="10"/>
+          <Column id="POS_CD" type="STRING" size="10"/>
+          <Column id="HIRE_DATE" type="DATE" size="10"/>
+          <Column id="SALARY" type="INT" size="10"/>
+          <Column id="GENDER" type="STRING" size="10"/>
+          <Column id="MARRIED" type="STRING" size="10"/>
+          <Column id="MEMO" type="STRING" size="10"/>
+          <Column id="CHK" type="STRING" size="1"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="EMPL_ID">AA001</Col>
+            <Col id="FULL_NAME">Olivia</Col>
+            <Col id="DEPT_CD">01</Col>
+            <Col id="POS_CD">03</Col>
+            <Col id="HIRE_DATE">20101003</Col>
+            <Col id="SALARY">83000</Col>
+            <Col id="GENDER">W</Col>
+            <Col id="MARRIED">true</Col>
+            <Col id="MEMO">ivory</Col>
+            <Col id="CHK">0</Col>
+          </Row>
+          <Row>
+            <Col id="EMPL_ID">AA002</Col>
+            <Col id="FULL_NAME">John</Col>
+            <Col id="DEPT_CD">02</Col>
+            <Col id="POS_CD">04</Col>
+            <Col id="HIRE_DATE">20051011</Col>
+            <Col id="SALARY">76000</Col>
+            <Col id="GENDER">M</Col>
+            <Col id="MARRIED">false</Col>
+            <Col id="MEMO">greenyellow</Col>
+            <Col id="CHK">0</Col>
+          </Row>
+          <Row>
+            <Col id="EMPL_ID">BB001</Col>
+            <Col id="FULL_NAME">Jackson</Col>
+            <Col id="DEPT_CD">03</Col>
+            <Col id="POS_CD">03</Col>
+            <Col id="HIRE_DATE">20070206</Col>
+            <Col id="SALARY">95000</Col>
+            <Col id="GENDER">M</Col>
+            <Col id="MARRIED">true</Col>
+            <Col id="MEMO">aliceblue</Col>
+            <Col id="CHK">0</Col>
+          </Row>
+          <Row>
+            <Col id="EMPL_ID">BB002</Col>
+            <Col id="FULL_NAME">Maia</Col>
+            <Col id="DEPT_CD">04</Col>
+            <Col id="POS_CD">02</Col>
+            <Col id="HIRE_DATE">20090512</Col>
+            <Col id="SALARY">60000</Col>
+            <Col id="GENDER">W</Col>
+            <Col id="MARRIED">false</Col>
+            <Col id="MEMO">ivory</Col>
+            <Col id="CHK">0</Col>
+          </Row>
+          <Row>
+            <Col id="EMPL_ID">CC001</Col>
+            <Col id="FULL_NAME">Adam</Col>
+            <Col id="DEPT_CD">01</Col>
+            <Col id="POS_CD">04</Col>
+            <Col id="HIRE_DATE">20010109</Col>
+            <Col id="SALARY">88000</Col>
+            <Col id="GENDER">M</Col>
+            <Col id="MARRIED">true</Col>
+            <Col id="MEMO">greenyellow</Col>
+            <Col id="CHK">0</Col>
+          </Row>
+          <Row>
+            <Col id="EMPL_ID">DD001</Col>
+            <Col id="FULL_NAME">Ray</Col>
+            <Col id="DEPT_CD">02</Col>
+            <Col id="POS_CD">03</Col>
+            <Col id="HIRE_DATE">20160202</Col>
+            <Col id="SALARY">60000</Col>
+            <Col id="GENDER">M</Col>
+            <Col id="MARRIED">true</Col>
+            <Col id="MEMO">lightpink</Col>
+            <Col id="CHK">0</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="ds_pos">
+        <ColumnInfo>
+          <Column id="POS_CD" type="string" size="32"/>
+          <Column id="POS_NAME" type="string" size="32"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_dept">
+        <ColumnInfo>
+          <Column id="DEPT_CD" type="STRING" size="32"/>
+          <Column id="DEPT_NAME" type="STRING" size="32"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="DEPT_CD">01</Col>
+            <Col id="DEPT_NAME">Accounting Team</Col>
+          </Row>
+          <Row>
+            <Col id="DEPT_CD">02</Col>
+            <Col id="DEPT_NAME">HR Team</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="ds_search" keystring="" cancolumnchange="ds_emp_cancolumnchange" onrowsetchanged="ds_emp_onrowsetchanged" onrowposchanged="ds_emp_onrowposchanged">
+        <ColumnInfo>
+          <Column id="S_NAME" type="STRING" size="10"/>
+          <Column id="S_DEPT" type="STRING" size="50"/>
+          <Column id="S_POS" type="STRING" size="10"/>
+        </ColumnInfo>
+        <Rows>
+          <Row/>
+        </Rows>
+      </Dataset>
+    </Objects>
+    <Script type="xscript5.1"><![CDATA[
+this.Form_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	this.gfn_formOnLoad(this);        
+};
+
+this.fn_commCode = function()
+{
+    var sSvcID    = "svcCode";
+    var sURL      = "LocalUrl::selectCodeListMap.do";
+    var sInDs     = "";
+    var sOutDs    = "ds_dept=output1 ds_pos=output2";
+    var sParam    = "";
+    var sCallBack = "fn_callback";
+	this.gfn_transaction(sSvcID, sURL, sInDs, sOutDs, sParam, sCallBack);
+}
+
+// Retrieve Button
+this.btn_search_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+    var sName = this.div_search.form.edt_name.value;
+    var sDept = this.div_search.form.cmb_dept.value;
+    var sPos  = this.div_search.form.cmb_pos.value;
+
+    var sSvcID    = "svcSelect";
+    var sURL      = "LocalUrl::selectEmpListMap.do";
+    var sInDs     = "ds_search=ds_search";
+    var sOutDs    = "ds_emp=output1";
+    var sParam    = "pName="  + nexacro.wrapQuote(sName) 
+                  + " pDept=" + nexacro.wrapQuote(sDept) 
+                  + " pPos="  + nexacro.wrapQuote(sPos) 
+                  
+    var sCallBack = "fn_callback";
+	this.gfn_transaction(sSvcID, sURL, sInDs, sOutDs, sParam, sCallBack);    
+
+};
+
+// Add Button
+this.btn_add_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.ds_emp.addRow();
+};
+
+// Delete Button
+this.btn_del_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+    this.ds_emp.deleteRow(this.ds_emp.rowposition);
+};
+
+// Save Button
+this.btn_save_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+    var sSvcID    = "svcSave";
+    var sURL      = "LocalUrl::updateEmpMap.do";
+    var sInDs     = "input=ds_emp:u";
+    var sOutDs    = "";
+    var sParam    = "";    
+    var sCallBack = "fn_callback";
+	this.gfn_transaction(sSvcID, sURL, sInDs, sOutDs, sParam, sCallBack);    
+};
+
+this.fn_callback = function(svcID, errCD, errMSG)
+{
+    if(svcID == "svcSave"){
+		this.gfn_alert("msg.save.success");	
+	}
+}
+
+this.div_search_btn_reset_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.div_search.form.edt_name.set_value("");
+    this.div_search.form.cmb_dept.set_value("");
+    this.div_search.form.cmb_pos.set_value("");
+};
+
+this.btn_excel_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	/**
+	* gfn_excelImport : excel import
+	* @param  : sDataset	- [string] dataset 
+	* @param  : sSheet 		- [string] sheet name	  [생략가능 default:Sheet1]
+	* @param  : sHead  		- [string] Head 영역지정 [필수:: from:to]
+	* @param  : sBody  		- [string] body 영역지정 [생략가능default A2]
+	* @param  : sCallback	- [string] callback 함수[callback호출시 필수]
+	* @param  : sImportId 	- [string] import id 	 [callback호출시 필수]
+	* @param  : objForm  	- [object] form object	 [callback호출시 필수]
+	* @return : N/A
+	*/
+	this.gfn_excelImport("ds_emp", "sheet1", "A2", "fn_importCallback", "excelImport" , this);	
+};
+
+this.btn_excelExport_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	/**
+	* gfnExcelExport : excel export
+	* @param  : obj		   - [object]Grid Object
+	* @param  : sSheetName - [string]sheet name[생략가능] sheet명 30자까지가능, *?등 특수문자 불가
+	* @param  : sFileName  - [string]file name[생략가능]
+	* @return : N/A
+	* @example : this.gfnExcelExport(this.grid_export, "SheetName",""); 
+	*/
+	this.gfn_excelExport(this.grd_list, "","Excel_FileName");
+};
+
+
+this.btn_excelImport_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	/**
+	* gfn_excelImport : excel import
+	* @param  : sDataset	- [string] dataset 
+	* @param  : sSheet 		- [string] sheet name	  [생략가능 default:Sheet1]
+	* @param  : sHead  		- [string] Head 영역지정 [필수:: from:to]
+	* @param  : sBody  		- [string] body 영역지정 [생략가능default A2]
+	* @param  : sCallback	- [string] callback 함수[callback호출시 필수]
+	* @param  : sImportId 	- [string] import id 	 [callback호출시 필수]
+	* @param  : objForm  	- [object] form object	 [callback호출시 필수]
+	* @return : N/A
+	* @example :this.gfnExcelImportAll("dsList","SheetName","A1:G1","A2","fnImportCallback","import",this);
+	*/
+	this.gfn_excelImport("ds_emp", "sheet1", "A2", "fn_importCallback", "ds_emp" , this);	
+};
+
+/**
+ * @description import CallBack 함수(선택)
+*/
+this.fn_importCallback = function(datasetId)
+{
+	trace("datasetId : " + datasetId + "\n" +this.ds_emp.saveXML());
+};]]></Script>
+    <Bind>
+      <BindItem id="item0" compid="div_search.form.edt_name" propid="value" datasetid="ds_search" columnid="S_NAME"/>
+      <BindItem id="item1" compid="div_search.form.cmb_dept" propid="value" datasetid="ds_search" columnid="S_DEPT"/>
+      <BindItem id="item2" compid="div_search.form.cmb_pos" propid="value" datasetid="ds_search" columnid="S_POS"/>
+    </Bind>
+  </Form>
+</FDL>

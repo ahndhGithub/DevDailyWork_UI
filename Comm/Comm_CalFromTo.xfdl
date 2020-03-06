@@ -1,0 +1,271 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.0">
+  <Form id="cmmCalFromTo" width="440" height="21" titletext="기간달력" onload="form_onload">
+    <Layouts>
+      <Layout height="21" width="440">
+        <Calendar id="cal_from" taborder="0" left="0" top="0" width="171" height="21" ondropdown="cal_from_ondropdown" dateformat="yyyy-MM-dd" popuptype="none" autoselect="true"/>
+        <Calendar id="cal_to" taborder="1" left="220" top="0" height="21" popuptype="none" ondropdown="cal_from_ondropdown" dateformat="yyyy-MM-dd" width="171" autoselect="true"/>
+        <PopupDiv id="pdv_cal" visible="false" left="0" top="21" width="350" height="250" cssclass="pdv_WF_MonthCalBg" text="">
+          <Layouts>
+            <Layout>
+              <Static id="sta_title" taborder="5" text="기간선택" left="0" top="0" height="25" right="0" uWord="popup.periodselect" cssclass="sta_POP_Title"/>
+              <Button id="btn_pdvClose" taborder="4" top="5" width="14" height="14" right="10" onclick="pdv_cal_btn_pdvCancle_onclick" cssclass="btn_POP_Close"/>
+              <Calendar id="pdv_calFrom" taborder="0" left="8" top="33" width="156" height="179" dateformat="yyyy-MM-dd" editformat="yyyy-MM-dd" type="monthonly" showmonthspin="false" usetrailingday="false" popuptype="none" value="" border="0px none"/>
+              <Calendar id="pdv_calTo" taborder="1" left="183" top="33" width="156" height="179" dateformat="yyyy-MM-dd" editformat="yyyy-MM-dd" type="monthonly" showmonthspin="false" border="0px none"/>
+              <Button id="btn_pdvConfirm" taborder="2" text="확인" left="121" top="218" width="48" height="21" onclick="pdv_cal_btn_pdvConfirm_onclick" uWord="popup.ok"/>
+              <Button id="btn_pdvCancle" taborder="3" text="취소" left="175" top="218" width="48" height="21" onclick="pdv_cal_btn_pdvCancle_onclick" uWord="popup.cancel"/>
+            </Layout>
+          </Layouts>
+        </PopupDiv>
+        <Static id="Static00_00_00_00" taborder="2" text="To" left="181" top="0" height="21" textAlign="center" width="28"/>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[/********************************************************************************************
+@desc	1. Include
+********************************************************************************************/
+include "Src_HintsEduLib::All_EduLib.xjs";
+
+/**
+*  @MenuPath    Comm > Comm_CalFromTo (공통 기간달력)
+*  @FileName 	Comm_CalFromTo.xfdl 
+*  @Creator 	Education
+*  @CreateDate 	2019.01.10
+*  @Desction    기간달력
+
+************** 소스 수정 이력 ***********************************************
+*  date          		Modifier                Description
+*******************************************************************************
+*  2019.01.10     	Education 	               최초 생성 
+*******************************************************************************
+*/
+
+this.form_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+		var gtrcPos = "Comm_CalFromTo.xfdl.form_onload";
+			this.gtrace("● 콤보공통화 : Comm_ComboConditionFromTo"				, gtrcPos);
+	
+	this.oFrmParnt				=	this.gfn_getTopLevelForm(this);					this.gtrace("부모폼(this.gfn_getTopLevelForm().name)------->"+this.gfn_getTopLevelForm(this).name, gtrcPos);
+		//SearchConditionType : BuyDate,ds_in,p_buy_date_sta,p_buy_date_end		:	구분값, DS  ,바인딩컬럼(시작,끝)
+	var strSearchCond 			= 	this.parent.SearchConditionType;				this.gtrace("부모속성(this.parent.SearchConditionType)--------->"+this.parent.SearchConditionType, gtrcPos);
+ 	var arrUserProp				=	strSearchCond.split(",");
+	this.oBindDs  				= 	this.oFrmParnt.lookup(arrUserProp[1]);			this.gtrace("바인딩Ds(this.oBindDs)--------->"+this.oBindDs.name, gtrcPos);
+	this.oBindFromCol 			= 	nexacro.trim(this.gfn_nvl(arrUserProp[2],""));  this.gtrace("시작컬럼(this.oBindFromCol)---->"+this.oBindFromCol, gtrcPos);
+	this.oBindToCol 			= 	nexacro.trim(this.gfn_nvl(arrUserProp[3],""));  this.gtrace("끝컬럼(this.oBindToCol)-------->"+this.oBindToCol	 , gtrcPos);
+// 	this.oBindListCol			= 	nexacro.trim(this.gfn_nvl(arrUserProp[4],""));  this.gtrace("리스트컬럼(this.oBindListCol--->"+this.oBindListCol, gtrcPos);
+
+	{
+		// oncolumnchanged 이벤트 추가
+		this.oBindDs.addEventHandler("oncolumnchanged", this.fn_parentDsChanged, this);
+	}
+	
+	this.fn_init();
+};
+
+this.fn_parentDsChanged = function(objDs, e)
+{
+		var gtrcPos = "Comm_CalFromTo.xfdl.fn_parentDsChanged";
+			this.gtrace("● 온컬럼체인지드 : fn_parentDsChanged", gtrcPos);
+										
+	var sColId 		= e.columnid;					this.gtrace("sColId --->"+sColId 	,gtrcPos);
+	if(sColId==this.oBindFromCol
+	|| sColId==this.oBindToCol
+	|| sColId==this.oBindListCol)
+	{
+		var iFromNdx 	= sColId.indexOf("_sta");		this.gtrace("iFromNdx --->"+iFromNdx 	,gtrcPos);
+		var iToNdx		= sColId.indexOf("_end");		this.gtrace("iToNdx	--->"+iToNdx		,gtrcPos);
+		var iListNdx	= sColId.indexOf("_list");		this.gtrace("iListNdx --->"+iListNdx	,gtrcPos);
+		var sFromToList = (iFromNdx > -1 ? "From" : (iToNdx > -1 ? "To" : (iListNdx > -1 ? "List" : null)));
+		
+		var setDsCol;
+		switch(sFromToList){
+			case "From" : 	setDsCol = this.oBindFromCol;	break;
+			case "To" 	: 	setDsCol = this.oBindToCol;		break;
+			case "List" : 	setDsCol = this.oBindListCol;	break;
+			default : break;
+		}
+
+		if(setDsCol == e.columnid)
+		{
+			this.ds_FromTo.setColumn(0, sFromToList, e.newvalue);
+		}
+	}
+}
+
+
+/**
+* @description 달력초기화
+*/
+this.fn_init = function()
+{
+// 	this.cal_from.set_value("");	//FROM 일자 set
+// 	this.cal_to.set_value("");		//TO 일자 set
+	this.ds_FromTo.clearData();
+	this.ds_FromTo.addRow();
+};
+
+/**
+* @description Get from 일자
+*/
+this.fn_getFromDate = function ()
+{	
+	var sDate = this.cal_from.value;
+	return sDate;
+};
+
+/**
+* @description to 일자 갖고오기
+*/
+this.fn_getToDate = function ()
+{
+	var sDate = this.cal_to.value;
+	return sDate;
+};
+
+/**
+* @description from일자 세팅하기
+*/
+this.fn_setFromDate = function (sDate)
+{
+	this.cal_from.set_value(sDate);
+};
+
+/**
+* @description to일자 세팅하기
+*/
+this.fn_setToDate = function (sDate)
+{
+	this.cal_to.set_value(sDate);
+};
+
+/**
+* @description enable true/false세팅
+*/
+this.fn_setEnable = function (bValue)
+{
+	this.cal_from.set_enable(bValue);
+	this.cal_to.set_enable(bValue);
+};
+
+/**
+* @description readonly true/false세팅
+*/
+this.fn_setReadonly = function (bValue)
+{
+	this.cal_from.set_readonly(bValue);
+	this.cal_to.set_readonly(bValue);
+};
+
+/**
+* @description Essential true/false세팅
+*/
+this.fn_setEssential  = function (bValue)
+{
+	//CSS Essential 클래스설정
+	if(bValue){
+        this.cal_from.set_cssclass("essential");
+        this.cal_to.set_cssclass("essential");
+	}
+    else{
+        this.cal_from.set_cssclass("");
+        this.cal_to.set_cssclass("");
+	}
+};
+
+/**
+* @description Calendar_ondropdown 이벤트 시 popDiv컴포넌트 띄우기
+*/
+this.cal_from_ondropdown = function(obj:nexacro.Calendar,e:nexacro.EventInfo)
+{
+
+    this.pdv_cal.form.pdv_calFrom.set_value(this.cal_from.value);
+    this.pdv_cal.form.pdv_calTo.set_value(this.cal_to.value);
+    
+	this.pdv_cal.trackPopupByComponent(this.cal_from, 0, obj.height);
+
+};
+
+/**
+* @description 기간 popDiv컴포넌트 확인(적용) 버튼 클릭
+*/
+this.pdv_cal_btn_pdvConfirm_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+ 	var sFromValue = this.pdv_cal.form.pdv_calFrom.value;
+ 	var sToValue = this.pdv_cal.form.pdv_calTo.value;	
+ 	this.cal_from.set_value(sFromValue);
+ 	this.cal_to.set_value(sToValue);
+    this.fn_callback(sFromValue, sToValue);
+    this.pdv_cal.closePopup();
+};
+
+this.fn_callback = function(sFromValue, sToValue)
+{
+	var sCallback = this.parent.callbackfunc;    
+	if (!this.gfn_isNull(sCallback)) {
+		try {
+			var svcId = this.parent.name;
+			this.lookupFunc(sCallback).call(svcId, sFromValue, sToValue); 
+		} catch(e) {
+			//trace("함수 실행시 오류가 발생했습니다.");
+		}
+	}    
+};
+
+/**
+* @description 기간 popDiv컴포넌트 닫기
+*/ 
+this.pdv_cal_btn_pdvCancle_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.pdv_cal.closePopup();
+};
+
+
+
+this.ds_FromTo_oncolumnchanged = function(obj:nexacro.NormalDataset,e:nexacro.DSColChangeEventInfo)
+{
+											var gtrcPos = "Comm_CalFromTo.xfdl.ds_FromTo_oncolumnchanged";
+												this.gtrace("e.columnid		>"+e.columnid						,gtrcPos);
+												this.gtrace("sSearchConditionTypes	>"+this.sSearchConditionType		,gtrcPos);
+												this.gtrace("oBindFromCol	>"+this.oBindFromCol				,gtrcPos);
+												this.gtrace("oBindToCol		>"+this.oBindToCol					,gtrcPos);
+												this.gtrace("oBindListCol	>"+this.oBindListCol				,gtrcPos);
+
+	{	//부모데이터셋에 값 세팅
+		var sParentSetCol;
+		switch(e.columnid){
+			case "From" : sParentSetCol = this.oBindFromCol;	break;
+			case "To" 	: sParentSetCol = this.oBindToCol; 		break;
+// 			case "List" : sParentSetCol = this.oBindListCol;
+// 			
+// 							
+// 						  // 값이 없는 경우 List 메세지를 숨김
+// 						  if(this.gfn_nvl(obj.getColumn(0, "List"),"")==""){
+// 							this.ComboList.set_visible(false);
+// 						  }else{
+// 							this.ComboList.set_visible(true);
+// 						  }
+// 					break;
+			default : 	break;
+		}
+
+												this.gtrace("sParentSetCol	>"+sParentSetCol,gtrcPos);
+
+		this.oBindDs.setColumn(0, sParentSetCol, e.newvalue);
+	}
+	
+};
+]]></Script>
+    <Objects>
+      <Dataset id="ds_FromTo" oncolumnchanged="ds_FromTo_oncolumnchanged">
+        <ColumnInfo>
+          <Column id="From" type="STRING" size="256"/>
+          <Column id="To" type="STRING" size="256"/>
+          <Column id="List" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+    <Bind>
+      <BindItem id="item0" compid="pdv_cal.form.pdv_calFrom" propid="value" datasetid="ds_FromTo" columnid="From"/>
+      <BindItem id="item1" compid="pdv_cal.form.pdv_calTo" propid="value" datasetid="ds_FromTo" columnid="To"/>
+    </Bind>
+  </Form>
+</FDL>
