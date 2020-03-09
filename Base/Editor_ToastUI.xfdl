@@ -1,0 +1,128 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="Editor" width="1280" height="720" titletext="Form_Work" oninit="Form_Work_oninit" onload="Form_Work_onload">
+    <Layouts>
+      <Layout width="1280" height="720" screenid="Desktop_screen">
+        <WebBrowser id="WebBrowser00" taborder="0" top="50" right="10" bottom="10" onloadcompleted="WebBrowser00_onloadcompleted" left="610"/>
+        <Button id="Button00" taborder="1" text="저장" left="20" top="8" width="73" height="33" onclick="fn_Save"/>
+        <Button id="Button00_00" taborder="2" text="조회" left="97" top="8" width="73" height="33" onclick="fn_Load"/>
+        <TextArea id="TextArea00" taborder="3" left="10" top="50" width="590" bottom="10" wordWrap="char"/>
+        <Button id="Button00_00_00" taborder="4" text="코드보기" left="174" top="8" width="73" height="33" onclick="Button00_00_00_onclick"/>
+        <Button id="Button00_00_00_00" taborder="5" text="초기화" left="251" top="8" width="73" height="33" onclick="Button00_00_00_00_onclick"/>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[
+this.Form_Work_oninit = function(obj:nexacro.Form,e:nexacro.EventInfo)
+{
+	
+};
+
+this.Form_Work_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	var domain = document.location.href;
+    var arrdomain = domain.split('/');
+    var currentfile = arrdomain[arrdomain.length-1];
+	
+//   domain = domain.replace(currentfile, "../ckeditor/ckeditor.html")
+//	domain = domain.replace(currentfile, "/ckeditor/ToastUI.html");
+	domain = domain + "WebEditor/ToastUI.html";
+trace(domain);
+    this.WebBrowser00.set_url(domain);
+};
+
+this.WebBrowser00_onloadcompleted = function(obj:nexacro.WebBrowser,e:nexacro.WebLoadCompEventInfo)
+{
+	_win = this.WebBrowser00.getProperty('window');
+};
+
+this.Button00_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+//	_win.callMethod("setData", "<p><strong>nexacro platform</strong></p><p><em>Nexacro Platform programming is divided into two parts</em></p><p>one to define user-visible screens visible and a second used for the scripts that implement business logic. Additionally, Nexacro Platform provides capabilities for applying and managing styles and themes in screens.</p>");
+	_win.callMethod("setData", this.ds_in.getColumn(0, 'CONTENTS'));
+};
+
+this.Button00_00_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.ds_in.setColumn(0, 'CONTENTS', _win.callMethod("getData"));
+};
+
+this.fn_Save = function ()
+{
+	if(!this.confirm("저장하시겠습니까?")) return;
+	
+//	this.ds_in.setColumn(0, 'CONTENTS', _win.callMethod("getData"));
+
+	nexacro.getEnvironment().set_httptimeout(3600);
+
+	var sSvcID = "save";
+	var sURL = "NexusSrv::CommonSaveAction_Return.do";
+	var sInDatasets = "ds_in0=ds_in";
+	var sOutDatasets = "";
+	var sArguments = "sqlId=" + nexacro.wrapQuote("test_save_ckeditor");
+
+	this.transaction(sSvcID, sURL, sInDatasets, sOutDatasets, sArguments, "callbackFunction");
+};
+
+this.fn_Load = function ()
+{
+	var sSvcID = "load";
+	var sURL = "NexusSrv::CommonSelectAction.do";
+	var sInDatasets = "ds_in=ds_in";
+	var sOutDatasets = "ds_in=ds_out0";
+	var sArguments = "sqlId=" + nexacro.wrapQuote("test_load_ckeditor");
+
+	this.transaction(sSvcID, sURL, sInDatasets, sOutDatasets, sArguments, "callbackFunction");
+};
+
+/*++
+ @desc	Callback Function
+ */
+this.callbackFunction = function (strSvcID, nErrorCode, strErrorMsg)
+{
+	// 에러 체크 영역
+	if (nErrorCode < 0) 
+	{
+		alert(this.gfn_removeJavaErrMsg(strErrorMsg));
+		return;
+	}
+
+	switch (strSvcID) 
+	{
+		case 'save':
+			nexacro.getEnvironment().set_httptimeout(60);
+			alert('저장완료');
+			break;
+		case 'load':
+		trace(this.ds_in.saveXML());
+			_win.callMethod("setData", this.ds_in.getColumn(0, 'CONTENTS'));
+			alert('조회완료');
+			break;
+	}
+}
+
+this.Button00_00_00_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.ds_in.setColumn(0, 'CONTENTS', _win.callMethod("getData"));
+};
+
+this.Button00_00_00_00_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.ds_in.setColumn(0, 'CONTENTS', '');
+	_win.callMethod("setData", this.ds_in.getColumn(0, 'CONTENTS'));
+};
+]]></Script>
+    <Objects>
+      <Dataset id="ds_in">
+        <ColumnInfo>
+          <Column id="CONTENTS" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row/>
+        </Rows>
+      </Dataset>
+    </Objects>
+    <Bind>
+      <BindItem id="item0" compid="TextArea00" propid="value" datasetid="ds_in" columnid="CONTENTS"/>
+    </Bind>
+  </Form>
+</FDL>

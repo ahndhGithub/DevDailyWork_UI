@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<FDL version="2.0">
+<FDL version="2.1">
   <Form id="Form_Main_Home" width="1340" height="900" titletext="Home(관리자)" onload="fn_Onload">
     <Layouts>
       <Layout stepcount="0">
@@ -10,6 +10,8 @@
               <Button id="Button_Tx" taborder="1" text="Transact Samle" left="244" top="225" width="120" height="50" onclick="Button_onclick"/>
               <Button id="Button_Grid_Obj" taborder="2" text="Grid Sample_Obj" left="394" top="137" width="120" height="50" onclick="Button_onclick"/>
               <Button id="Button_POList" taborder="3" text="Purchase Order" left="394" top="227" width="120" height="50" onclick="Button_onclick"/>
+              <Button id="Button_Editor_ckeditor" taborder="4" text="Editor_ckeditor&#13;&#10;Sample" left="244" top="315" width="120" height="50" onclick="Button_onclick"/>
+              <Button id="Button_Editor_ToastUI" taborder="5" text="Editor_ToastUI&#13;&#10;Sample" left="394" top="315" width="120" height="50" onclick="Button_onclick"/>
             </Layout>
           </Layouts>
         </Div>
@@ -57,6 +59,22 @@ this.Button_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
 		objDsMenu.setColumn(nMenuRow, HINTS.gv_MenuIsDUPCol,"N");
 		objDsMenu.setColumn(nMenuRow, HINTS.gv_MenuIsLeafCol,"Y");	
 	}
+	if (objDsMenu.findRow( HINTS.gv_MenuCodeCol, "Editor_ckeditor" ) == -1 ) {
+		var nMenuRow = objDsMenu.addRow();
+		objDsMenu.setColumn(nMenuRow, HINTS.gv_MenuCodeCol,"Editor_ckeditor");
+		objDsMenu.setColumn(nMenuRow, HINTS.gv_MenuNameCol,"Editor_ckeditor");
+		objDsMenu.setColumn(nMenuRow, HINTS.gv_MenuURLCol,"Base::Editor_ckeditor.xfdl");
+		objDsMenu.setColumn(nMenuRow, HINTS.gv_MenuIsDUPCol,"N");
+		objDsMenu.setColumn(nMenuRow, HINTS.gv_MenuIsLeafCol,"Y");	
+	}
+	if (objDsMenu.findRow( HINTS.gv_MenuCodeCol, "Editor_ToastUI" ) == -1 ) {
+		var nMenuRow = objDsMenu.addRow();
+		objDsMenu.setColumn(nMenuRow, HINTS.gv_MenuCodeCol,"Editor_ToastUI");
+		objDsMenu.setColumn(nMenuRow, HINTS.gv_MenuNameCol,"Editor_ToastUI");
+		objDsMenu.setColumn(nMenuRow, HINTS.gv_MenuURLCol,"Base::Editor_ToastUI.xfdl");
+		objDsMenu.setColumn(nMenuRow, HINTS.gv_MenuIsDUPCol,"N");
+		objDsMenu.setColumn(nMenuRow, HINTS.gv_MenuIsLeafCol,"Y");	
+	}
 	switch(obj.name) {
 	case "Button_Tx":
 		this.gfn_openMenu("TxTest","");
@@ -70,6 +88,12 @@ this.Button_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
 	case "Button_POList":
 		this.gfn_openMenu("POList","");
 		break;
+	case "Button_Editor_ckeditor":
+		this.gfn_openMenu("Editor_ckeditor","");
+		break;
+	case "Button_Editor_ToastUI":
+		this.gfn_openMenu("Editor_ToastUI","");
+		break; 
 	default:
 	}
 	
