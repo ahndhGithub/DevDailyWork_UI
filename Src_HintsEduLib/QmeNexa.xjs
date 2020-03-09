@@ -174,7 +174,7 @@ pForm.gfn_getAllInitData = function()
 		this.gtrace("● 온로드 이벤트, 필요한 모든 데이터 가져옴",gtrcPos);
 		
 	//html로부터 전달받은값, 브라우져정보
-	var sQMELOGONUSERID = 	nexacro.getApplication().QmeLogonUserId;		this.gtrace(" - 유저 : sQMELOGONUSERID--->"+sQMELOGONUSERID,gtrcPos);
+	var sQMELOGONUSERID = 	nexacro.getApplication().LogonUserId;		this.gtrace(" - 유저 : sQMELOGONUSERID--->"+sQMELOGONUSERID,gtrcPos);
 	var sLANGUAGEKEY	=	nexacro.getApplication().LanguageKey;       	this.gtrace(" - 언어 : sLANGUAGEKEY--->"+sLANGUAGEKEY,gtrcPos);
 	var sNAVIGATOR		=	this.gfn_getNavigator();						this.gtrace(" - 브라우져 : this.gfn_getNavigator()--->"+this.gfn_getNavigator(),gtrcPos);		//NEXACRO / IE / CHROME
 

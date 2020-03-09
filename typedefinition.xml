@@ -64,12 +64,10 @@
     <Service prefixid="Images" type="file" cachelevel="session" url="./Images/" version="0" communicationversion="0" include_subdir="false"/>
     <Service prefixid="Recycle" type="form" cachelevel="session" url="./Recycle/" version="0" communicationversion="0" include_subdir="false"/>
     <Service prefixid="QmeNexHtml" type="file" url="./QmeNexHtml/" version="0" cachelevel="session" include_subdir="false" communicationversion="0"/>
-    <Service prefixid="AppSvrLocalMsSql" type="JSP" cachelevel="none" url="http://localhost:8080/DevDailyWork/" version="0" communicationversion="0" include_subdir="false"/>
+    <Service prefixid="AppSvrLocalMsSql1" type="JSP" cachelevel="none" url="http://localhost:8080/DevDailyWork_GIT/" version="0" communicationversion="0" include_subdir="false"/>
     <Service prefixid="ImgSvrTest" type="JSP" cachelevel="none" url="http://192.168.11.193:8081/ImageViewer.do?realFileNm=" version="0" communicationversion="0" include_subdir="false"/>
-    <Service prefixid="AppSvr" type="JSP" cachelevel="none" url="http://nyc.panpacific.co.kr/QMEServer/" version="0" communicationversion="0" include_subdir="false"/>
-    <Service prefixid="AppSvr2" type="JSP" cachelevel="none" url="http://192.168.11.182/" version="0" communicationversion="0" include_subdir="false"/>
-    <Service prefixid="AppSvr3" type="JSP" cachelevel="none" url="http://203.229.231.124/" version="0" communicationversion="0" include_subdir="false"/>
     <Service prefixid="EcoLibrary" type="file" url="./EcoLibrary/" version="0" cachelevel="session" include_subdir="false" communicationversion="0"/>
+    <Service prefixid="AppSvrLocalMsSql" type="JSP" version="0" cachelevel="session" include_subdir="false" communicationversion="0" url="http://10.101.44.160:8080/DevDailyWork_GIT/"/>
   </Services>
   <Protocols/>
   <Update/>
