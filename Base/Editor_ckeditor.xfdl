@@ -1,14 +1,98 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <FDL version="2.1">
-  <Form id="Editor" width="1280" height="720" titletext="Form_Work" oninit="Form_Work_oninit" onload="Form_Work_onload">
+  <Form id="Editor_ckeditor" width="1280" height="720" titletext="Form_Work" oninit="Form_Work_oninit" onload="Form_Work_onload">
     <Layouts>
       <Layout width="1280" height="720" screenid="Desktop_screen">
-        <WebBrowser id="WebBrowser00" taborder="0" top="50" right="10" bottom="10" onloadcompleted="WebBrowser00_onloadcompleted" left="610"/>
-        <Button id="Button00" taborder="1" text="저장" left="20" top="8" width="73" height="33" onclick="fn_Save"/>
-        <Button id="Button00_00" taborder="2" text="조회" left="97" top="8" width="73" height="33" onclick="fn_Load"/>
-        <TextArea id="TextArea00" taborder="3" left="10" top="50" width="590" bottom="10" wordWrap="char"/>
-        <Button id="Button00_00_00" taborder="4" text="코드보기" left="174" top="8" width="73" height="33" onclick="Button00_00_00_onclick"/>
-        <Button id="Button00_00_00_00" taborder="5" text="초기화" left="251" top="8" width="73" height="33" onclick="Button00_00_00_00_onclick"/>
+        <WebBrowser id="WebBrowser00" taborder="0" top="230" right="10" bottom="10" onloadcompleted="WebBrowser00_onloadcompleted" left="610"/>
+        <Button id="Button00" taborder="1" text="저장" left="97" top="188" width="73" height="33" onclick="fn_Save"/>
+        <Button id="Button00_00" taborder="2" text="리스트&#13;&#10;조회" left="20" top="188" width="73" height="33" onclick="fn_LoadList"/>
+        <TextArea id="TextArea00" taborder="3" left="10" top="230" width="590" bottom="10" wordWrap="char" readonly="true"/>
+        <Button id="Button00_00_00" taborder="4" text="코드보기" left="174" top="188" width="73" height="33" onclick="Button00_00_00_onclick"/>
+        <Button id="Button00_00_00_00" taborder="5" text="초기화" left="251" top="188" width="73" height="33" onclick="Button00_00_00_00_onclick"/>
+        <Grid id="Grid00" taborder="6" left="10" top="10" height="168" right="10" binddataset="ds_list" oncelldblclick="Grid00_oncelldblclick" cellsizingtype="col">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="Task_ID"/>
+                <Cell col="1" text="TaskName"/>
+                <Cell col="2" text="TaskDescript"/>
+                <Cell col="3" text="TaskType"/>
+                <Cell col="4" text="TaskStatus"/>
+                <Cell col="5" text="RequestDept"/>
+                <Cell col="6" text="RequestUser"/>
+                <Cell col="7" text="ServiceCode"/>
+                <Cell col="8" text="TaskManager"/>
+                <Cell col="9" text="DutyUser_ID"/>
+                <Cell col="10" text="PlanMD"/>
+                <Cell col="11" text="PlanStartDate"/>
+                <Cell col="12" text="PlanEndDate"/>
+                <Cell col="13" text="ActualMD"/>
+                <Cell col="14" text="ActualStartDate"/>
+                <Cell col="15" text="ActualEndDate"/>
+                <Cell col="16" text="DeployDate"/>
+                <Cell col="17" text="RefDocNo"/>
+                <Cell col="18" text="RefURL"/>
+                <Cell col="19" text="Files_ID"/>
+                <Cell col="20" text="Remark"/>
+                <Cell col="21" text="ModifiedUser"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:Task_ID"/>
+                <Cell col="1" text="bind:TaskName"/>
+                <Cell col="2" text="bind:TaskDescript"/>
+                <Cell col="3" text="bind:TaskType"/>
+                <Cell col="4" text="bind:TaskStatus"/>
+                <Cell col="5" text="bind:RequestDept"/>
+                <Cell col="6" text="bind:RequestUser"/>
+                <Cell col="7" text="bind:ServiceCode"/>
+                <Cell col="8" text="bind:TaskManager"/>
+                <Cell col="9" text="bind:DutyUser_ID"/>
+                <Cell col="10" text="bind:PlanMD"/>
+                <Cell col="11" text="bind:PlanStartDate"/>
+                <Cell col="12" text="bind:PlanEndDate"/>
+                <Cell col="13" text="bind:ActualMD"/>
+                <Cell col="14" text="bind:ActualStartDate"/>
+                <Cell col="15" text="bind:ActualEndDate"/>
+                <Cell col="16" text="bind:DeployDate"/>
+                <Cell col="17" text="bind:RefDocNo"/>
+                <Cell col="18" text="bind:RefURL"/>
+                <Cell col="19" text="bind:Files_ID"/>
+                <Cell col="20" text="bind:Remark"/>
+                <Cell col="21" text="bind:ModifiedUser"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Edit id="Edit00" taborder="7" left="424" top="191" width="270" height="28"/>
+        <Static id="Static00" taborder="8" text="제목 :" left="345" top="191" width="73" height="28" textAlign="right"/>
       </Layout>
     </Layouts>
     <Script type="xscript5.1"><![CDATA[
@@ -26,7 +110,7 @@ this.Form_Work_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
 //   domain = domain.replace(currentfile, "../ckeditor/ckeditor.html")
 //	domain = domain.replace(currentfile, "/ckeditor/ToastUI.html");
 	domain = domain + "WebEditor/ckeditor.html";
-trace(domain);
+	
     this.WebBrowser00.set_url(domain);
 };
 
@@ -38,24 +122,40 @@ this.WebBrowser00_onloadcompleted = function(obj:nexacro.WebBrowser,e:nexacro.We
 this.Button00_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
 {
 //	_win.callMethod("setData", "<p><strong>nexacro platform</strong></p><p><em>Nexacro Platform programming is divided into two parts</em></p><p>one to define user-visible screens visible and a second used for the scripts that implement business logic. Additionally, Nexacro Platform provides capabilities for applying and managing styles and themes in screens.</p>");
-	_win.callMethod("setData", this.ds_in.getColumn(0, 'CONTENTS'));
+	_win.callMethod("setData", this.ds_in.getColumn(0, 'TaskDescript'));
 };
 
 this.Button00_00_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
 {
-	this.ds_in.setColumn(0, 'CONTENTS', _win.callMethod("getData"));
+	this.ds_in.setColumn(0, 'TaskDescript', _win.callMethod("getData"));
 };
 
 this.fn_Save = function ()
 {
+	var vTask_ID = this.ds_in.getColumn(0, 'Task_ID');
+	var vTaskName = this.ds_in.getColumn(0, 'TaskName');
+	
+	if(vTaskName == null || vTaskName == 'undefined' || vTaskName == '') {
+		this.alert("제목을 입력해 주세요.");
+		 return;
+	}
 	if(!this.confirm("저장하시겠습니까?")) return;
 	
-//	this.ds_in.setColumn(0, 'CONTENTS', _win.callMethod("getData"));
+	this.TextArea00.set_enableevent(false);
+	this.ds_in.setColumn(0, 'TaskDescript', _win.callMethod("getData"));
+	
+	if(vTask_ID == null || vTask_ID == 'undefined' || vTask_ID == '') {
+		this.ds_in.setColumn(0, 'ROW_STS', 'I');
+	} else {
+		this.ds_in.setColumn(0, 'ROW_STS', 'U');
+	}
+	
+//	this.ds_in.setColumn(0, 'TaskDescript', _win.callMethod("getData"));
 
 	nexacro.getEnvironment().set_httptimeout(3600);
 
 	var sSvcID = "save";
-	var sURL = "NexusSrv::CommonSaveAction_Return.do";
+	var sURL = "AppSvrLocalMsSql::CommonSaveAction_Return.do";
 	var sInDatasets = "ds_in0=ds_in";
 	var sOutDatasets = "";
 	var sArguments = "sqlId=" + nexacro.wrapQuote("test_save_ckeditor");
@@ -65,10 +165,27 @@ this.fn_Save = function ()
 
 this.fn_Load = function ()
 {
+// 	var sSvcID 			= "AppSvrLocalMsSqlTest";
+// 	var sURL 			= "AppSvrLocalMsSql::CommonSaveAction_Return.do";
+// 	var sInDatasets 	= "ds_in0=ds_in ds_in1=ds_in ds_in2=ds_in";
+// 	var sOutDatasets 	= "ds_out=ds_out0 ds_out22=ds_out1 ds_out33=ds_out2";
+// 	var sArguments 		= "sqlId=" + nexacro.wrapQuote("test_first_transaction test_second_transaction test_second_transaction");
+
+	this.ds_in.setColumn(0, 'ServiceCode', '');
+	this.ds_in.setColumn(0, 'TaskManager', '');
+	this.ds_in.setColumn(0, 'PlanStartDate', '');
+	this.ds_in.setColumn(0, 'PlanEndDate', '');
+	this.ds_in.setColumn(0, 'ActualStartDate', '');
+	this.ds_in.setColumn(0, 'ActualEndDate', '');
+	
 	var sSvcID = "load";
-	var sURL = "NexusSrv::CommonSelectAction.do";
+	var sURL = "AppSvrLocalMsSql::CommonSelectAction.do";
 	var sInDatasets = "ds_in=ds_in";
 	var sOutDatasets = "ds_in=ds_out0";
+	
+	var vTask_Id = this.ds_in.getColumn(0, 'Task_ID');
+	if(vTask_Id == null || vTask_Id == 'undefined' || vTask_Id == '') sOutDatasets = "ds_list=ds_out0";
+	
 	var sArguments = "sqlId=" + nexacro.wrapQuote("test_load_ckeditor");
 
 	this.transaction(sSvcID, sURL, sInDatasets, sOutDatasets, sArguments, "callbackFunction");
@@ -91,30 +208,95 @@ this.callbackFunction = function (strSvcID, nErrorCode, strErrorMsg)
 		case 'save':
 			nexacro.getEnvironment().set_httptimeout(60);
 			alert('저장완료');
+			
+			this.ds_list.clearData();
+			this.ds_in.clearData();
+			this.ds_in.addRow();
+			
+			this.TextArea00.set_enableevent(true);
+			
+			_win.callMethod("setData", this.ds_in.getColumn(0, 'TaskDescript'));
+			
+			this.ds_in.setColumn(0, 'Task_ID', '');
+	
+			this.fn_Load();
+			
 			break;
 		case 'load':
-		trace(this.ds_in.saveXML());
-			_win.callMethod("setData", this.ds_in.getColumn(0, 'CONTENTS'));
-			alert('조회완료');
+			_win.callMethod("setData", this.ds_in.getColumn(0, 'TaskDescript'));
+			//alert('조회완료');
 			break;
 	}
 }
 
 this.Button00_00_00_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
 {
-	this.ds_in.setColumn(0, 'CONTENTS', _win.callMethod("getData"));
+	this.ds_in.setColumn(0, 'TaskDescript', _win.callMethod("getData"));
 };
 
 this.Button00_00_00_00_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
 {
-	this.ds_in.setColumn(0, 'CONTENTS', '');
-	_win.callMethod("setData", this.ds_in.getColumn(0, 'CONTENTS'));
+	this.ds_list.clearData();
+	this.ds_in.clearData();
+	this.ds_in.addRow();
+	
+	_win.callMethod("setData", this.ds_in.getColumn(0, 'TaskDescript'));
+};
+
+this.fn_LoadList = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.ds_in.setColumn(0, 'Task_ID', '');
+	
+	this.fn_Load();
+};
+
+this.Grid00_oncelldblclick = function(obj:nexacro.Grid,e:nexacro.GridClickEventInfo)
+{
+	this.ds_in.setColumn(0, 'Task_ID', this.ds_list.getColumn(e.row, 'Task_ID'));
+	
+	this.fn_Load();
 };
 ]]></Script>
     <Objects>
-      <Dataset id="ds_in">
+      <Dataset id="ds_list">
         <ColumnInfo>
-          <Column id="CONTENTS" type="STRING" size="256"/>
+          <Column id="ROW_STS" type="STRING" size="256"/>
+          <Column id="Task_ID" type="STRING" size="256"/>
+          <Column id="TaskName" type="STRING" size="256"/>
+          <Column id="TaskDescript" type="STRING" size="256"/>
+          <Column id="TaskType" type="STRING" size="256"/>
+          <Column id="TaskStatus" type="STRING" size="256"/>
+          <Column id="RequestDept" type="STRING" size="256"/>
+          <Column id="RequestUser" type="STRING" size="256"/>
+          <Column id="ServiceCode" type="STRING" size="256"/>
+          <Column id="TaskManager" type="STRING" size="256"/>
+          <Column id="DutyUser_ID" type="STRING" size="256"/>
+          <Column id="PlanMD" type="STRING" size="256"/>
+          <Column id="PlanStartDate" type="STRING" size="256"/>
+          <Column id="PlanEndDate" type="STRING" size="256"/>
+          <Column id="ActualMD" type="STRING" size="256"/>
+          <Column id="ActualStartDate" type="STRING" size="256"/>
+          <Column id="ActualEndDate" type="STRING" size="256"/>
+          <Column id="DeployDate" type="STRING" size="256"/>
+          <Column id="RefDocNo" type="STRING" size="256"/>
+          <Column id="RefURL" type="STRING" size="256"/>
+          <Column id="Files_ID" type="STRING" size="256"/>
+          <Column id="Remark" type="STRING" size="256"/>
+          <Column id="ModifiedUser" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_in" useclientlayout="true">
+        <ColumnInfo>
+          <Column id="ROW_STS" type="STRING" size="256"/>
+          <Column id="Task_ID" type="STRING" size="256"/>
+          <Column id="TaskName" type="STRING" size="256"/>
+          <Column id="TaskDescript" type="STRING" size="256"/>
+          <Column id="ServiceCode" type="STRING" size="256"/>
+          <Column id="TaskManager" type="STRING" size="256"/>
+          <Column id="PlanStartDate" type="STRING" size="256"/>
+          <Column id="PlanEndDate" type="STRING" size="256"/>
+          <Column id="ActualStartDate" type="STRING" size="256"/>
+          <Column id="ActualEndDate" type="STRING" size="256"/>
         </ColumnInfo>
         <Rows>
           <Row/>
@@ -122,7 +304,8 @@ this.Button00_00_00_00_onclick = function(obj:nexacro.Button,e:nexacro.ClickEven
       </Dataset>
     </Objects>
     <Bind>
-      <BindItem id="item0" compid="TextArea00" propid="value" datasetid="ds_in" columnid="CONTENTS"/>
+      <BindItem id="item0" compid="TextArea00" propid="value" datasetid="ds_in" columnid="TaskDescript"/>
+      <BindItem id="item1" compid="Edit00" propid="value" datasetid="ds_in" columnid="TaskName"/>
     </Bind>
   </Form>
 </FDL>
